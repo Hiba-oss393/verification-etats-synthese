@@ -1,5 +1,7 @@
-streamlit>=1.30
-pandas>=2.0
-openpyxl>=3.1
-pdfplumber>=0.10
-xlrd>=2.0
+streamlit
+pandas
+altair
+openpyxl
+xlrd
+pdfplumber
+reportlab
