@@ -1,0 +1,957 @@
+[
+ {
+  "cle": "Etats_Financiers_2012.pdf|42541",
+  "fichier": "Etats_Financiers_2012.pdf",
+  "date": "10/11/2026 19:48:23",
+  "comptes": 8,
+  "conformite": 87.5,
+  "valeur": 28.5,
+  "statuts": {
+   "éliminé": 0,
+   "à revoir": 1,
+   "inchangé": 7,
+   "reclassé": 0,
+   "ajusté": 0
+  },
+  "constats": [
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Erreur",
+    "Constat": "Balance déséquilibrée (écart -6,818,793 MAD)",
+    "Retraitement suggéré": "Corriger la balance avant tout retraitement"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Total actif (0 MAD) ≠ total passif (9,609,857 MAD)",
+    "Retraitement suggéré": "Adapter le mapping des comptes dans etat_situation()"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Rappel : présenter aussi l'état du résultat global, le tableau des variations des capitaux propres, les flux de trésorerie et les notes.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 7",
+    "Niveau": "Info",
+    "Constat": "Tableau des flux de trésorerie obligatoire en IFRS",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 8",
+    "Niveau": "Info",
+    "Constat": "Changements de méthodes et corrections d'erreurs",
+    "Retraitement suggéré": "Appliquer rétrospectivement : retraiter les périodes comparatives et les capitaux propres d'ouverture"
+   },
+   {
+    "Norme": "IAS 10",
+    "Niveau": "Info",
+    "Constat": "Événements postérieurs à la clôture",
+    "Retraitement suggéré": "Distinguer événements donnant lieu à ajustement et événements sans ajustement (information en annexe)"
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Retraitement",
+    "Constat": "Le référentiel marocain ne constate pas systématiquement les impôts différés",
+    "Retraitement suggéré": "Utiliser l'onglet IAS 12 : impôt différé sur chaque différence temporaire (y compris celles créées par les autres retraitements IFRS)"
+   },
+   {
+    "Norme": "IAS 24",
+    "Niveau": "Info",
+    "Constat": "Informations sur les parties liées à fournir en annexe",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 33",
+    "Niveau": "Info",
+    "Constat": "Résultat par action (entités cotées ou en cours de cotation)",
+    "Retraitement suggéré": "Résultat net part du groupe / nombre moyen pondéré d'actions ordinaires ; calculer aussi le dilué"
+   },
+   {
+    "Norme": "IAS 36",
+    "Niveau": "Info",
+    "Constat": "Rechercher tout indice de perte de valeur sur les actifs corporels et incorporels.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 37",
+    "Niveau": "À vérifier",
+    "Constat": "Provisions durables pour risques et charges : 10,542,432 MAD",
+    "Retraitement suggéré": "Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14)"
+   },
+   {
+    "Norme": "IFRS 5",
+    "Niveau": "Info",
+    "Constat": "Actifs non courants détenus en vue de la vente",
+    "Retraitement suggéré": "Présenter séparément au plus bas de la valeur comptable et de la juste valeur nette ; arrêter l'amortissement"
+   },
+   {
+    "Norme": "IFRS 7",
+    "Niveau": "Info",
+    "Constat": "Informations sur les instruments financiers",
+    "Retraitement suggéré": "Risques de crédit, de liquidité et de marché : informations qualitatives et quantitatives en annexe"
+   },
+   {
+    "Norme": "IFRS 8",
+    "Niveau": "Info",
+    "Constat": "Information sectorielle",
+    "Retraitement suggéré": "Entités cotées : résultat par secteur opérationnel"
+   },
+   {
+    "Norme": "IFRS 15 / IAS 18",
+    "Niveau": "Info",
+    "Constat": "Chiffre d'affaires comptable : -0 MAD",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IFRS 15",
+    "Niveau": "Info",
+    "Constat": "Modèle en 5 étapes : contrat, obligations de prestation, prix, allocation du prix, reconnaissance à la satisfaction de l'obligation.",
+    "Retraitement suggéré": ""
+   }
+  ]
+ },
+ {
+  "cle": "États de synthèses.pdf|18697791",
+  "fichier": "États de synthèses.pdf",
+  "date": "10/11/2026 20:15:29",
+  "comptes": 157,
+  "conformite": 86.6,
+  "valeur": 90.4,
+  "statuts": {
+   "éliminé": 4,
+   "à revoir": 16,
+   "inchangé": 136,
+   "reclassé": 1,
+   "ajusté": 0
+  },
+  "constats": [
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Erreur",
+    "Constat": "Balance déséquilibrée (écart -252,888,247 MAD)",
+    "Retraitement suggéré": "Corriger la balance avant tout retraitement"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Retraitement",
+    "Constat": "Éléments non courants : charges -6,052,605 MAD, produits -0 MAD",
+    "Retraitement suggéré": "IAS 1 interdit les éléments « extraordinaires » : reclasser dans les charges/produits ordinaires ou les détailler en annexe"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Total actif (-112,960,230 MAD) ≠ total passif (198,588,461 MAD)",
+    "Retraitement suggéré": "Adapter le mapping des comptes dans etat_situation()"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Rappel : présenter aussi l'état du résultat global, le tableau des variations des capitaux propres, les flux de trésorerie et les notes.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 2",
+    "Niveau": "Info",
+    "Constat": "Stocks inscrits au bilan : 294,648 MAD",
+    "Retraitement suggéré": "Évaluer au plus bas du coût et de la valeur nette de réalisation (IAS 2.9)"
+   },
+   {
+    "Norme": "IAS 2",
+    "Niveau": "À vérifier",
+    "Constat": "Aucune dépréciation de stocks (compte 391)",
+    "Retraitement suggéré": "Comparer le coût à la valeur nette de réalisation, article par article"
+   },
+   {
+    "Norme": "IAS 7",
+    "Niveau": "Info",
+    "Constat": "Trésorerie à l'actif (comptes 51) : 69,329,885 MAD",
+    "Retraitement suggéré": "Établir le tableau des flux (exploitation, investissement, financement) ; rapprocher la trésorerie nette du TFT avec le bilan"
+   },
+   {
+    "Norme": "IAS 8",
+    "Niveau": "Info",
+    "Constat": "Changements de méthodes et corrections d'erreurs",
+    "Retraitement suggéré": "Appliquer rétrospectivement : retraiter les périodes comparatives et les capitaux propres d'ouverture"
+   },
+   {
+    "Norme": "IAS 10",
+    "Niveau": "Info",
+    "Constat": "Événements postérieurs à la clôture",
+    "Retraitement suggéré": "Distinguer événements donnant lieu à ajustement et événements sans ajustement (information en annexe)"
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Info",
+    "Constat": "Taux d'impôt effectif : 0.0%",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Retraitement",
+    "Constat": "Le référentiel marocain ne constate pas systématiquement les impôts différés",
+    "Retraitement suggéré": "Utiliser l'onglet IAS 12 : impôt différé sur chaque différence temporaire (y compris celles créées par les autres retraitements IFRS)"
+   },
+   {
+    "Norme": "IAS 24",
+    "Niveau": "Info",
+    "Constat": "Informations sur les parties liées à fournir en annexe",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 33",
+    "Niveau": "Info",
+    "Constat": "Résultat par action (entités cotées ou en cours de cotation)",
+    "Retraitement suggéré": "Résultat net part du groupe / nombre moyen pondéré d'actions ordinaires ; calculer aussi le dilué"
+   },
+   {
+    "Norme": "IAS 36",
+    "Niveau": "Info",
+    "Constat": "Rechercher tout indice de perte de valeur sur les actifs corporels et incorporels.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 37",
+    "Niveau": "À vérifier",
+    "Constat": "Provisions durables pour risques et charges : 273,349 MAD",
+    "Retraitement suggéré": "Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14)"
+   },
+   {
+    "Norme": "IFRS 5",
+    "Niveau": "Info",
+    "Constat": "Actifs non courants détenus en vue de la vente",
+    "Retraitement suggéré": "Présenter séparément au plus bas de la valeur comptable et de la juste valeur nette ; arrêter l'amortissement"
+   },
+   {
+    "Norme": "IFRS 7",
+    "Niveau": "Info",
+    "Constat": "Informations sur les instruments financiers",
+    "Retraitement suggéré": "Risques de crédit, de liquidité et de marché : informations qualitatives et quantitatives en annexe"
+   },
+   {
+    "Norme": "IFRS 8",
+    "Niveau": "Info",
+    "Constat": "Information sectorielle",
+    "Retraitement suggéré": "Entités cotées : résultat par secteur opérationnel"
+   },
+   {
+    "Norme": "IFRS 9",
+    "Niveau": "À vérifier",
+    "Constat": "Emprunts bancaires : 149 MAD",
+    "Retraitement suggéré": "Évaluation au coût amorti (taux d'intérêt effectif), frais d'émission inclus"
+   },
+   {
+    "Norme": "IFRS 15 / IAS 18",
+    "Niveau": "Info",
+    "Constat": "Chiffre d'affaires comptable : -0 MAD",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IFRS 15",
+    "Niveau": "Info",
+    "Constat": "Modèle en 5 étapes : contrat, obligations de prestation, prix, allocation du prix, reconnaissance à la satisfaction de l'obligation.",
+    "Retraitement suggéré": ""
+   }
+  ]
+ },
+ {
+  "cle": "etat_de_syntheses_2015.pdf|686538",
+  "fichier": "etat_de_syntheses_2015.pdf",
+  "date": "10/11/2026 20:45:19",
+  "comptes": 102,
+  "conformite": 92.2,
+  "valeur": 94.2,
+  "statuts": {
+   "éliminé": 5,
+   "à revoir": 2,
+   "inchangé": 94,
+   "reclassé": 1,
+   "ajusté": 0
+  },
+  "constats": [
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Erreur",
+    "Constat": "Balance déséquilibrée (écart 465,625,045 MAD)",
+    "Retraitement suggéré": "Corriger la balance avant tout retraitement"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Retraitement",
+    "Constat": "Éléments non courants : charges 2,475,150 MAD, produits -0 MAD",
+    "Retraitement suggéré": "IAS 1 interdit les éléments « extraordinaires » : reclasser dans les charges/produits ordinaires ou les détailler en annexe"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Total actif (120,181,833 MAD) ≠ total passif (-166,765,972 MAD)",
+    "Retraitement suggéré": "Adapter le mapping des comptes dans etat_situation()"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Rappel : présenter aussi l'état du résultat global, le tableau des variations des capitaux propres, les flux de trésorerie et les notes.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 7",
+    "Niveau": "Info",
+    "Constat": "Tableau des flux de trésorerie obligatoire en IFRS",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 8",
+    "Niveau": "Info",
+    "Constat": "Changements de méthodes et corrections d'erreurs",
+    "Retraitement suggéré": "Appliquer rétrospectivement : retraiter les périodes comparatives et les capitaux propres d'ouverture"
+   },
+   {
+    "Norme": "IAS 10",
+    "Niveau": "Info",
+    "Constat": "Événements postérieurs à la clôture",
+    "Retraitement suggéré": "Distinguer événements donnant lieu à ajustement et événements sans ajustement (information en annexe)"
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Info",
+    "Constat": "Taux d'impôt effectif : 0.0%",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Retraitement",
+    "Constat": "Le référentiel marocain ne constate pas systématiquement les impôts différés",
+    "Retraitement suggéré": "Utiliser l'onglet IAS 12 : impôt différé sur chaque différence temporaire (y compris celles créées par les autres retraitements IFRS)"
+   },
+   {
+    "Norme": "IAS 16",
+    "Niveau": "Erreur",
+    "Constat": "Immobilisations corporelles sans aucun amortissement",
+    "Retraitement suggéré": "Calculer l'amortissement selon la durée d'utilité (IAS 16.50)"
+   },
+   {
+    "Norme": "IAS 16",
+    "Niveau": "Info",
+    "Constat": "Amortissements / base amortissable = -0%",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 19",
+    "Niveau": "À vérifier",
+    "Constat": "Charges de personnel : 3,291,343 MAD",
+    "Retraitement suggéré": "Vérifier la provision pour congés payés, primes et avantages postérieurs à l'emploi (indemnités de départ)"
+   },
+   {
+    "Norme": "IAS 19",
+    "Niveau": "Retraitement",
+    "Constat": "Aucun engagement de retraite / indemnités de fin de carrière provisionné",
+    "Retraitement suggéré": "Évaluer l'obligation par la méthode des unités de crédit projetées"
+   },
+   {
+    "Norme": "IAS 24",
+    "Niveau": "Info",
+    "Constat": "Informations sur les parties liées à fournir en annexe",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 33",
+    "Niveau": "Info",
+    "Constat": "Résultat par action (entités cotées ou en cours de cotation)",
+    "Retraitement suggéré": "Résultat net part du groupe / nombre moyen pondéré d'actions ordinaires ; calculer aussi le dilué"
+   },
+   {
+    "Norme": "IAS 36",
+    "Niveau": "Info",
+    "Constat": "Rechercher tout indice de perte de valeur sur les actifs corporels et incorporels.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 37",
+    "Niveau": "À vérifier",
+    "Constat": "Provisions durables pour risques et charges : -27,013,815 MAD",
+    "Retraitement suggéré": "Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14)"
+   },
+   {
+    "Norme": "IFRS 5",
+    "Niveau": "Info",
+    "Constat": "Actifs non courants détenus en vue de la vente",
+    "Retraitement suggéré": "Présenter séparément au plus bas de la valeur comptable et de la juste valeur nette ; arrêter l'amortissement"
+   },
+   {
+    "Norme": "IFRS 7",
+    "Niveau": "Info",
+    "Constat": "Informations sur les instruments financiers",
+    "Retraitement suggéré": "Risques de crédit, de liquidité et de marché : informations qualitatives et quantitatives en annexe"
+   },
+   {
+    "Norme": "IFRS 8",
+    "Niveau": "Info",
+    "Constat": "Information sectorielle",
+    "Retraitement suggéré": "Entités cotées : résultat par secteur opérationnel"
+   },
+   {
+    "Norme": "IFRS 15 / IAS 18",
+    "Niveau": "Info",
+    "Constat": "Chiffre d'affaires comptable : 16,169,992 MAD",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IFRS 15",
+    "Niveau": "Info",
+    "Constat": "Modèle en 5 étapes : contrat, obligations de prestation, prix, allocation du prix, reconnaissance à la satisfaction de l'obligation.",
+    "Retraitement suggéré": ""
+   }
+  ]
+ },
+ {
+  "cle": "Etats_Financiers_2012.pdf|42541",
+  "fichier": "Etats_Financiers_2012.pdf",
+  "date": "10/11/2026 21:13:49",
+  "comptes": 10,
+  "conformite": 90.0,
+  "valeur": 37.8,
+  "statuts": {
+   "éliminé": 0,
+   "à revoir": 1,
+   "inchangé": 9,
+   "reclassé": 0,
+   "ajusté": 0
+  },
+  "constats": [
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Erreur",
+    "Constat": "Balance déséquilibrée (écart -9,018,712 MAD)",
+    "Retraitement suggéré": "Corriger la balance avant tout retraitement"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Total actif (-2,199,919 MAD) ≠ total passif (9,609,857 MAD)",
+    "Retraitement suggéré": "Adapter le mapping des comptes dans etat_situation()"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Rappel : présenter aussi l'état du résultat global, le tableau des variations des capitaux propres, les flux de trésorerie et les notes.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 7",
+    "Niveau": "Info",
+    "Constat": "Tableau des flux de trésorerie obligatoire en IFRS",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 8",
+    "Niveau": "Info",
+    "Constat": "Changements de méthodes et corrections d'erreurs",
+    "Retraitement suggéré": "Appliquer rétrospectivement : retraiter les périodes comparatives et les capitaux propres d'ouverture"
+   },
+   {
+    "Norme": "IAS 10",
+    "Niveau": "Info",
+    "Constat": "Événements postérieurs à la clôture",
+    "Retraitement suggéré": "Distinguer événements donnant lieu à ajustement et événements sans ajustement (information en annexe)"
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Retraitement",
+    "Constat": "Le référentiel marocain ne constate pas systématiquement les impôts différés",
+    "Retraitement suggéré": "Utiliser l'onglet IAS 12 : impôt différé sur chaque différence temporaire (y compris celles créées par les autres retraitements IFRS)"
+   },
+   {
+    "Norme": "IAS 24",
+    "Niveau": "Info",
+    "Constat": "Informations sur les parties liées à fournir en annexe",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 33",
+    "Niveau": "Info",
+    "Constat": "Résultat par action (entités cotées ou en cours de cotation)",
+    "Retraitement suggéré": "Résultat net part du groupe / nombre moyen pondéré d'actions ordinaires ; calculer aussi le dilué"
+   },
+   {
+    "Norme": "IAS 36",
+    "Niveau": "Info",
+    "Constat": "Rechercher tout indice de perte de valeur sur les actifs corporels et incorporels.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 37",
+    "Niveau": "À vérifier",
+    "Constat": "Provisions durables pour risques et charges : 10,542,432 MAD",
+    "Retraitement suggéré": "Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14)"
+   },
+   {
+    "Norme": "IFRS 5",
+    "Niveau": "Info",
+    "Constat": "Actifs non courants détenus en vue de la vente",
+    "Retraitement suggéré": "Présenter séparément au plus bas de la valeur comptable et de la juste valeur nette ; arrêter l'amortissement"
+   },
+   {
+    "Norme": "IFRS 7",
+    "Niveau": "Info",
+    "Constat": "Informations sur les instruments financiers",
+    "Retraitement suggéré": "Risques de crédit, de liquidité et de marché : informations qualitatives et quantitatives en annexe"
+   },
+   {
+    "Norme": "IFRS 8",
+    "Niveau": "Info",
+    "Constat": "Information sectorielle",
+    "Retraitement suggéré": "Entités cotées : résultat par secteur opérationnel"
+   },
+   {
+    "Norme": "IFRS 15 / IAS 18",
+    "Niveau": "Info",
+    "Constat": "Chiffre d'affaires comptable : -0 MAD",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IFRS 15",
+    "Niveau": "Info",
+    "Constat": "Modèle en 5 étapes : contrat, obligations de prestation, prix, allocation du prix, reconnaissance à la satisfaction de l'obligation.",
+    "Retraitement suggéré": ""
+   }
+  ]
+ },
+ {
+  "cle": "etat_de_syntheses_2015.pdf|686538",
+  "fichier": "etat_de_syntheses_2015.pdf",
+  "date": "10/11/2026 21:49:24",
+  "comptes": 102,
+  "conformite": 92.2,
+  "valeur": 94.2,
+  "statuts": {
+   "éliminé": 5,
+   "à revoir": 2,
+   "inchangé": 94,
+   "reclassé": 1,
+   "ajusté": 0
+  },
+  "constats": [
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Erreur",
+    "Constat": "Balance déséquilibrée (écart 465,625,045 MAD)",
+    "Retraitement suggéré": "Corriger la balance avant tout retraitement"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Retraitement",
+    "Constat": "Éléments non courants : charges 2,475,150 MAD, produits -0 MAD",
+    "Retraitement suggéré": "IAS 1 interdit les éléments « extraordinaires » : reclasser dans les charges/produits ordinaires ou les détailler en annexe"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Total actif (120,181,833 MAD) ≠ total passif (-166,765,972 MAD)",
+    "Retraitement suggéré": "Adapter le mapping des comptes dans etat_situation()"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Rappel : présenter aussi l'état du résultat global, le tableau des variations des capitaux propres, les flux de trésorerie et les notes.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 7",
+    "Niveau": "Info",
+    "Constat": "Tableau des flux de trésorerie obligatoire en IFRS",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 8",
+    "Niveau": "Info",
+    "Constat": "Changements de méthodes et corrections d'erreurs",
+    "Retraitement suggéré": "Appliquer rétrospectivement : retraiter les périodes comparatives et les capitaux propres d'ouverture"
+   },
+   {
+    "Norme": "IAS 10",
+    "Niveau": "Info",
+    "Constat": "Événements postérieurs à la clôture",
+    "Retraitement suggéré": "Distinguer événements donnant lieu à ajustement et événements sans ajustement (information en annexe)"
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Info",
+    "Constat": "Taux d'impôt effectif : 0.0%",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Retraitement",
+    "Constat": "Le référentiel marocain ne constate pas systématiquement les impôts différés",
+    "Retraitement suggéré": "Utiliser l'onglet IAS 12 : impôt différé sur chaque différence temporaire (y compris celles créées par les autres retraitements IFRS)"
+   },
+   {
+    "Norme": "IAS 16",
+    "Niveau": "Erreur",
+    "Constat": "Immobilisations corporelles sans aucun amortissement",
+    "Retraitement suggéré": "Calculer l'amortissement selon la durée d'utilité (IAS 16.50)"
+   },
+   {
+    "Norme": "IAS 16",
+    "Niveau": "Info",
+    "Constat": "Amortissements / base amortissable = -0%",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 19",
+    "Niveau": "À vérifier",
+    "Constat": "Charges de personnel : 3,291,343 MAD",
+    "Retraitement suggéré": "Vérifier la provision pour congés payés, primes et avantages postérieurs à l'emploi (indemnités de départ)"
+   },
+   {
+    "Norme": "IAS 19",
+    "Niveau": "Retraitement",
+    "Constat": "Aucun engagement de retraite / indemnités de fin de carrière provisionné",
+    "Retraitement suggéré": "Évaluer l'obligation par la méthode des unités de crédit projetées"
+   },
+   {
+    "Norme": "IAS 24",
+    "Niveau": "Info",
+    "Constat": "Informations sur les parties liées à fournir en annexe",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 33",
+    "Niveau": "Info",
+    "Constat": "Résultat par action (entités cotées ou en cours de cotation)",
+    "Retraitement suggéré": "Résultat net part du groupe / nombre moyen pondéré d'actions ordinaires ; calculer aussi le dilué"
+   },
+   {
+    "Norme": "IAS 36",
+    "Niveau": "Info",
+    "Constat": "Rechercher tout indice de perte de valeur sur les actifs corporels et incorporels.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 37",
+    "Niveau": "À vérifier",
+    "Constat": "Provisions pour risques et charges (comptes 15 et 45) : -27,013,815 MAD",
+    "Retraitement suggéré": "Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14)"
+   },
+   {
+    "Norme": "IFRS 5",
+    "Niveau": "Info",
+    "Constat": "Actifs non courants détenus en vue de la vente",
+    "Retraitement suggéré": "Présenter séparément au plus bas de la valeur comptable et de la juste valeur nette ; arrêter l'amortissement"
+   },
+   {
+    "Norme": "IFRS 7",
+    "Niveau": "Info",
+    "Constat": "Informations sur les instruments financiers",
+    "Retraitement suggéré": "Risques de crédit, de liquidité et de marché : informations qualitatives et quantitatives en annexe"
+   },
+   {
+    "Norme": "IFRS 8",
+    "Niveau": "Info",
+    "Constat": "Information sectorielle",
+    "Retraitement suggéré": "Entités cotées : résultat par secteur opérationnel"
+   },
+   {
+    "Norme": "IFRS 15 / IAS 18",
+    "Niveau": "Info",
+    "Constat": "Chiffre d'affaires comptable : 16,169,992 MAD",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IFRS 15",
+    "Niveau": "Info",
+    "Constat": "Modèle en 5 étapes : contrat, obligations de prestation, prix, allocation du prix, reconnaissance à la satisfaction de l'obligation.",
+    "Retraitement suggéré": ""
+   }
+  ]
+ },
+ {
+  "cle": "Etats_Financiers_2012.pdf|42541",
+  "fichier": "Etats_Financiers_2012.pdf",
+  "date": "11/11/2026 07:36:22",
+  "comptes": 10,
+  "conformite": 90.0,
+  "valeur": 37.8,
+  "statuts": {
+   "éliminé": 0,
+   "à revoir": 1,
+   "inchangé": 9,
+   "reclassé": 0,
+   "ajusté": 0
+  },
+  "constats": [
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Erreur",
+    "Constat": "Balance déséquilibrée (écart -9,018,712 MAD)",
+    "Retraitement suggéré": "Corriger la balance avant tout retraitement"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Total actif (-2,199,919 MAD) ≠ total passif (9,609,857 MAD)",
+    "Retraitement suggéré": "Adapter le mapping des comptes dans etat_situation()"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Rappel : présenter aussi l'état du résultat global, le tableau des variations des capitaux propres, les flux de trésorerie et les notes.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 7",
+    "Niveau": "Info",
+    "Constat": "Tableau des flux de trésorerie obligatoire en IFRS",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 8",
+    "Niveau": "Info",
+    "Constat": "Changements de méthodes et corrections d'erreurs",
+    "Retraitement suggéré": "Appliquer rétrospectivement : retraiter les périodes comparatives et les capitaux propres d'ouverture"
+   },
+   {
+    "Norme": "IAS 10",
+    "Niveau": "Info",
+    "Constat": "Événements postérieurs à la clôture",
+    "Retraitement suggéré": "Distinguer événements donnant lieu à ajustement et événements sans ajustement (information en annexe)"
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Retraitement",
+    "Constat": "Le référentiel marocain ne constate pas systématiquement les impôts différés",
+    "Retraitement suggéré": "Utiliser l'onglet IAS 12 : impôt différé sur chaque différence temporaire (y compris celles créées par les autres retraitements IFRS)"
+   },
+   {
+    "Norme": "IAS 24",
+    "Niveau": "Info",
+    "Constat": "Informations sur les parties liées à fournir en annexe",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 33",
+    "Niveau": "Info",
+    "Constat": "Résultat par action (entités cotées ou en cours de cotation)",
+    "Retraitement suggéré": "Résultat net part du groupe / nombre moyen pondéré d'actions ordinaires ; calculer aussi le dilué"
+   },
+   {
+    "Norme": "IAS 36",
+    "Niveau": "Info",
+    "Constat": "Rechercher tout indice de perte de valeur sur les actifs corporels et incorporels.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 37",
+    "Niveau": "À vérifier",
+    "Constat": "Provisions pour risques et charges (comptes 15 et 45) : 10,542,432 MAD",
+    "Retraitement suggéré": "Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14)"
+   },
+   {
+    "Norme": "IFRS 5",
+    "Niveau": "Info",
+    "Constat": "Actifs non courants détenus en vue de la vente",
+    "Retraitement suggéré": "Présenter séparément au plus bas de la valeur comptable et de la juste valeur nette ; arrêter l'amortissement"
+   },
+   {
+    "Norme": "IFRS 7",
+    "Niveau": "Info",
+    "Constat": "Informations sur les instruments financiers",
+    "Retraitement suggéré": "Risques de crédit, de liquidité et de marché : informations qualitatives et quantitatives en annexe"
+   },
+   {
+    "Norme": "IFRS 8",
+    "Niveau": "Info",
+    "Constat": "Information sectorielle",
+    "Retraitement suggéré": "Entités cotées : résultat par secteur opérationnel"
+   },
+   {
+    "Norme": "IFRS 15 / IAS 18",
+    "Niveau": "Info",
+    "Constat": "Chiffre d'affaires comptable : -0 MAD",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IFRS 15",
+    "Niveau": "Info",
+    "Constat": "Modèle en 5 étapes : contrat, obligations de prestation, prix, allocation du prix, reconnaissance à la satisfaction de l'obligation.",
+    "Retraitement suggéré": ""
+   }
+  ],
+  "conformite_cgnc": 12.5
+ },
+ {
+  "cle": "etat_de_syntheses_2015.pdf|686538",
+  "fichier": "etat_de_syntheses_2015.pdf",
+  "date": "11/11/2026 08:21:39",
+  "comptes": 69,
+  "conformite": 82.6,
+  "valeur": 98.8,
+  "statuts": {
+   "éliminé": 3,
+   "à revoir": 2,
+   "inchangé": 57,
+   "reclassé": 7,
+   "ajusté": 0
+  },
+  "constats": [
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Erreur",
+    "Constat": "Balance déséquilibrée (écart -89,762,954 MAD)",
+    "Retraitement suggéré": "Corriger la balance avant tout retraitement"
+   },
+   {
+    "Norme": "IAS 1 / IAS 38",
+    "Niveau": "Retraitement",
+    "Constat": "Immobilisations en non-valeurs : 840,706 MAD",
+    "Retraitement suggéré": "Pas d'actif en IFRS : passer en charges (contrepartie capitaux propres d'ouverture)"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Retraitement",
+    "Constat": "Éléments non courants : charges 9,662,688 MAD, produits 7,962,643 MAD",
+    "Retraitement suggéré": "IAS 1 interdit les éléments « extraordinaires » : reclasser dans les charges/produits ordinaires ou les détailler en annexe"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Total actif (507,863,892 MAD) ≠ total passif (597,626,846 MAD)",
+    "Retraitement suggéré": "Adapter le mapping des comptes dans etat_situation()"
+   },
+   {
+    "Norme": "IAS 1",
+    "Niveau": "Info",
+    "Constat": "Rappel : présenter aussi l'état du résultat global, le tableau des variations des capitaux propres, les flux de trésorerie et les notes.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 2",
+    "Niveau": "Info",
+    "Constat": "Stocks inscrits au bilan : 128,899,233 MAD",
+    "Retraitement suggéré": "Évaluer au plus bas du coût et de la valeur nette de réalisation (IAS 2.9)"
+   },
+   {
+    "Norme": "IAS 7",
+    "Niveau": "Info",
+    "Constat": "Trésorerie à l'actif (comptes 51) : 47,954,103 MAD ; trésorerie passif (comptes 55) : 19,316,818 MAD",
+    "Retraitement suggéré": "Établir le tableau des flux (exploitation, investissement, financement) ; rapprocher la trésorerie nette du TFT avec le bilan"
+   },
+   {
+    "Norme": "IAS 8",
+    "Niveau": "Info",
+    "Constat": "Changements de méthodes et corrections d'erreurs",
+    "Retraitement suggéré": "Appliquer rétrospectivement : retraiter les périodes comparatives et les capitaux propres d'ouverture"
+   },
+   {
+    "Norme": "IAS 10",
+    "Niveau": "Info",
+    "Constat": "Événements postérieurs à la clôture",
+    "Retraitement suggéré": "Distinguer événements donnant lieu à ajustement et événements sans ajustement (information en annexe)"
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Info",
+    "Constat": "Taux d'impôt effectif : 0.0%",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 12",
+    "Niveau": "Retraitement",
+    "Constat": "Le référentiel marocain ne constate pas systématiquement les impôts différés",
+    "Retraitement suggéré": "Utiliser l'onglet IAS 12 : impôt différé sur chaque différence temporaire (y compris celles créées par les autres retraitements IFRS)"
+   },
+   {
+    "Norme": "IAS 16",
+    "Niveau": "Info",
+    "Constat": "Amortissements / base amortissable = 47%",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 19",
+    "Niveau": "À vérifier",
+    "Constat": "Charges de personnel : 55,681,106 MAD",
+    "Retraitement suggéré": "Vérifier la provision pour congés payés, primes et avantages postérieurs à l'emploi (indemnités de départ)"
+   },
+   {
+    "Norme": "IAS 19",
+    "Niveau": "Retraitement",
+    "Constat": "Aucun engagement de retraite / indemnités de fin de carrière provisionné",
+    "Retraitement suggéré": "Évaluer l'obligation par la méthode des unités de crédit projetées"
+   },
+   {
+    "Norme": "IAS 20",
+    "Niveau": "À vérifier",
+    "Constat": "Subventions publiques : 100,242 MAD",
+    "Retraitement suggéré": "Comptabiliser en résultat sur les périodes où les coûts correspondants sont constatés"
+   },
+   {
+    "Norme": "IAS 21",
+    "Niveau": "Info",
+    "Constat": "Gains/pertes de change : -258,337 MAD",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 24",
+    "Niveau": "Info",
+    "Constat": "Informations sur les parties liées à fournir en annexe",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 33",
+    "Niveau": "Info",
+    "Constat": "Résultat par action (entités cotées ou en cours de cotation)",
+    "Retraitement suggéré": "Résultat net part du groupe / nombre moyen pondéré d'actions ordinaires ; calculer aussi le dilué"
+   },
+   {
+    "Norme": "IAS 36",
+    "Niveau": "Info",
+    "Constat": "Rechercher tout indice de perte de valeur sur les actifs corporels et incorporels.",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IAS 37",
+    "Niveau": "À vérifier",
+    "Constat": "Provisions pour risques et charges (comptes 15 et 45) : 6,225,282 MAD",
+    "Retraitement suggéré": "Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14)"
+   },
+   {
+    "Norme": "IAS 38",
+    "Niveau": "À vérifier",
+    "Constat": "Immobilisations incorporelles : 5,972,717 MAD",
+    "Retraitement suggéré": "Critères de comptabilisation (identifiable, contrôlé, avantages futurs) ; frais de recherche en charges"
+   },
+   {
+    "Norme": "IFRS 5",
+    "Niveau": "Info",
+    "Constat": "Actifs non courants détenus en vue de la vente",
+    "Retraitement suggéré": "Présenter séparément au plus bas de la valeur comptable et de la juste valeur nette ; arrêter l'amortissement"
+   },
+   {
+    "Norme": "IFRS 7",
+    "Niveau": "Info",
+    "Constat": "Informations sur les instruments financiers",
+    "Retraitement suggéré": "Risques de crédit, de liquidité et de marché : informations qualitatives et quantitatives en annexe"
+   },
+   {
+    "Norme": "IFRS 8",
+    "Niveau": "Info",
+    "Constat": "Information sectorielle",
+    "Retraitement suggéré": "Entités cotées : résultat par secteur opérationnel"
+   },
+   {
+    "Norme": "IFRS 15 / IAS 18",
+    "Niveau": "Info",
+    "Constat": "Chiffre d'affaires comptable : 536,177,787 MAD",
+    "Retraitement suggéré": ""
+   },
+   {
+    "Norme": "IFRS 15",
+    "Niveau": "Info",
+    "Constat": "Modèle en 5 étapes : contrat, obligations de prestation, prix, allocation du prix, reconnaissance à la satisfaction de l'obligation.",
+    "Retraitement suggéré": ""
+   }
+  ],
+  "conformite_cgnc": 100.0
+ }
+]

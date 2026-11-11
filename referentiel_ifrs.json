@@ -1,0 +1,948 @@
+{
+ "avertissement": "Résumés pédagogiques rédigés pour cette application ; ils ne remplacent pas le texte officiel publié par l'IFRS Foundation (droits d'auteur). Vérifiez toujours la version en vigueur sur ifrs.org.",
+ "lien_officiel": "https://www.ifrs.org/issued-standards/list-of-standards/",
+ "mise_a_jour": "10/11/2026",
+ "normes": [
+  {
+   "ref": "IAS 1",
+   "titre": "Présentation des états financiers",
+   "statut": "Remplacée par IFRS 18 pour les exercices ouverts à compter du 1er janvier 2027",
+   "resume": "Fixe la structure et le contenu minimal des états financiers : situation financière, résultat global, variations des capitaux propres, flux de trésorerie, notes.",
+   "points": [
+    "Présentation courant / non courant de l'actif et du passif",
+    "Aucun élément « extraordinaire » ne peut être présenté",
+    "Continuité d'exploitation, comptabilité d'engagement, comparatifs obligatoires"
+   ],
+   "cgnc": "Le CGNC impose Bilan, CPC, ESG, TF et ETIC, avec un résultat non courant distinct (classes 65 et 75) ; IAS 1 interdit les éléments extraordinaires : à reclasser ou à détailler en annexe.",
+   "comptes": [
+    "21",
+    "65",
+    "75",
+    "81",
+    "85",
+    "88"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 2",
+   "titre": "Stocks",
+   "statut": "En vigueur",
+   "resume": "Les stocks sont évalués au plus bas du coût et de la valeur nette de réalisation.",
+   "points": [
+    "Coût = achat + transformation + autres coûts pour amener le stock en l'état",
+    "Formules admises : premier entré premier sorti, coût moyen pondéré ; le dernier entré premier sorti est interdit",
+    "Dépréciation si la valeur nette de réalisation est inférieure au coût, reprise si elle remonte"
+   ],
+   "cgnc": "Le CGNC évalue au coût d'entrée et constate les dépréciations en 391 ; les règles sont proches mais la valeur nette de réalisation doit être justifiée article par article.",
+   "comptes": [
+    "31",
+    "391"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 7",
+   "titre": "Tableau des flux de trésorerie",
+   "statut": "En vigueur",
+   "resume": "Présente les flux de trésorerie de l'exercice par nature : exploitation, investissement, financement.",
+   "points": [
+    "Trésorerie nette = disponibilités moins découverts remboursables à vue",
+    "Méthode directe ou indirecte pour l'exploitation",
+    "Intérêts et dividendes : classement constant et indiqué"
+   ],
+   "cgnc": "Le CGNC présente un Tableau de financement (variation du fonds de roulement) et non un tableau de flux : il faut le reconstruire à partir des bilans N et N-1.",
+   "comptes": [
+    "51",
+    "55"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 8",
+   "titre": "Méthodes comptables, changements d'estimations et erreurs",
+   "statut": "En vigueur",
+   "resume": "Encadre le choix des méthodes, leur changement, les changements d'estimations et la correction des erreurs.",
+   "points": [
+    "Changement de méthode et correction d'erreur : application rétrospective",
+    "Changement d'estimation : application prospective",
+    "Informations sur les normes publiées non encore appliquées"
+   ],
+   "cgnc": "Le CGNC admet la correction en résultat non courant de l'exercice courant ; IAS 8 impose de retraiter les comparatifs et les capitaux propres d'ouverture.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 10",
+   "titre": "Événements postérieurs à la date de clôture",
+   "statut": "En vigueur",
+   "resume": "Distingue les événements qui confirment des conditions existantes à la clôture (ajustement) de ceux qui surviennent après (information en annexe).",
+   "points": [
+    "Date d'autorisation de publication des états financiers",
+    "Dividendes votés après la clôture : pas de passif à la clôture",
+    "Continuité d'exploitation remise en cause après la clôture : ajustement"
+   ],
+   "cgnc": "Traitement similaire dans l'ETIC marocain, mais sans la notion formelle d'événements donnant lieu à ajustement.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 12",
+   "titre": "Impôts sur le résultat",
+   "statut": "En vigueur",
+   "resume": "Comptabilise l'impôt exigible et l'impôt différé sur toutes les différences temporaires entre valeur comptable et base fiscale.",
+   "points": [
+    "Méthode du report variable : taux votés ou quasi votés",
+    "Actif d'impôt différé limité aux bénéfices imposables futurs probables",
+    "Rapprochement entre charge d'impôt théorique et réelle en annexe"
+   ],
+   "cgnc": "Le CGNC ne constate pas systématiquement les impôts différés (compte 67 = impôt exigible) ; les retraitements IFRS créent eux-mêmes des différences temporaires.",
+   "comptes": [
+    "67",
+    "4453",
+    "3453"
+   ],
+   "interpretations": [
+    "IFRIC 23",
+    "SIC-25"
+   ]
+  },
+  {
+   "ref": "IAS 16",
+   "titre": "Immobilisations corporelles",
+   "statut": "En vigueur",
+   "resume": "Comptabilisation, évaluation et amortissement des immobilisations corporelles.",
+   "points": [
+    "Approche par composants : chaque composant significatif est amorti selon sa durée d'utilité",
+    "Valeur résiduelle et durée d'utilité révisées au moins chaque année",
+    "Modèle du coût ou de la réévaluation, par catégorie"
+   ],
+   "cgnc": "Le CGNC amortit souvent selon les durées fiscales et sans décomposition obligatoire par composants ; les en-cours (239) ne sont pas amortis.",
+   "comptes": [
+    "23",
+    "283"
+   ],
+   "interpretations": [
+    "IFRIC 1",
+    "IFRIC 20"
+   ]
+  },
+  {
+   "ref": "IAS 19",
+   "titre": "Avantages du personnel",
+   "statut": "En vigueur",
+   "resume": "Comptabilise les avantages à court terme, postérieurs à l'emploi, à long terme et les indemnités de fin de contrat.",
+   "points": [
+    "Régimes à prestations définies : méthode des unités de crédit projetées",
+    "Écarts actuariels en autres éléments du résultat global",
+    "Congés payés et primes à comptabiliser quand le droit est acquis"
+   ],
+   "cgnc": "Le CGNC prévoit des provisions pour pensions de retraite (1552) et charges du personnel à payer (4437) mais leur évaluation actuarielle n'est pas obligatoire.",
+   "comptes": [
+    "617",
+    "1552",
+    "4437"
+   ],
+   "interpretations": [
+    "IFRIC 14"
+   ]
+  },
+  {
+   "ref": "IAS 20",
+   "titre": "Subventions publiques",
+   "statut": "En vigueur",
+   "resume": "Traite la comptabilisation et l'information sur les subventions publiques.",
+   "points": [
+    "Subvention constatée quand il existe une assurance raisonnable de la recevoir et de respecter les conditions",
+    "Subvention liée à des actifs : produit différé ou déduction de la valeur de l'actif",
+    "Prêt public à taux bas : avantage assimilé à une subvention"
+   ],
+   "cgnc": "Le CGNC place les subventions d'investissement dans les capitaux propres assimilés (131) et les vire au résultat par le compte 757.",
+   "comptes": [
+    "131",
+    "716",
+    "757"
+   ],
+   "interpretations": [
+    "SIC-10"
+   ]
+  },
+  {
+   "ref": "IAS 21",
+   "titre": "Effets des variations des cours des monnaies étrangères",
+   "statut": "En vigueur",
+   "resume": "Conversion des transactions en devises et des états financiers d'activités à l'étranger.",
+   "points": [
+    "Éléments monétaires convertis au cours de clôture, écarts en résultat",
+    "Monnaie fonctionnelle à déterminer",
+    "Écarts de conversion de consolidation en autres éléments du résultat global"
+   ],
+   "cgnc": "Le CGNC inscrit les écarts de conversion latents à l'actif et au passif (comptes 17, 27, 37, 47) ; ils n'existent pas en IFRS.",
+   "comptes": [
+    "17",
+    "27",
+    "37",
+    "47",
+    "633",
+    "733"
+   ],
+   "interpretations": [
+    "IFRIC 22",
+    "IFRIC 16"
+   ]
+  },
+  {
+   "ref": "IAS 23",
+   "titre": "Coûts d'emprunt",
+   "statut": "En vigueur",
+   "resume": "Les coûts d'emprunt directement attribuables à un actif qualifié sont incorporés à son coût.",
+   "points": [
+    "Actif qualifié : délai substantiel de préparation",
+    "Incorporation obligatoire",
+    "Arrêt de l'incorporation lorsque l'actif est prêt"
+   ],
+   "cgnc": "Le CGNC enregistre les intérêts en charges financières (6311) ; l'incorporation à l'actif est une exception.",
+   "comptes": [
+    "6311"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 24",
+   "titre": "Information relative aux parties liées",
+   "statut": "En vigueur",
+   "resume": "Impose de décrire les relations, transactions et soldes avec les parties liées.",
+   "points": [
+    "Rémunération des dirigeants à indiquer",
+    "Parties liées : filiales, associés, dirigeants, membres de leur famille",
+    "Nature des relations même sans transaction"
+   ],
+   "cgnc": "L'ETIC marocain traite les comptes d'associés (346, 446) mais pas l'ensemble des parties liées au sens IAS 24.",
+   "comptes": [
+    "346",
+    "446",
+    "6177"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 26",
+   "titre": "Comptabilité et rapports financiers des régimes de retraite",
+   "statut": "En vigueur",
+   "resume": "Concerne les états financiers des régimes de retraite eux-mêmes, hors champ de la plupart des entreprises.",
+   "points": [
+    "Régimes à cotisations définies et à prestations définies"
+   ],
+   "cgnc": "Sans équivalent direct dans le CGNC général.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 27",
+   "titre": "États financiers individuels",
+   "statut": "En vigueur",
+   "resume": "Indique comment comptabiliser les participations dans les comptes individuels.",
+   "points": [
+    "Coût, IFRS 9 ou mise en équivalence pour les titres de filiales, coentreprises, entreprises associées"
+   ],
+   "cgnc": "Le CGNC comptabilise les titres de participation au coût (251) avec provisions pour dépréciation.",
+   "comptes": [
+    "251"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 28",
+   "titre": "Participations dans des entreprises associées et des coentreprises",
+   "statut": "En vigueur",
+   "resume": "Mise en équivalence des entreprises associées et coentreprises.",
+   "points": [
+    "Influence notable présumée à partir de 20 % des droits de vote",
+    "Quote-part du résultat constatée en résultat"
+   ],
+   "cgnc": "Le CGNC prévoit la mise en équivalence en consolidation seulement.",
+   "comptes": [
+    "251"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 29",
+   "titre": "Information financière dans les économies hyperinflationnistes",
+   "statut": "En vigueur",
+   "resume": "Retraitement des états financiers en unité de mesure courante en cas d'hyperinflation.",
+   "points": [
+    "Indices : inflation cumulée proche de 100 % sur trois ans"
+   ],
+   "cgnc": "Sans objet pour le CGNC.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 32",
+   "titre": "Instruments financiers : présentation",
+   "statut": "En vigueur",
+   "resume": "Distingue dettes et capitaux propres et traite la compensation des actifs et passifs financiers.",
+   "points": [
+    "Classification selon la substance et non la forme",
+    "Compensation seulement avec un droit juridiquement exécutoire et l'intention de régler net"
+   ],
+   "cgnc": "Le CGNC classe selon la forme juridique (comptes 11, 14, 55).",
+   "comptes": [
+    "11",
+    "14"
+   ],
+   "interpretations": [
+    "IFRIC 2",
+    "IFRIC 19"
+   ]
+  },
+  {
+   "ref": "IAS 33",
+   "titre": "Résultat par action",
+   "statut": "En vigueur",
+   "resume": "Calcule le résultat de base et dilué par action pour les entités cotées.",
+   "points": [
+    "Numérateur : résultat attribuable aux actionnaires ordinaires",
+    "Dénominateur : nombre moyen pondéré d'actions"
+   ],
+   "cgnc": "Non prévu par le CGNC.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 34",
+   "titre": "Information financière intermédiaire",
+   "statut": "En vigueur",
+   "resume": "Contenu minimal des comptes semestriels et trimestriels.",
+   "points": [
+    "Même méthodes comptables que les comptes annuels",
+    "Impôt estimé sur la base du taux annuel attendu"
+   ],
+   "cgnc": "Le CGNC n'impose pas de comptes intermédiaires aux entreprises non cotées.",
+   "comptes": [],
+   "interpretations": [
+    "IFRIC 10"
+   ]
+  },
+  {
+   "ref": "IAS 36",
+   "titre": "Dépréciation d'actifs",
+   "statut": "En vigueur",
+   "resume": "Garantit qu'aucun actif n'est comptabilisé au-delà de sa valeur recouvrable.",
+   "points": [
+    "Valeur recouvrable = la plus élevée entre juste valeur nette des coûts de sortie et valeur d'utilité",
+    "Test annuel obligatoire pour goodwill et immobilisations incorporelles à durée indéterminée",
+    "Perte de valeur du goodwill jamais reprise"
+   ],
+   "cgnc": "Le CGNC constate des provisions pour dépréciation (comptes 29) sans test annuel obligatoire du fonds commercial (223).",
+   "comptes": [
+    "223",
+    "29"
+   ],
+   "interpretations": [
+    "IFRIC 10"
+   ]
+  },
+  {
+   "ref": "IAS 37",
+   "titre": "Provisions, passifs éventuels et actifs éventuels",
+   "statut": "En vigueur",
+   "resume": "Fixe les critères de comptabilisation des provisions.",
+   "points": [
+    "Obligation actuelle résultant d'un événement passé, sortie de ressources probable, estimation fiable",
+    "Actualisation si l'effet est significatif",
+    "Passifs éventuels en annexe, actifs éventuels non comptabilisés"
+   ],
+   "cgnc": "Le CGNC distingue provisions durables pour risques et charges (15) et provisions non durables (45) ; la provision pour charges à répartir (1555) n'existe pas en IFRS.",
+   "comptes": [
+    "15",
+    "45"
+   ],
+   "interpretations": [
+    "IFRIC 1",
+    "IFRIC 6",
+    "IFRIC 21"
+   ]
+  },
+  {
+   "ref": "IAS 38",
+   "titre": "Immobilisations incorporelles",
+   "statut": "En vigueur",
+   "resume": "Critères de comptabilisation des immobilisations incorporelles.",
+   "points": [
+    "Identifiable, contrôlée, avantages économiques futurs probables",
+    "Frais de recherche en charges, frais de développement immobilisés si six critères sont remplis",
+    "Goodwill et marques générés en interne jamais activés"
+   ],
+   "cgnc": "Le CGNC immobilise des non-valeurs (frais préliminaires 211, charges à répartir 212, primes de remboursement 213) : elles disparaissent en IFRS.",
+   "comptes": [
+    "21",
+    "22",
+    "223",
+    "281"
+   ],
+   "interpretations": [
+    "SIC-32"
+   ]
+  },
+  {
+   "ref": "IAS 40",
+   "titre": "Immeubles de placement",
+   "statut": "En vigueur",
+   "resume": "Traite les immeubles détenus pour en retirer des loyers ou valoriser le capital.",
+   "points": [
+    "Modèle du coût ou de la juste valeur appliqué à tous les immeubles de placement",
+    "Reclassements en cas de changement d'utilisation"
+   ],
+   "cgnc": "Le CGNC n'a pas de catégorie propre : terrains nus (2311) et revenus d'immeubles non affectés à l'exploitation (7182).",
+   "comptes": [
+    "2311",
+    "7182"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IAS 41",
+   "titre": "Agriculture",
+   "statut": "En vigueur",
+   "resume": "Les actifs biologiques et produits agricoles sont évalués à la juste valeur diminuée des coûts de la vente.",
+   "points": [
+    "Plantes porteuses traitées selon IAS 16"
+   ],
+   "cgnc": "Le CGNC applique le coût historique aux actifs agricoles.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 1",
+   "titre": "Première adoption des IFRS",
+   "statut": "En vigueur",
+   "resume": "Prépare le bilan d'ouverture IFRS à la date de transition.",
+   "points": [
+    "Application rétrospective des IFRS en vigueur à la clôture",
+    "Exceptions obligatoires et exemptions facultatives",
+    "Rapprochements des capitaux propres et du résultat CGNC / IFRS"
+   ],
+   "cgnc": "C'est la norme qui encadre exactement la conversion CGNC vers IFRS réalisée par cette plateforme.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 2",
+   "titre": "Paiement fondé sur des actions",
+   "statut": "En vigueur",
+   "resume": "Charge de rémunération pour les options et actions attribuées aux salariés.",
+   "points": [
+    "Évaluation à la juste valeur à la date d'octroi",
+    "Charge étalée sur la période d'acquisition"
+   ],
+   "cgnc": "Pas de traitement spécifique en CGNC.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 3",
+   "titre": "Regroupements d'entreprises",
+   "statut": "En vigueur",
+   "resume": "Méthode de l'acquisition pour les regroupements.",
+   "points": [
+    "Actifs et passifs identifiables à la juste valeur",
+    "Goodwill non amorti, soumis au test annuel de dépréciation"
+   ],
+   "cgnc": "Le CGNC amortit ou provisionne le fonds commercial (223) ; en consolidation le goodwill suit des règles propres.",
+   "comptes": [
+    "223"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 5",
+   "titre": "Actifs non courants détenus en vue de la vente et activités abandonnées",
+   "statut": "En vigueur",
+   "resume": "Présentation séparée des actifs à céder.",
+   "points": [
+    "Évaluation au plus bas de la valeur comptable et de la juste valeur nette",
+    "Arrêt de l'amortissement"
+   ],
+   "cgnc": "Pas de présentation séparée en CGNC.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 6",
+   "titre": "Prospection et évaluation de ressources minérales",
+   "statut": "En vigueur",
+   "resume": "Comptabilisation des dépenses d'exploration.",
+   "points": [
+    "Politique comptable propre à chaque entité, test de dépréciation spécifique"
+   ],
+   "cgnc": "Sans équivalent direct dans le CGNC.",
+   "comptes": [],
+   "interpretations": [
+    "IFRIC 20"
+   ]
+  },
+  {
+   "ref": "IFRS 7",
+   "titre": "Instruments financiers : informations à fournir",
+   "statut": "En vigueur",
+   "resume": "Annexe sur les risques de crédit, de liquidité et de marché.",
+   "points": [
+    "Analyse de sensibilité au risque de marché",
+    "Échéancier des passifs financiers"
+   ],
+   "cgnc": "Le CGNC prévoit des informations limitées dans l'ETIC.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 8",
+   "titre": "Secteurs opérationnels",
+   "statut": "En vigueur",
+   "resume": "Information sectorielle pour les entités cotées.",
+   "points": [
+    "Secteurs identifiés selon le reporting interne au principal décideur opérationnel"
+   ],
+   "cgnc": "Le CGNC demande une ventilation du chiffre d'affaires dans l'ETIC, moins détaillée.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 9",
+   "titre": "Instruments financiers",
+   "statut": "En vigueur",
+   "resume": "Classement, évaluation, dépréciation et couverture des instruments financiers.",
+   "points": [
+    "Classement selon le modèle économique et les caractéristiques des flux",
+    "Dépréciation selon les pertes de crédit attendues sur 12 mois ou sur la durée de vie",
+    "Dettes au coût amorti selon le taux d'intérêt effectif"
+   ],
+   "cgnc": "Le CGNC évalue les créances et dettes au coût historique avec provisions pour dépréciation (3942) lorsque la perte est probable, sans pertes attendues.",
+   "comptes": [
+    "342",
+    "3942",
+    "141",
+    "148",
+    "55"
+   ],
+   "interpretations": [
+    "IFRIC 16",
+    "IFRIC 19"
+   ]
+  },
+  {
+   "ref": "IFRS 10",
+   "titre": "États financiers consolidés",
+   "statut": "En vigueur",
+   "resume": "Définit le contrôle et le périmètre de consolidation.",
+   "points": [
+    "Pouvoir, exposition aux rendements variables, lien entre les deux"
+   ],
+   "cgnc": "La consolidation du CGNC repose davantage sur le pourcentage de détention.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 11",
+   "titre": "Partenariats",
+   "statut": "En vigueur",
+   "resume": "Activités conjointes et coentreprises.",
+   "points": [
+    "Comptabilisation selon les droits et obligations des parties"
+   ],
+   "cgnc": "Intégration proportionnelle possible en consolidation CGNC, interdite par IFRS 11 pour les coentreprises.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 12",
+   "titre": "Informations sur les intérêts détenus dans d'autres entités",
+   "statut": "En vigueur",
+   "resume": "Informations à fournir sur les filiales, partenariats, entreprises associées et entités structurées.",
+   "points": [
+    "Jugements importants sur le contrôle et l'influence notable"
+   ],
+   "cgnc": "Annexe plus limitée en CGNC.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 13",
+   "titre": "Évaluation de la juste valeur",
+   "statut": "En vigueur",
+   "resume": "Cadre unique d'évaluation de la juste valeur et hiérarchie à trois niveaux.",
+   "points": [
+    "Prix de sortie sur le marché principal",
+    "Niveaux 1, 2 et 3 selon l'observabilité des données"
+   ],
+   "cgnc": "Le CGNC retient principalement le coût historique.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 14",
+   "titre": "Comptes de report réglementaires",
+   "statut": "Remplacée par IFRS 20 pour les exercices ouverts à compter du 1er janvier 2029",
+   "resume": "Norme transitoire pour les premiers adoptants exerçant des activités à tarifs réglementés.",
+   "points": [
+    "Maintien des comptes de report selon les anciennes règles"
+   ],
+   "cgnc": "Sans équivalent dans le CGNC.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 15",
+   "titre": "Produits des activités ordinaires tirés de contrats avec des clients",
+   "statut": "En vigueur",
+   "resume": "Modèle en cinq étapes : contrat, obligations de prestation, prix de transaction, allocation, comptabilisation à la satisfaction de l'obligation.",
+   "points": [
+    "Contrepartie variable (remises, ristournes) estimée et limitée",
+    "Séparation des obligations de prestation distinctes",
+    "Passif sur contrat pour les avances reçues"
+   ],
+   "cgnc": "Le CGNC constate la vente à la livraison ou à la prestation (711, 712) et les remises en 7119 et 7129 ; il n'a pas d'allocation du prix entre obligations.",
+   "comptes": [
+    "711",
+    "712",
+    "7119",
+    "7129",
+    "4491",
+    "442"
+   ],
+   "interpretations": [
+    "IFRIC 12"
+   ]
+  },
+  {
+   "ref": "IFRS 16",
+   "titre": "Contrats de location",
+   "statut": "En vigueur",
+   "resume": "Le preneur comptabilise un droit d'utilisation et une dette locative pour presque tous les contrats.",
+   "points": [
+    "Exemptions : contrats de courte durée et actifs de faible valeur",
+    "Dette actualisée au taux d'emprunt marginal",
+    "Amortissement du droit d'utilisation et charge d'intérêt"
+   ],
+   "cgnc": "Le CGNC enregistre les loyers (6131) et redevances de crédit-bail (6132) en charges d'exploitation : aucun actif ni dette n'apparaît au bilan.",
+   "comptes": [
+    "6131",
+    "6132"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 17",
+   "titre": "Contrats d'assurance",
+   "statut": "En vigueur depuis le 1er janvier 2023 (remplace IFRS 4)",
+   "resume": "Évaluation et présentation des contrats d'assurance.",
+   "points": [
+    "Modèle général fondé sur les flux futurs actualisés, marge sur services contractuelle"
+   ],
+   "cgnc": "Comptes d'assurance spécifiques non couverts par le plan général.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 18",
+   "titre": "Présentation et informations à fournir dans les états financiers",
+   "statut": "Applicable aux exercices ouverts à compter du 1er janvier 2027 (publiée en 2024)",
+   "resume": "Remplace IAS 1 pour la présentation du compte de résultat : nouvelles catégories et sous-totaux imposés.",
+   "points": [
+    "Catégories : exploitation, investissement, financement, impôts, activités abandonnées",
+    "Sous-totaux obligatoires : résultat d'exploitation et résultat avant financement et impôts",
+    "Indicateurs de performance définis par la direction à documenter en annexe"
+   ],
+   "cgnc": "Le CPC marocain distingue exploitation, financier et non courant ; la correspondance avec les catégories IFRS 18 reste à établir.",
+   "comptes": [
+    "81",
+    "83",
+    "84",
+    "85",
+    "86",
+    "88"
+   ],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 19",
+   "titre": "Filiales sans obligation d'information publique : informations à fournir",
+   "statut": "Applicable aux exercices ouverts à compter du 1er janvier 2027",
+   "resume": "Permet à certaines filiales d'appliquer les IFRS avec des informations allégées en annexe.",
+   "points": [
+    "Éligibilité : pas d'obligation publique de rendre des comptes et société mère établissant des états consolidés IFRS publics"
+   ],
+   "cgnc": "Sans équivalent dans le CGNC.",
+   "comptes": [],
+   "interpretations": []
+  },
+  {
+   "ref": "IFRS 20",
+   "titre": "Actifs réglementaires et passifs réglementaires",
+   "statut": "Applicable aux exercices ouverts à compter du 1er janvier 2029 (application anticipée permise)",
+   "resume": "Nouvelle norme pour les entités soumises à une régulation tarifaire : comptabilisation d'actifs et passifs réglementaires.",
+   "points": [
+    "Publiée le 27 mai 2026",
+    "Remplace IFRS 14",
+    "Complète IFRS 15"
+   ],
+   "cgnc": "Sans équivalent dans le CGNC.",
+   "comptes": [],
+   "interpretations": []
+  }
+ ],
+ "interpretations": [
+  {
+   "ref": "IFRIC 1",
+   "titre": "Variations des passifs existants relatifs au démantèlement, à la remise en état et similaires",
+   "objet": "Traite l'effet des variations d'estimations, de taux d'actualisation et d'échéancier sur ces passifs.",
+   "normes": [
+    "IAS 16",
+    "IAS 37"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 2",
+   "titre": "Parts de membres dans des entités coopératives et instruments similaires",
+   "objet": "Détermine si les parts des membres sont des capitaux propres ou des dettes.",
+   "normes": [
+    "IAS 32"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 5",
+   "titre": "Droits à participation dans des fonds de démantèlement, de remise en état et de réhabilitation de l'environnement",
+   "objet": "Comptabilisation par le contributeur de ses droits dans ces fonds.",
+   "normes": [
+    "IAS 37"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 6",
+   "titre": "Passifs découlant de la participation à un marché spécifique : déchets d'équipements électriques et électroniques",
+   "objet": "Fait générateur du passif de gestion des déchets.",
+   "normes": [
+    "IAS 37"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 7",
+   "titre": "Application de l'approche du retraitement selon IAS 29",
+   "objet": "Retraitement des chiffres comparatifs en économie hyperinflationniste.",
+   "normes": [
+    "IAS 29"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 10",
+   "titre": "Information financière intermédiaire et dépréciation",
+   "objet": "Interdit de reprendre en comptes annuels une dépréciation du goodwill constatée en intermédiaire.",
+   "normes": [
+    "IAS 34",
+    "IAS 36"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 12",
+   "titre": "Accords de concession de services",
+   "objet": "Comptabilisation par le concessionnaire des infrastructures publiques exploitées : actif financier ou actif incorporel.",
+   "normes": [
+    "IFRS 15",
+    "IAS 38",
+    "IFRS 9"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 14",
+   "titre": "IAS 19 : plafonnement de l'actif au titre de prestations définies, obligations de financement minimum",
+   "objet": "Détermine le montant d'excédent de régime comptabilisable en actif.",
+   "normes": [
+    "IAS 19"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 16",
+   "titre": "Couvertures d'un investissement net dans un établissement à l'étranger",
+   "objet": "Précise quels risques de change peuvent être couverts et où se situe l'instrument de couverture.",
+   "normes": [
+    "IAS 21",
+    "IFRS 9"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 17",
+   "titre": "Distributions d'actifs non monétaires aux propriétaires",
+   "objet": "Dividende en nature : passif évalué à la juste valeur et écart en résultat.",
+   "normes": [
+    "IFRS 5",
+    "IAS 10"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 19",
+   "titre": "Extinction de passifs financiers au moyen d'instruments de capitaux propres",
+   "objet": "Les instruments émis sont évalués à la juste valeur, la différence avec la dette éteinte va en résultat.",
+   "normes": [
+    "IFRS 9",
+    "IAS 32"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 20",
+   "titre": "Frais de découverture engagés pendant la phase de production d'une mine à ciel ouvert",
+   "objet": "Activation des coûts de découverture lorsqu'ils génèrent un avantage futur.",
+   "normes": [
+    "IAS 16",
+    "IAS 2"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 21",
+   "titre": "Droits ou taxes",
+   "objet": "Le passif est comptabilisé au fait générateur d'obligation défini par la loi.",
+   "normes": [
+    "IAS 37"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 22",
+   "titre": "Transactions en monnaie étrangère et contrepartie anticipée",
+   "objet": "Date de la transaction pour fixer le cours lorsqu'une avance est versée ou reçue.",
+   "normes": [
+    "IAS 21"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 23",
+   "titre": "Incertitude relative aux traitements fiscaux",
+   "objet": "Évaluation des positions fiscales incertaines : montant le plus probable ou valeur attendue.",
+   "normes": [
+    "IAS 12"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "SIC-7",
+   "titre": "Introduction de l'euro",
+   "objet": "Conversion des opérations et écarts de change lors du passage à l'euro.",
+   "normes": [
+    "IAS 21"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "SIC-10",
+   "titre": "Aide publique : absence de relation spécifique avec les activités opérationnelles",
+   "objet": "Une aide générale aux entreprises entre dans le champ d'IAS 20.",
+   "normes": [
+    "IAS 20"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "SIC-25",
+   "titre": "Impôts sur le résultat : modifications de la situation fiscale d'une entité ou de ses actionnaires",
+   "objet": "Effet d'impôt courant et différé d'un changement de statut fiscal.",
+   "normes": [
+    "IAS 12"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "SIC-29",
+   "titre": "Accords de concession de services : informations à fournir",
+   "objet": "Informations à fournir par le concédant et le concessionnaire.",
+   "normes": [
+    "IFRIC 12"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "SIC-32",
+   "titre": "Immobilisations incorporelles : coûts de sites web",
+   "objet": "Conditions d'activation des coûts de développement d'un site web.",
+   "normes": [
+    "IAS 38"
+   ],
+   "statut": "En vigueur"
+  },
+  {
+   "ref": "IFRIC 4",
+   "titre": "Déterminer si un accord contient un contrat de location",
+   "objet": "Identification des contrats de location implicites.",
+   "normes": [
+    "IFRS 16"
+   ],
+   "statut": "Remplacée par IFRS 16 (2019)"
+  },
+  {
+   "ref": "IFRIC 9",
+   "titre": "Réexamen des dérivés incorporés",
+   "objet": "Évaluation des dérivés incorporés.",
+   "normes": [
+    "IFRS 9"
+   ],
+   "statut": "Intégrée dans IFRS 9"
+  },
+  {
+   "ref": "IFRIC 13",
+   "titre": "Programmes de fidélisation de la clientèle",
+   "objet": "Points de fidélité traités comme un élément séparé du prix.",
+   "normes": [
+    "IFRS 15"
+   ],
+   "statut": "Remplacée par IFRS 15 (2018)"
+  },
+  {
+   "ref": "IFRIC 15",
+   "titre": "Accords pour la construction de biens immobiliers",
+   "objet": "Détermine si IAS 11 ou IAS 18 s'applique à la promotion immobilière.",
+   "normes": [
+    "IFRS 15"
+   ],
+   "statut": "Remplacée par IFRS 15 (2018)"
+  },
+  {
+   "ref": "IFRIC 18",
+   "titre": "Transferts d'actifs provenant de clients",
+   "objet": "Comptabilisation des actifs reçus de clients pour fournir un service.",
+   "normes": [
+    "IFRS 15"
+   ],
+   "statut": "Remplacée par IFRS 15 (2018)"
+  },
+  {
+   "ref": "SIC-15",
+   "titre": "Avantages dans les contrats de location simple",
+   "objet": "Incitations du bailleur étalées sur la durée du contrat.",
+   "normes": [
+    "IFRS 16"
+   ],
+   "statut": "Remplacée par IFRS 16 (2019)"
+  },
+  {
+   "ref": "SIC-27",
+   "titre": "Évaluation de la substance des transactions impliquant la forme juridique d'un contrat de location",
+   "objet": "Substance des montages de cession-bail.",
+   "normes": [
+    "IFRS 16"
+   ],
+   "statut": "Remplacée par IFRS 16 (2019)"
+  }
+ ]
+}
