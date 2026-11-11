@@ -77,13 +77,20 @@ def _est_montant(texte):
     return t in ("-", "\u2013", "\u2014") or bool(_RE_MONTANT.match(t))
 
 
-def _lignes_page(page):
+def _lignes_page(page, sans_lettres_seules=False):
     """Regroupe les mots d'une page en lignes (même hauteur), puis en cellules (selon l'écart horizontal)."""
-    mots = page.extract_words(x_tolerance=1.5, y_tolerance=2, use_text_flow=False)
+    mots = page.extract_words(x_tolerance=1.5, y_tolerance=2, use_text_flow=False, extra_attrs=["upright"])
+    if sans_lettres_seules:
+        # états de synthèse : on écarte les intitulés verticaux (TRÉSORERIE, E X P L O I T A T I O N...), les lettres isolées
+        # et les numéros de page imprimés dans les marges (petit nombre collé au bord de la page)
+        x0, x1 = page.bbox[0], page.bbox[2]
+        mots = [w for w in mots if w.get("upright", True)
+                and not (len(w["text"]) == 1 and w["text"].isalpha() and w["text"].isupper())
+                and not (re.fullmatch(r"\d{1,3}", w["text"]) and (w["x1"] < x0 + 45 or w["x0"] > x1 - 40))]
     lignes = []
     for w in sorted(mots, key=lambda w: ((w["top"] + w["bottom"]) / 2, w["x0"])):
         yc = (w["top"] + w["bottom"]) / 2
-        if lignes and abs(yc - lignes[-1][0]) <= 3.5:
+        if lignes and abs(yc - lignes[-1][0]) <= (4.6 if sans_lettres_seules else 3.5):
             lignes[-1][1].append(w)
         else:
             lignes.append([yc, [w]])
@@ -98,6 +105,15 @@ def _lignes_page(page):
                 cel.append((w["text"], w["x0"], w["x1"]))
         resultat.append((yc, cel))
     return resultat
+
+
+def _moities(page):
+    """Les états de synthèse sont souvent imprimés en double page (Actif à gauche, Passif à droite ;
+    CPC puis CPC suite) : on lit chaque moitié comme une page séparée pour ne pas mélanger les deux côtés."""
+    if page.width > 1.3 * page.height:
+        m = page.width / 2
+        return [page.crop((0, 0, m, page.height)), page.crop((m, 0, page.width, page.height))]
+    return [page]
 
 
 def _analyser(cel):
@@ -213,19 +229,55 @@ def _lire_page_tableaux(page, jd=None, jc=None):
     return brut, ignorees, jd, jc
 
 
+def _contient_etats(pages_lignes):
+    """Vrai si au moins un titre d'état de synthèse (BILAN ACTIF, BILAN PASSIF, CPC) figure dans le document."""
+    for lignes in pages_lignes:
+        for _, cel in lignes:
+            if _section_titre(_norm_lib(" ".join(c[0] for c in cel))):
+                return True
+    return False
+
+
 def lire_pdf(fichier):
-    """Lit une balance dans un PDF TEXTE (les PDF scannés ne sont pas pris en charge).
-    Deux méthodes sont essayées sur chaque page (tableau, puis position des mots) : on garde celle qui lit le plus de comptes."""
+    """Lit un PDF TEXTE (les PDF scannés ne sont pas pris en charge) :
+    - états de synthèse (bilan, CPC), même noyés dans un rapport annuel de plusieurs dizaines de pages
+      ou imprimés en double page : ils sont repérés sur toutes les pages puis convertis en comptes CGNC ;
+    - sinon balance générale : deux méthodes sont essayées sur chaque page (tableau, puis position des mots)."""
     import pdfplumber
     fichier.seek(0)
     lignes, ignorees, totaux, texte = [], [], [], ""
+    pages_etats = []
     xd = xc = jd = jc = None
     with pdfplumber.open(fichier) as pdf:
         pages = len(pdf.pages)
-        for page in pdf.pages:
+        liste = list(pdf.pages)
+        for page in liste:
             if len(texte) < 6000:
                 texte += (page.extract_text() or "") + "\n"
-            lt, it, tt, xd, xc = _lire_page_texte(_lignes_page(page), xd, xc)
+            for moitie in _moities(page):
+                try:
+                    pages_etats.append(_lignes_page(moitie, True))
+                except Exception:
+                    pages_etats.append([])
+            try:
+                page.flush_cache()  # PDF volumineux (rapport annuel) : évite de saturer la mémoire
+            except Exception:
+                pass
+        t = _sans_accent(texte)
+        # 1) états de synthèse : cherchés sur TOUTES les pages (le bilan est rarement au début d'un rapport annuel)
+        if _contient_etats(pages_etats):
+            try:
+                etats = lire_etats(pages_etats)
+            except Exception:
+                etats = None
+            if etats is not None and len(etats) >= 6:
+                etats.attrs.update({"pages": pages, "ignorees": 0, "lignes_ignorees": [], "total_pdf": None,
+                                    "scanne": False, "etats_financiers": True})
+                return etats
+        # 2) balance générale
+        for page in liste:
+            lp = _lignes_page(page)
+            lt, it, tt, xd, xc = _lire_page_texte(lp, xd, xc)
             try:
                 lb, ib, jd, jc = _lire_page_tableaux(page, jd, jc)
             except Exception:
@@ -235,7 +287,6 @@ def lire_pdf(fichier):
             ignorees += ign
             totaux += tt
     df = pd.DataFrame(lignes, columns=["compte", "libelle", "debit", "credit"])
-    t = _sans_accent(texte)
     df.attrs.update({
         "ignorees": len(ignorees), "lignes_ignorees": ignorees, "pages": pages,
         "total_pdf": totaux[-1] if totaux else None, "scanne": not t.strip(),
@@ -244,13 +295,295 @@ def lire_pdf(fichier):
     return df
 
 
+# ============================ 1 bis. LECTURE DES ÉTATS DE SYNTHÈSE (bilan, CPC) ============================
+# Les états de synthèse ne portent pas de numéros de compte : chaque poste est rattaché à un compte du CGNC,
+# ce qui reconstitue une balance exploitable par les contrôles CGNC et les normes IAS/IFRS.
+_NOTE = re.compile(r"^\(\w{1,2}\)$")
+_AMORT = {"21": "281", "22": "282", "23": "283", "241": "2941", "248": "2948", "251": "2951", "258": "2958",
+          "31": "391", "34": "394", "35": "395", "51": "590"}
+_STOP = re.compile(r"soldes de gestion|tableau de financement|informations complementaires|\betic\b|etat a\d|etat b\d|"
+                   r"tableau des (immobilisations|amortissements|provisions|creances|dettes|surs)|liste des")
+_SAUT = re.compile(r"^(total|resultat|chiffre d affaires|cumul|exercice|opérations|operations|n°|note)")
+_REGLES = {
+    "A": [(r"ecarts? de conversion.*financement permanent", None), (r"ecarts? de conversion.*circulant", "37"),
+          (r"frais preliminaires", "211"), (r"charges a repartir", "212"), (r"primes? de remboursement", "213"),
+          (r"recherche et developpement", "221"), (r"brevets", "222"), (r"fonds commercial", "223"),
+          (r"autres immobilisations incorporelles", "228"), (r"immobilisations corporelles en cours", "239"),
+          (r"autres immobilisations corporelles", "238"), (r"^terrains", "231"), (r"^constructions", "232"),
+          (r"installations techniques", "233"), (r"materiel de transport", "234"), (r"^mobilier", "235"),
+          (r"prets immobilises", "241"), (r"autres creances financieres", "248"), (r"titres de participation", "251"),
+          (r"autres titres immobilises", "258"), (r"diminution des creances immobilisees", "271"),
+          (r"augmentation des dettes de financement", "272"), (r"^marchandises", "311"),
+          (r"matieres et fournitures", "312"), (r"produits en cours", "313"), (r"produits intermediaires", "314"),
+          (r"produits finis", "315"), (r"fournisseurs debiteurs", "3411"), (r"clients et comptes rattaches", "342"),
+          (r"^personnel", "343"), (r"^etat", "345"), (r"comptes d associes", "346"), (r"autres debiteurs", "348"),
+          (r"comptes de regularisation", "349"), (r"titres et valeurs de placement", "35"),
+          (r"cheques et valeurs a encaisser", "511"), (r"^banques", "514"), (r"^caisses", "516")],
+    "P": [(r"actionnaires|capital souscrit non appele", "1119"), (r"capital social", "1111"),
+          (r"primes? d emission", "112"), (r"ecarts? de reevaluation", "113"), (r"reserve legale", "114"),
+          (r"autres reserves", "115"), (r"report a nouveau", "116"), (r"resultats? nets? en instance", "118"),
+          (r"resultat net de l exercice", "119"), (r"subventions d investissement", "131"),
+          (r"provisions reglementees", "135"), (r"emprunts obligataires", "141"), (r"autres dettes de financement", "148"),
+          (r"provisions durables", None), (r"autres provisions pour risques", "45"),
+          (r"provisions pour risques", "151"), (r"provisions pour charges", "155"),
+          (r"ecarts? de conversion.*financement permanent", "17"), (r"ecarts? de conversion.*circulant", "47"),
+          (r"fournisseurs et comptes rattaches", "441"), (r"clients crediteurs", "442"), (r"^personnel", "443"),
+          (r"organismes sociaux", "444"), (r"^etat", "445"), (r"comptes d associes", "446"),
+          (r"autres creanciers", "448"), (r"comptes de regularisation", "449"), (r"credits? d escompte", "552"),
+          (r"credits? de tresorerie", "553"), (r"^banques", "554")],
+    "C": [(r"ventes de marchandises", "711"), (r"ventes de biens et services produits", "712"),
+          (r"variations? de stocks? de produits", "713"), (r"immobilisations produites", "714"),
+          (r"subventions d exploitation", "716"), (r"autres produits d exploitation", "718"),
+          (r"reprises d exploitation", "719"), (r"achats revendus de marchandises", "611"),
+          (r"achats consommes de matieres", "612"), (r"autres charges externes", "613"), (r"impots et taxes", "616"),
+          (r"charges de personnel", "617"), (r"autres charges d exploitation", "618"),
+          (r"dotations d exploitation", "619"), (r"produits des titres de participation", "732"),
+          (r"gains de change", "733"), (r"interets et autres produits financiers", "738"),
+          (r"reprises financieres", "739"), (r"charges d interets", "631"), (r"pertes de change", "633"),
+          (r"autres charges financieres", "638"), (r"dotations financieres", "639"),
+          (r"produits des? cessions", "751"), (r"subventions d equilibre", "754"),
+          (r"reprises sur subventions d investissement", "757"), (r"autres produits non courants", "758"),
+          (r"reprises non courantes", "759"), (r"valeurs? nettes? d amortissements", "651"),
+          (r"subventions accordees", "654"), (r"autres charges non courantes", "658"),
+          (r"dotations non courantes", "659"), (r"impots sur les resultats", "670")],
+}
+
+
+def _norm_lib(t):
+    t = _sans_accent(t).replace("œ", "oe")
+    t = re.sub(r"\(\s*\w{1,2}\s*\)", " ", t)            # repères (A), (1)
+    t = re.sub(r"[^a-z0-9 ]", " ", t)
+    t = re.sub(r"\b(moins|dont|\+/?-?)\b", " ", t) if t.strip().startswith("moins") else t
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def _section_titre(t):
+    if re.search(r"compte de produits", t) and "charges" in t:
+        return "C"
+    if "bilan" in t and "passif" in t:
+        return "P"
+    if "bilan" in t and "actif" in t:
+        return "A"
+    if t in ("actif", "passif"):
+        return "A" if t == "actif" else "P"
+    return None
+
+
+def _analyser_etat(cel):
+    cel = list(cel)
+    montants = []
+    while cel and _est_montant(cel[-1][0]) and not _NOTE.match(cel[-1][0].strip()):
+        c = cel.pop()
+        montants.insert(0, (_num(c[0]), (c[1] + c[2]) / 2))
+    return " ".join(c[0] for c in cel).strip(), montants
+
+
+def _centres(xs, ecart=22.0):
+    """Regroupe des positions x en colonnes (centres triés)."""
+    groupes = []
+    for x in sorted(xs):
+        if groupes and x - groupes[-1][-1] <= ecart:
+            groupes[-1].append(x)
+        else:
+            groupes.append([x])
+    return [sum(g) / len(g) for g in groupes]
+
+
+def _est_sous_total(lib, ln):
+    """Ligne de total / de sous-total (« Immobilisations incorporelles (B) », « IV Produits financiers », « Total... »)."""
+    if re.search(r"\(\s*[A-Z](?:\s*[+\-]\s*[A-Z])*\s*\)", lib) or re.match(r"^[IVX]{1,5}\s", lib):
+        return True
+    return ln.startswith(("total", "capital appele", "dont", "capitaux propres", "tresorerie", "resultat",
+                          "immobilisations en non valeur", "immobilisations incorporelles", "immobilisations corporelles",
+                          "immobilisations financieres", "produits d exploitation", "charges d exploitation",
+                          "produits financiers", "charges financieres", "produits non courants", "charges non courantes"))
+
+
+def _choisir_tableaux(retenus):
+    """Un rapport annuel contient souvent plusieurs bilans (comptes sociaux, comptes consolidés) et des pages de commentaires.
+    On garde, pour chaque état, le tableau qui compte le plus de postes reconnus, en prenant l'actif comme point d'ancrage
+    (le passif et le CPC viennent du même document, c'est-à-dire des pages voisines)."""
+    blocs = {}
+    for r in retenus:
+        blocs.setdefault(r[5], []).append(r)
+    infos = [(b, rs[0][0], min(r[1] for r in rs), len(rs)) for b, rs in blocs.items()]  # (bloc, section, page, score)
+    actifs = [i for i in infos if i[1] == "A"]
+    base = max(actifs or infos, key=lambda i: (i[3], -i[2]))
+    choisis = {base[0]}
+    for sec in "APC":
+        if sec == base[1]:
+            continue
+        proches = [i for i in infos if i[1] == sec and abs(i[2] - base[2]) <= 6] or [i for i in infos if i[1] == sec]
+        if proches:
+            choisis.add(max(proches, key=lambda i: (i[3], -i[2]))[0])
+    return [r for r in retenus if r[5] in choisis]
+
+
+def lire_etats(pages):
+    """pages : liste de pages, chaque page = liste de (y, cellules). Retourne un DataFrame compte/libelle/debit/credit
+    reconstitué à partir du bilan (actif, passif) et du CPC, ou None si rien n'est reconnu."""
+    section, retenus, ignorees, vus = None, [], [], set()
+    x_tot, bloc = {}, 0
+    for pi, lignes in enumerate(pages):
+        attente = None  # libellé lu sans montant, dont les montants sont sur la ligne suivante (libellé sur 2 lignes)
+        for yc, cel in lignes:
+            texte = " ".join(c[0] for c in cel)
+            t = _norm_lib(texte)
+            if not t:
+                continue
+            if any("totaux" in _norm_lib(c[0]) for c in cel):
+                x_tot[pi] = next((c[1] + c[2]) / 2 for c in cel if "totaux" in _norm_lib(c[0]))
+            if _STOP.search(t):
+                section = None
+                continue
+            nv = _section_titre(t)
+            if nv:
+                if nv != section:
+                    bloc += 1  # nouveau tableau (actif, passif ou CPC) : le même titre répété (« suite ») prolonge le tableau
+                section = nv
+                continue
+            if section is None:
+                continue
+            lib, montants = _analyser_etat(cel)
+            ln = _norm_lib(lib)
+            if not montants and len(ln) >= 3:
+                attente = (lib, yc)
+                continue
+            if montants and len(ln) < 3 and attente and abs(yc - attente[1]) <= 10:
+                lib = attente[0]
+                ln = _norm_lib(lib)
+            attente = None
+            if not montants or len(ln) < 3:
+                continue
+            if _SAUT.match(ln) and not (section == "P" and ln.startswith("resultat net de l exercice")):
+                continue
+            code, trouve = None, False
+            for motif, cd in _REGLES[section]:
+                if re.search(motif, ln):
+                    code, trouve = cd, True
+                    break
+            if not trouve or code is None:
+                if not trouve and not _est_sous_total(lib, ln):
+                    ignorees.append((bloc, f"{lib} : {', '.join(f'{v:,.0f}' for v, _ in montants if v is not None)}"))
+                continue
+            if (bloc, code) in vus:
+                continue
+            vus.add((bloc, code))
+            retenus.append((section, pi, code, lib, montants, bloc))
+    if not retenus:
+        return None
+    retenus = _choisir_tableaux(retenus)
+    if not retenus:
+        return None
+    blocs_ok = {r[5] for r in retenus}
+    ignorees = [t for b, t in ignorees if b in blocs_ok]  # on ne signale que les lignes du tableau retenu
+    # colonnes par (section, page)
+    xs = {}
+    for sec, pi, _, _, mts, _ in retenus:
+        xs.setdefault((sec, pi), []).extend(x for _, x in mts)
+    centres = {k: _centres(v) for k, v in xs.items()}
+
+    def colonne(sec, pi, x):
+        c = centres[(sec, pi)]
+        return min(range(len(c)), key=lambda i: abs(c[i] - x))
+
+    lignes = []
+    for sec, pi, code, lib, mts, _ in retenus:
+        c = centres[(sec, pi)]
+        par_col = {}
+        for v, x in mts:
+            if v is not None:
+                par_col.setdefault(colonne(sec, pi, x), v)
+        nom = re.sub(r"\s*\(\s*\w{1,2}\s*\)", "", lib).strip(" .:-") or libelle_cgnc(code)
+        if re.search(r"\b(de|des|du|et|d|l|la|le|les|aux|au|a|en)$", _sans_accent(nom).replace("\u2019", " ").strip()):
+            nom = libelle_cgnc(code) or nom  # libellé coupé en fin de ligne dans le PDF
+        if sec == "A":
+            brut, amort, net = par_col.get(0), par_col.get(1, 0.0), par_col.get(2)
+            if len(c) <= 2:
+                brut, amort, net = par_col.get(0), 0.0, par_col.get(0)
+            if brut is None and net is not None:
+                brut = net + amort
+            if brut is None:
+                continue
+            lignes.append((code, nom, brut, 0.0) if brut >= 0 else (code, nom, 0.0, -brut))
+            if amort:
+                ca = next((_AMORT[p] for p in sorted(_AMORT, key=len, reverse=True) if code.startswith(p)), None)
+                if ca:
+                    lignes.append((ca, f"Amortissements et provisions : {nom}", 0.0, amort))
+                else:
+                    ignorees.append(f"{lib} : amortissement sans compte de rattachement")
+        else:
+            if sec == "C" and len(c) >= 2:
+                xt = x_tot.get(pi)
+                if xt is not None:
+                    idx = min(range(len(c)), key=lambda i: abs(c[i] - xt))
+                else:
+                    idx = 2 if len(c) >= 4 else (1 if len(c) == 3 else 0)
+            else:
+                idx = 0
+            v = par_col.get(idx)
+            if v is None and len(c) < 2:
+                v = next(iter(par_col.values()), None)
+            if v is None:
+                continue  # montant présent seulement dans la colonne « exercice précédent » : rien pour l'exercice lu
+            cote_credit = code.startswith(("1", "4", "5", "7")) and code != "1119"
+            if code == "1119":
+                lignes.append((code, nom, abs(v), 0.0))
+            elif cote_credit:
+                lignes.append((code, nom, 0.0, v) if v >= 0 else (code, nom, -v, 0.0))
+            else:
+                lignes.append((code, nom, v, 0.0) if v >= 0 else (code, nom, 0.0, -v))
+    df = pd.DataFrame(lignes, columns=["compte", "libelle", "debit", "credit"])
+    if df.empty:
+        return None
+    df = df.groupby("compte", sort=False, as_index=False).agg(
+        libelle=("libelle", lambda x: x.iloc[0] if len(set(x)) == 1 else x.iloc[0] + " (et autres postes)"),
+        debit=("debit", "sum"), credit=("credit", "sum"))
+    if df["compte"].str.startswith(("6", "7")).any() and (df["compte"] == "119").any():
+        df = df[df["compte"] != "119"].reset_index(drop=True)  # résultat reconstitué par le CPC : pas de double comptage
+        retire119 = True
+    else:
+        retire119 = False
+    df.attrs.update({"etats_synthese": True, "ignorees_etats": ignorees, "resultat_via_cpc": retire119,
+                     "sections": sorted({r[0] for r in retenus})})
+    return df
+
+
+def lire_etats_excel(fichier):
+    """Bilan / CPC présentés dans un classeur Excel (une ou plusieurs feuilles)."""
+    fichier.seek(0)
+    pages = []
+    for _, f in pd.read_excel(fichier, sheet_name=None, header=None).items():
+        lignes = []
+        for i, row in f.iterrows():
+            cel = []
+            for j, v in enumerate(row):
+                if pd.isna(v):
+                    continue
+                cel.append((f"{v:.2f}" if isinstance(v, float) else str(v), j * 60.0, j * 60.0 + 50.0))
+            if cel:
+                lignes.append((float(i), cel))
+        pages.append(lignes)
+    return lire_etats(pages)
+
+
 def charger_balance(fichier):
     """Excel (.xlsx, .xls) ou CSV : colonnes compte, libelle, debit, credit."""
     if fichier.name.lower().endswith(".csv"):
         df = pd.read_csv(fichier, sep=None, engine="python")
     else:
         df = pd.read_excel(fichier)
-    return preparer_balance(df)
+    try:
+        return preparer_balance(df)
+    except ValueError:
+        if fichier.name.lower().endswith(".csv"):
+            raise
+        etats = lire_etats_excel(fichier)
+        if etats is None or len(etats) < 6:
+            raise
+        res = preparer_balance(etats)
+        res.attrs.update(etats.attrs)
+        return res
 
 
 def solde(df, *prefixes):
@@ -298,9 +631,9 @@ def etat_situation(df):
     resultat = -solde(df, "6", "7")
     postes = [
         ("Actif non courant", solde(df, "2")),
-        ("Actif courant", solde(df, "3") + solde(df, "51")),
+        ("Actif courant", solde(df, "3") + solde(df, "51") + solde(df, "59")),
         ("Capitaux propres (y compris résultat)", -solde(df, "11", "13") + resultat),
-        ("Passif non courant", -solde(df, "14", "15", "16")),
+        ("Passif non courant", -solde(df, "14", "15", "16", "17")),
         ("Passif courant", -solde(df, "4") - solde(df, "55")),
     ]
     tab = pd.DataFrame(postes, columns=["Poste", "Montant"])
@@ -316,7 +649,7 @@ def norme_ias1(df):
     if abs(ecart) > 1:
         r.append(constat("IAS 1", "Erreur", f"Balance déséquilibrée (écart {m(ecart)})",
                          "Corriger la balance avant tout retraitement"))
-    nv = solde(df, "21")
+    nv = solde(df, "21", "281")  # non-valeurs nettes de leurs amortissements
     if nv > 0:
         r.append(constat("IAS 1 / IAS 38", "Retraitement",
                          f"Immobilisations en non-valeurs : {m(nv)}",
@@ -434,10 +767,10 @@ def statuts_comptes(df, normes):
     res = df[["compte", "libelle", "solde"]].copy().reset_index(drop=True)
     res["statut"] = "inchangé"
     res["motif"] = "Aucune règle applicable : repris tel quel"
-    amortissable = solde(df, "23") - solde(df, "231")
+    amortissable = solde(df, "23") - solde(df, "231", "239")  # hors terrains et immobilisations en cours
     taux = (-solde(df, "283") / amortissable) if amortissable > 0 else 0.0
     regles = [  # (norme, préfixes de comptes, statut, motif, règle active ?)
-        ("IAS 1", ("21",), "éliminé", "Non-valeur : pas d'actif en IFRS (IAS 38)", True),
+        ("IAS 1", ("21", "281"), "éliminé", "Non-valeur (ou son amortissement) : pas d'actif en IFRS (IAS 38)", True),
         ("IAS 1", ("65",), "reclassé", "Charge non courante : à reclasser (IAS 1)", True),
         ("IAS 1", ("75",), "reclassé", "Produit non courant : à reclasser (IAS 1)", True),
         ("IFRS 15 / IAS 18", ("7119", "7129"), "ajusté", "Remises accordées : contrepartie variable (IFRS 15)", True),
@@ -449,7 +782,7 @@ def statuts_comptes(df, normes):
         ("IAS 12", ("67",), "ajusté", "Impôt : ajouter les impôts différés (IAS 12)", True),
         ("IAS 36", ("223",), "à revoir", "Fonds commercial : test de dépréciation annuel (IAS 36)", True),
         ("IFRS 16", ("6131",), "reclassé", "Loyers : droit d'utilisation et dette locative (IFRS 16)", True),
-        ("IAS 37", ("15",), "à revoir", "Provision pour risques et charges : critères IAS 37", True),
+        ("IAS 37", ("15", "45"), "à revoir", "Provision pour risques et charges : critères IAS 37", True),
         ("IAS 21", ("271", "272", "171", "172"), "éliminé", "Écart de conversion : inexistant en IFRS (IAS 21)", True),
         ("IFRS 9", ("3942",), "à revoir", "Dépréciation clients : modèle de pertes attendues (IFRS 9)", True),
         ("IAS 2", ("391",), "à revoir", "Dépréciation de stocks : valeur nette de réalisation (IAS 2)", True),
@@ -464,7 +797,8 @@ def statuts_comptes(df, normes):
     for norme, prefixes, statut, motif, active in regles:
         if active and norme in normes:
             appliquer(res["compte"].str.startswith(prefixes) & (res["solde"] != 0), statut, motif)
-    appliquer(~res["compte"].str[:1].isin(list("1234567")), "à revoir", "Numéro hors des classes 1 à 7 du CGNC : à classer")
+    appliquer(res["compte"].str[:1] == "8", "à revoir", "Classe 8 (comptes de résultats) : solde de clôture, à ne pas cumuler avec les classes 6 et 7")
+    appliquer(~res["compte"].str[:1].isin(list("12345678")), "à revoir", "Numéro hors des classes 1 à 8 du CGNC : à classer")
     return res
 
 
@@ -631,6 +965,160 @@ def graph_etat(etat):
     return _style_alt(alt.layer(barres, pos, neg).properties(height=260))
 
 
+# ============================ RÉFÉRENTIELS (CGNC, IAS/IFRS, IFRIC/SIC) ============================
+def _charger_ref(nom, defaut):
+    try:
+        return json.loads(Path(__file__).with_name(nom).read_text(encoding="utf-8"))
+    except Exception:
+        return defaut
+
+
+REF_CGNC = _charger_ref("referentiel_cgnc.json", {"comptes": {}})
+REF_IFRS = _charger_ref("referentiel_ifrs.json", {"normes": [], "interpretations": []})
+CGNC_COMPTES = REF_CGNC.get("comptes", {})
+FICHES = {f["ref"]: f for f in REF_IFRS.get("normes", [])}
+INTERPS = {i["ref"]: i for i in REF_IFRS.get("interpretations", [])}
+LIEN_IFRS = REF_IFRS.get("lien_officiel", "https://www.ifrs.org/issued-standards/list-of-standards/")
+
+
+def libelle_cgnc(code):
+    """Libellé du compte au plan comptable CGNC, ou du poste parent le plus proche."""
+    for k in range(len(code), 1, -1):
+        if code[:k] in CGNC_COMPTES:
+            return CGNC_COMPTES[code[:k]]
+    return ""
+
+
+# ============================ CONTRÔLE DE CONFORMITÉ AU CGNC (étape 1) ============================
+SANS_CONTROLE_SENS = ("1119", "116", "118", "1199", "16", "6114", "6124", "6119", "6129", "6149", "7119", "7129", "713")
+SENS_PARTICULIER = {
+    "514": "Banque créditrice : à présenter en trésorerie passif (compte 554)",
+    "516": "Caisse créditrice : anomalie de saisie ou d'encaissement non enregistré",
+    "3421": "Client créditeur : à reclasser en « Clients créditeurs » (compte 4421)",
+    "4411": "Fournisseur débiteur : à reclasser en « Fournisseurs débiteurs » (compte 3411)",
+}
+
+
+def sens_attendu(code):
+    """D si le solde normal est débiteur, C s'il est créditeur, None si le sens peut varier."""
+    if not code or code[0] not in "1234567" or code.startswith(SANS_CONTROLE_SENS):
+        return None
+    if code.startswith(("28", "29", "39", "59")) or code[0] in "14":
+        return "C"
+    if code[0] in "23":
+        return "D"
+    if code[0] == "5":
+        return "D" if code.startswith("51") else "C"
+    return "D" if code[0] == "6" else "C"
+
+
+def controle_cgnc(df):
+    """Audit de la balance au regard du CGNC : équilibre, existence des comptes, sens des soldes, cohérences."""
+    r = []
+
+    def add(controle, niveau, compte, constat, ref=""):
+        r.append({"Contrôle": controle, "Niveau": niveau, "Compte": compte, "Constat": constat, "Référence CGNC": ref})
+
+    ecart = df["debit"].sum() - df["credit"].sum()
+    if abs(ecart) > 1:
+        add("Équilibre", "Erreur", "—", f"Total débit ≠ total crédit (écart {m(ecart)})", "Principe de la partie double")
+    comptes = [str(c) for c in df["compte"]]
+    # 1. existence des comptes au plan
+    if not CGNC_COMPTES:
+        add("Plan comptable", "Info", "—", "Référentiel CGNC non chargé (fichier referentiel_cgnc.json absent) : existence des comptes non vérifiée")
+    else:
+        postes3 = {c[:3] for c in CGNC_COMPTES if len(c) >= 3}
+        rub2 = {c[:2] for c in CGNC_COMPTES}
+        subdivises = 0
+        for code in dict.fromkeys(comptes):
+            if not code.isdigit():
+                add("Plan comptable", "Erreur", code, "Numéro de compte non numérique", "Classes 1 à 8 du plan comptable")
+            elif code[0] in "09":
+                continue
+            elif code in CGNC_COMPTES:
+                continue
+            elif code[:3] in postes3 or (len(code) < 3 and code in rub2):
+                subdivises += 1
+            elif code[:2] in rub2:
+                add("Plan comptable", "À vérifier", code, f"Poste {code[:3]} absent du plan comptable extrait : à confirmer", libelle_cgnc(code[:2]))
+            else:
+                add("Plan comptable", "Erreur", code, f"Rubrique {code[:2]} inexistante au CGNC", "Classes 1 à 8 du plan comptable")
+        if subdivises:
+            add("Plan comptable", "Info", "—", f"{subdivises} compte(s) subdivisé(s) au-delà du plan (autorisé : subdivisions propres à l'entreprise)")
+    # 2. doublons et libellés
+    for code in df.loc[df["compte"].duplicated(keep=False), "compte"].unique():
+        add("Saisie", "À vérifier", code, "Compte présent plusieurs fois dans la balance")
+    for code in df.loc[df["libelle"].fillna("").astype(str).str.strip() == "", "compte"]:
+        add("Saisie", "Info", code, "Libellé manquant", libelle_cgnc(str(code)))
+    # 3. sens normal des soldes
+    for _, lg in df.iterrows():
+        code, so = str(lg["compte"]), float(lg["solde"])
+        sens = sens_attendu(code)
+        if sens is None or abs(so) <= 1:
+            continue
+        if (sens == "D" and so < 0) or (sens == "C" and so > 0):
+            special = next((t for p, t in SENS_PARTICULIER.items() if code.startswith(p)), None)
+            motif = special or ("Solde créditeur inhabituel pour un compte d'actif ou de charge"
+                                if sens == "D" else "Solde débiteur inhabituel pour un compte de passif ou de produit")
+            add("Sens des soldes", "À vérifier", code, f"{motif} ({m(so)})", libelle_cgnc(code))
+    # 4. cohérences entre comptes
+    for brut, amort, nom in (("21", "281", "non-valeurs"), ("22", "282", "immobilisations incorporelles"),
+                             ("23", "283", "immobilisations corporelles"), ("31", "391", "stocks")):
+        if -solde(df, amort) > solde(df, brut) + 1 and (solde(df, brut) or solde(df, amort)):
+            add("Cohérence", "Erreur", amort, f"Amortissements/provisions ({m(-solde(df, amort))}) supérieurs au brut des {nom} ({m(solde(df, brut))})",
+                libelle_cgnc(amort))
+    if (solde(df, "6") or solde(df, "7")) and (solde(df, "119") or solde(df, "8")):
+        add("Cohérence", "À vérifier", "119 / 8", "Résultat présent à la fois dans les classes 6-7 et dans 119 ou la classe 8 : risque de double comptage",
+            "Comptes de résultats (classe 8) et résultat net (119)")
+    capital = -solde(df, "111")
+    cp = -(solde(df, "11", "13") + solde(df, "6", "7"))
+    if CGNC_COMPTES and not capital and any(c.startswith("11") for c in comptes):
+        add("Cohérence", "À vérifier", "111", "Capital social ou personnel nul ou absent", libelle_cgnc("111"))
+    if cp < 0:
+        add("Cohérence", "Erreur", "11", f"Capitaux propres négatifs ({m(cp)})", libelle_cgnc("11"))
+    elif capital > 0 and cp < capital / 4:
+        add("Cohérence", "À vérifier", "11", f"Capitaux propres ({m(cp)}) inférieurs au quart du capital social ({m(capital)}) : règle des sociétés anonymes (loi 17-95) à vérifier",
+            libelle_cgnc("11"))
+    return pd.DataFrame(r, columns=["Contrôle", "Niveau", "Compte", "Constat", "Référence CGNC"])
+
+
+def score_cgnc(df, cg):
+    """Part des comptes sans anomalie (erreur ou à vérifier) au contrôle CGNC."""
+    if df.empty:
+        return 0.0
+    graves = cg[cg["Niveau"].isin(["Erreur", "À vérifier"])]["Compte"].astype(str)
+    comptes = {str(c) for c in df["compte"]}
+    touches = {c for c in comptes if any(c == g or (g != "—" and "/" not in g and c.startswith(g)) for g in graves)}
+    return 100.0 * (1 - len(touches) / len(comptes))
+
+
+def cgnc_html(e):
+    c = e.get("conformite_cgnc")
+    return f'<div class="def">Conformité CGNC (étape 1) : {c:.0f} %</div>' if c is not None else ""
+
+
+# ============================ FICHES NORMES ET INTERPRÉTATIONS ============================
+def afficher_fiche(ref):
+    f = FICHES.get(ref)
+    if not f:
+        st.info(f"Pas de fiche détaillée pour {ref}.")
+        return
+    st.markdown(f"**{f['ref']} — {f['titre']}**  \n*{f['statut']}*")
+    st.markdown(f["resume"])
+    st.markdown("**Points clés**  \n" + "  \n".join(f"• {p}" for p in f["points"]))
+    st.markdown("**Écart avec le CGNC**  \n" + f["cgnc"])
+    if f["comptes"]:
+        st.markdown("**Comptes CGNC concernés**  \n" + "  \n".join(f"• {c} — {libelle_cgnc(c)}" for c in f["comptes"]))
+    if f["interpretations"]:
+        lignes = []
+        for i in f["interpretations"]:
+            it = INTERPS.get(i)
+            lignes.append(f"• **{i}** — {it['titre']} : {it['objet']}" if it else f"• {i}")
+        st.markdown("**Interprétations applicables (IFRIC / SIC)**  \n" + "  \n".join(lignes))
+    st.markdown(f"[Texte officiel sur ifrs.org]({LIEN_IFRS})")
+
+
+
 def charger_historique():
     try:
         return json.loads(FICHIER_HISTO.read_text(encoding="utf-8"))
@@ -684,8 +1172,8 @@ def norme_ias2(df):
 
 
 def norme_ias7(df):
-    tres = solde(df, "514", "516", "511") + solde(df, "51")
-    return [constat("IAS 7", "Info", f"Trésorerie à l'actif (comptes 51) : {m(solde(df, '51'))}",
+    tres = solde(df, "51") + solde(df, "55")
+    return [constat("IAS 7", "Info", f"Trésorerie à l'actif (comptes 51) : {m(solde(df, '51'))} ; trésorerie passif (comptes 55) : {m(-solde(df, '55'))}",
                     "Établir le tableau des flux (exploitation, investissement, financement) ; "
                     "rapprocher la trésorerie nette du TFT avec le bilan"),
             ] if tres else [constat("IAS 7", "Info", "Tableau des flux de trésorerie obligatoire en IFRS", "")]
@@ -704,7 +1192,7 @@ def norme_ias10(df):
 def norme_ias19(df):
     r = []
     pers = solde(df, "617")
-    prov = -solde(df, "1555", "4432")
+    prov = -solde(df, "1552", "4437")
     if pers > 0:
         r.append(constat("IAS 19", "À vérifier", f"Charges de personnel : {m(pers)}",
                          "Vérifier la provision pour congés payés, primes et avantages postérieurs à l'emploi (indemnités de départ)"))
@@ -715,7 +1203,7 @@ def norme_ias19(df):
 
 
 def norme_ias20(df):
-    sub = -solde(df, "716", "757", "1311", "1312")
+    sub = -solde(df, "716", "757", "131")
     if sub:
         return [constat("IAS 20", "À vérifier", f"Subventions publiques : {m(sub)}",
                         "Comptabiliser en résultat sur les périodes où les coûts correspondants sont constatés")]
@@ -725,7 +1213,7 @@ def norme_ias20(df):
 def norme_ias21(df):
     r = []
     ec = solde(df, "271", "272", "171", "172")
-    pg = -solde(df, "7386", "6386")
+    pg = -solde(df, "733", "633")
     if ec:
         r.append(constat("IAS 21", "Retraitement", f"Écarts de conversion (actif/passif) : {m(ec)}",
                          "Pas d'écart de conversion en IFRS : constater les gains/pertes de change en résultat (éléments monétaires)"))
@@ -743,8 +1231,8 @@ def norme_ias23(df):
 
 
 def norme_ias24(df):
-    return [constat("IAS 24", "À vérifier", f"Comptes d'associés / apparentés : {m(solde(df, '455'))}",
-                    "Identifier les parties liées, leurs transactions et soldes ; informations en annexe")] if solde(df, "455") else \
+    return [constat("IAS 24", "À vérifier", f"Comptes d'associés / apparentés : créances {m(solde(df, '346'))}, dettes {m(-solde(df, '446'))}",
+                    "Identifier les parties liées, leurs transactions et soldes ; informations en annexe")] if solde(df, "346", "446") else \
         [constat("IAS 24", "Info", "Informations sur les parties liées à fournir en annexe", "")]
 
 
@@ -759,9 +1247,9 @@ def norme_ias32_ifrs9(df):
         if prov == 0:
             r.append(constat("IFRS 9", "Retraitement", f"Aucune dépréciation sur {m(clients)} de créances clients",
                              "Calculer les pertes attendues à 12 mois ou à maturité selon les stades"))
-    dette = -solde(df, "148")
+    dette = -solde(df, "141", "1481")
     if dette:
-        r.append(constat("IFRS 9", "À vérifier", f"Emprunts bancaires : {m(dette)}",
+        r.append(constat("IFRS 9", "À vérifier", f"Emprunts obligataires et bancaires : {m(dette)}",
                          "Évaluation au coût amorti (taux d'intérêt effectif), frais d'émission inclus"))
     return r
 
@@ -773,9 +1261,9 @@ def norme_ias33(df):
 
 def norme_ias37(df):
     r = []
-    prov = -solde(df, "15")
+    prov = -solde(df, "15", "45")
     if prov:
-        r.append(constat("IAS 37", "À vérifier", f"Provisions durables pour risques et charges : {m(prov)}",
+        r.append(constat("IAS 37", "À vérifier", f"Provisions pour risques et charges (comptes 15 et 45) : {m(prov)}",
                          "Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14)"))
     else:
         r.append(constat("IAS 37", "Info", "Aucune provision pour risques et charges",
@@ -793,11 +1281,16 @@ def norme_ias38(df):
 
 
 def norme_ias40(df):
-    im = solde(df, "2330", "2331")
-    if im > 0:
-        return [constat("IAS 40", "À vérifier", f"Immeubles de rapport : {m(im)}",
-                        "Choisir entre le modèle du coût et la juste valeur (variations en résultat)")]
-    return []
+    r = []
+    terrains_nus = solde(df, "2311")
+    revenus = -solde(df, "7182")
+    if terrains_nus > 0:
+        r.append(constat("IAS 40", "À vérifier", f"Terrains nus (compte 2311) : {m(terrains_nus)}",
+                         "Détenus pour valoriser le capital ? Alors immeubles de placement : choisir entre le coût et la juste valeur"))
+    if revenus:
+        r.append(constat("IAS 40", "À vérifier", f"Revenus d'immeubles non affectés à l'exploitation (compte 7182) : {m(revenus)}",
+                         "Immeubles loués à des tiers : immeubles de placement (coût ou juste valeur)"))
+    return r
 
 
 def norme_ifrs3(df):
@@ -886,6 +1379,10 @@ NORMES.update({
     "IFRS 7": norme_ifrs7, "IFRS 8": norme_ifrs8, "IFRS 16": norme_ifrs16,
 })
 NORMES = dict(sorted(NORMES.items(), key=lambda kv: (kv[0][:3] != "IAS", int(re.search(r"\d+", kv[0]).group()))))
+_deja = {t.strip() for k in CATALOGUE for t in k.split("/")}
+for _r, _f in FICHES.items():
+    if _r not in _deja:
+        CATALOGUE[_r] = (_f["titre"], _f["resume"].split(". ")[0].rstrip(".") + ".")
 
 
 
@@ -912,7 +1409,7 @@ CATEGORIES_IS = {
 # Base de la cotisation minimale (art. 144-I-B), comptes CGNC à vérifier avec votre plan comptable :
 # CA (711, 712), subventions d'exploitation (716), autres produits d'exploitation (718),
 # produits financiers hors reprises (731, 732, 733), subventions d'équilibre et autres produits non courants (756, 758).
-COMPTES_BASE_CM = ("711", "712", "716", "718", "731", "732", "733", "756", "758")
+COMPTES_BASE_CM = ("711", "712", "716", "718", "732", "733", "738", "756", "758")
 
 
 def calc_fiscal(df, reint, deduc, deficits, categorie="ordinaire", exclu_35=False, taux_libre=0.20,
@@ -1052,7 +1549,7 @@ def rapport_pdf(df, constats_df, etat, res_statuts, conf_n, conf_v, fiscal=None,
     if ugt is not None and not ugt.empty:
         el.append(Paragraph("IAS 36 : test de dépréciation", h2))
         el.append(tableau(["Indicateur", "Montant (MAD)"], [[a, mad(b)] for a, b in ugt.values.tolist()], [11 * cm, 5.4 * cm]))
-    el += [Spacer(1, 14), Paragraph("<i>Outil d'aide à la décision : mapping des comptes simplifié, résultats à valider par un "
+    el += [Spacer(1, 14), Paragraph("<i>Outil d'aide à la décision : mapping conforme au CGNC, répartition courant / non courant simplifiée, résultats à valider par un "
                                      "expert-comptable.</i>", pet)]
     doc.build(el)
     return buf.getvalue()
@@ -1151,7 +1648,7 @@ def excel_formate(df, constats_df, etat, res_statuts, conf_n, conf_v, fiscal=Non
     tableau(ws, ligne + 1, ["Niveau des constats", "Nombre"], [[n, int(niv.get(n, 0))] for n in COULEURS_NIV],
             [26, 16, 70, 16, 16, 16, 16, 16], couleurs={1: COULEURS_NIV}, centrer=(2,))
     ws.cell(row=ligne + 8, column=1,
-            value="Outil d'aide à la décision : mapping des comptes simplifié, résultats à valider par un expert-comptable.").font = f_sous
+            value="Outil d'aide à la décision : mapping conforme au CGNC, répartition courant / non courant simplifiée, résultats à valider par un expert-comptable.").font = f_sous
 
     # ---- Constats ----
     ws = feuille("Constats", "Constats et retraitements suggérés", sous)
@@ -1471,44 +1968,69 @@ with t_acc:
             etape("03", "scale", "Appliquer", "Contrôles IAS/IFRS et passage du résultat comptable au résultat fiscal."),
             etape("04", "filecheck", "Restituer", "Constats, états, score de conformité, rapport PDF et Excel.")])
     st.write("")
-    c1, c2 = st.columns([3, 2])
-    c1.markdown('<div class="panel"><div style="color:#0f8a5f">' + ico("chart", 30) + '</div>'
+    st.markdown('<div class="panel"><div style="color:#0f8a5f">' + ico("chart", 30) + '</div>'
                 '<h3>Fonctionnalités disponibles</h3>' +
-                liste(["Lecture des fichiers Excel (.xlsx, .xls), CSV et PDF texte (avec contrôle des montants)",
+                liste(["Lecture des fichiers Excel (.xlsx, .xls), CSV et PDF texte : balance générale ou états de synthèse (bilan, CPC), même dans un rapport annuel",
                        "Détection des comptes par numéro CGNC et statut de chaque compte",
                        f"{len(NORMES)} normes avec contrôles automatiques, {len(CATALOGUE)} normes au référentiel",
                        "Contrôle fiscal : résultat comptable → résultat fiscal → IS et cotisation minimale",
                        "Score de conformité IFRS en nombre de comptes et en valeur",
                        "Calculateurs d'impôts différés (IAS 12) et de dépréciation (IAS 36)",
                        "Export Excel et rapport PDF"], "ok", "check") + '</div>', unsafe_allow_html=True)
-    c2.markdown('<div class="panel g"><h3>Limites actuelles</h3>' +
-                liste(["Les PDF scannés (images) ne sont pas lus ; les montants lus dans un PDF doivent être vérifiés",
-                       "Les retraitements de valeur (juste valeur, IFRS 16) sont signalés mais non calculés",
-                       "Le mapping des comptes est simplifié : à vérifier avec votre plan comptable",
-                       "Taux d'IS et cotisation minimale conformes au CGI 2026 (art. 19 et 144) ; régimes particuliers à vérifier",
-                       "Les résultats doivent être validés par un expert-comptable"], "no", "clock") + '</div>',
-                unsafe_allow_html=True)
 
 # ---------------- NORMES ----------------
 with t_norm:
-    entete("Référentiel", "Toutes les normes IAS / IFRS")
-    recherche = st.text_input("Rechercher une norme (numéro ou mot-clé)", placeholder="ex. IAS 16, location, impôts…")
-    noms = [n for n in CATALOGUE if not recherche or recherche.lower() in (n + " " + CATALOGUE[n][0] + " " + CATALOGUE[n][1]).lower()]
-    if not noms:
-        st.info("Aucune norme ne correspond à cette recherche.")
-    grille([carte_norme(n, i) for i, n in enumerate(noms)], n=4)
-    st.caption("« Contrôle auto » : la plateforme applique des règles sur la balance. « Référence » : norme au catalogue, "
-               "sans contrôle automatique sur une balance (à traiter dans l'annexe ou par un retraitement manuel).")
+    entete("Référentiel", "Normes IAS / IFRS, interprétations et plan comptable CGNC")
+    r1, r2, r3 = st.tabs(["Normes IAS / IFRS", "Interprétations IFRIC / SIC", "Plan comptable CGNC"])
+    with r1:
+        recherche = st.text_input("Rechercher une norme (numéro ou mot-clé)", placeholder="ex. IAS 16, location, impôts…")
+        noms = [n for n in CATALOGUE if not recherche or recherche.lower() in (n + " " + CATALOGUE[n][0] + " " + CATALOGUE[n][1]).lower()]
+        if not noms:
+            st.info("Aucune norme ne correspond à cette recherche.")
+        grille([carte_norme(n, i) for i, n in enumerate(noms)], n=4)
+        st.caption("« Contrôle auto » : la plateforme applique des règles sur la balance. « Référence » : norme au catalogue, "
+                   "sans contrôle automatique sur une balance (à traiter dans l'annexe ou par un retraitement manuel).")
+        if FICHES:
+            st.markdown('<div class="titre2">Fiche détaillée d\'une norme</div>', unsafe_allow_html=True)
+            ordre_f = sorted(FICHES, key=lambda x: (x[:3] != "IAS", int(re.search(r"\d+", x).group())))
+            ref_f = st.selectbox("Choisir une norme", ordre_f, format_func=lambda x: f"{x} — {FICHES[x]['titre']}", key="fiche_norme")
+            afficher_fiche(ref_f)
+            st.caption(REF_IFRS.get("avertissement", "") + f" Dernière mise à jour du référentiel : {REF_IFRS.get('mise_a_jour', '—')}.")
+        else:
+            st.warning("Référentiel IAS/IFRS non chargé : ajoutez le fichier referentiel_ifrs.json à côté de app.py.")
+    with r2:
+        if INTERPS:
+            q = st.text_input("Rechercher une interprétation", placeholder="ex. IFRIC 21, taxes, concession…", key="rech_interp")
+            seulement = st.checkbox("Afficher seulement les interprétations en vigueur", value=True)
+            lignes = [{"Référence": i["ref"], "Intitulé": i["titre"], "Objet": i["objet"], "Normes liées": ", ".join(i["normes"]), "Statut": i["statut"]}
+                      for i in INTERPS.values()
+                      if (not seulement or i["statut"] == "En vigueur") and (not q or q.lower() in (i["ref"] + i["titre"] + i["objet"]).lower())]
+            st.dataframe(pd.DataFrame(lignes), hide_index=True, use_container_width=True)
+            st.caption(f"{len(lignes)} interprétation(s). Les IFRIC et SIC complètent les normes ; certaines ont été remplacées par IFRS 15 ou IFRS 16. "
+                       f"Liste officielle : {LIEN_IFRS}")
+        else:
+            st.warning("Référentiel non chargé : ajoutez le fichier referentiel_ifrs.json à côté de app.py.")
+    with r3:
+        if CGNC_COMPTES:
+            q3 = st.text_input("Rechercher un compte (numéro ou libellé)", placeholder="ex. 3421, clients, amortissements…", key="rech_cgnc")
+            lignes3 = [{"Compte": c, "Libellé": lib} for c, lib in CGNC_COMPTES.items() if not q3 or q3.lower() in (c + " " + lib).lower()]
+            st.dataframe(pd.DataFrame(lignes3[:400]), hide_index=True, use_container_width=True)
+            st.caption(f"{len(lignes3)} compte(s) trouvé(s) sur {len(CGNC_COMPTES)} au plan comptable général des entreprises (CGNC).")
+        else:
+            st.warning("Plan comptable non chargé : ajoutez le fichier referentiel_cgnc.json à côté de app.py.")
 
 
 # ---------------- TRANSFORMATION ----------------
 df = None
 res_statuts = None
 fichier = None
+cgnc_df = None
+conf_cgnc = None
 with t_trans:
     entete("Transformation", "Importez votre balance")
     c1, c2 = st.columns([2, 1])
-    fichier = c1.file_uploader("Balance générale (Excel / CSV / PDF texte)", type=["xlsx", "xls", "csv", "pdf"])
+    fichier = c1.file_uploader("Balance générale ou états de synthèse (bilan, CPC) : Excel / CSV / PDF texte", type=["xlsx", "xls", "csv", "pdf"],
+                                 help="Balance générale ou états de synthèse (bilan, CPC) en PDF texte ou Excel")
     c2.write("")
     c2.write("")
     modele = io.BytesIO()
@@ -1530,7 +2052,15 @@ with t_trans:
                                 "Vérifiez qu'il s'agit bien d'une balance (colonnes : compte, libellé, débit, crédit), "
                                 "ou utilisez Excel / CSV."))
                 else:
-                    if at.get("etats_financiers"):
+                    if at.get("etats_synthese"):
+                        st.success("États de synthèse reconnus (" + " + ".join({"A": "bilan actif", "P": "bilan passif", "C": "CPC"}[x] for x in at["sections"])
+                                   + f") : {len(brut)} lignes converties en comptes CGNC pour reconstituer la balance."
+                                   + (" Le résultat net du bilan est remplacé par celui du CPC (classes 6 et 7)." if at.get("resultat_via_cpc") else ""))
+                        if at.get("ignorees_etats"):
+                            with st.expander(f"{len(at['ignorees_etats'])} ligne(s) avec montants non rattachées à un compte (sous-totaux ou postes inconnus)"):
+                                for t_ in at["ignorees_etats"][:60]:
+                                    st.write("• " + t_)
+                    elif at.get("etats_financiers"):
                         st.warning("Ce PDF ressemble à des états de synthèse (bilan, CPC) et non à une balance générale : "
                                    "seules les lignes avec un numéro de compte sont lues. Pour un résultat fiable, "
                                    "importez la balance générale.")
@@ -1555,18 +2085,47 @@ with t_trans:
                                    "Ouvrez l'onglet « Résultats ».")
             else:
                 df = charger_balance(fichier)
-                st.success(f"Balance chargée : {len(df)} comptes.")
+                if df.attrs.get("etats_synthese"):
+                    st.success(f"États de synthèse (bilan / CPC) reconnus dans le classeur : {len(df)} comptes CGNC reconstitués.")
+                else:
+                    st.success(f"Balance chargée : {len(df)} comptes.")
         except Exception as e:
             st.error(f"Erreur de lecture : {e}")
 
+    if df is not None:
+        cgnc_df = controle_cgnc(df)
+        conf_cgnc = score_cgnc(df, cgnc_df)
+        n_err = int((cgnc_df["Niveau"] == "Erreur").sum())
+        n_ver = int((cgnc_df["Niveau"] == "À vérifier").sum())
+        st.markdown('<div class="eyebrow">Étape 1 sur 2</div><div class="h2" style="font-size:1.8rem">Contrôle de conformité au CGNC</div>',
+                    unsafe_allow_html=True)
+        st.caption("Avant toute conversion, la balance est auditée au regard du plan comptable CGNC : équilibre, existence des comptes, "
+                   "sens des soldes et cohérences entre comptes.")
+        k0 = st.columns(4)
+        k0[0].markdown(kpi("filetext", "Comptes contrôlés", str(len(df))), unsafe_allow_html=True)
+        k0[1].markdown(kpi("shield", "Conformité CGNC (comptes)", f"{conf_cgnc:.0f} %"), unsafe_allow_html=True)
+        k0[2].markdown(kpi("flag", "Erreurs", str(n_err)), unsafe_allow_html=True)
+        k0[3].markdown(kpi("scale", "À vérifier", str(n_ver)), unsafe_allow_html=True)
+        st.write("")
+        if cgnc_df.empty:
+            st.success("Aucune anomalie : la balance respecte les contrôles CGNC appliqués.")
+        else:
+            aff0 = cgnc_df.copy()
+            aff0["Niveau"] = aff0["Niveau"].map(NIVEAUX).fillna(aff0["Niveau"])
+            st.dataframe(aff0, hide_index=True, use_container_width=True)
+        if n_err:
+            st.warning("Des erreurs de conformité au CGNC subsistent : la conversion reste possible, "
+                       "mais ses résultats ne sont fiables qu'après correction de la balance.")
+        st.markdown('<div class="eyebrow">Étape 2 sur 2</div><div class="h2" style="font-size:1.8rem">Conversion vers les normes IAS / IFRS</div>',
+                    unsafe_allow_html=True)
     if df is not None and not choix:
         st.warning("Sélectionnez au moins une norme à appliquer.")
     elif df is not None:
         res_statuts = statuts_comptes(df, choix)
         par_statut = compteurs_statuts(res_statuts)
         conf_n, conf_v = conformite(res_statuts)
-        st.markdown('<div class="pipe"><span>✓ Importer</span><span>✓ Identifier</span>'
-                    '<span>✓ Appliquer</span><span>✓ Restituer</span></div>', unsafe_allow_html=True)
+        st.markdown('<div class="pipe"><span>✓ Importer</span><span>✓ Contrôler (CGNC)</span>'
+                    '<span>✓ Convertir (IFRS)</span><span>✓ Restituer</span></div>', unsafe_allow_html=True)
         k = st.columns(4)
         k[0].markdown(kpi("filetext", "Comptes analysés", str(len(df))), unsafe_allow_html=True)
         k[1].markdown(kpi("shield", "Conformité (comptes)", f"{conf_n:.0f} %"), unsafe_allow_html=True)
@@ -1610,7 +2169,8 @@ if df is not None:
         entree = {"cle": f"{fichier.name}|{fichier.size}", "fichier": fichier.name,
                   "date": datetime.now().strftime("%d/%m/%Y %H:%M:%S"), "comptes": int(len(df)),
                   "conformite": round(conf_n, 1), "valeur": round(conf_v, 1), "statuts": par_statut_h,
-                  "constats": constats_df.to_dict("records")}
+                  "constats": constats_df.to_dict("records"),
+                  "conformite_cgnc": round(conf_cgnc, 1) if conf_cgnc is not None else None}
         signature = json.dumps([entree["cle"], entree["comptes"], entree["conformite"], par_statut_h,
                                 entree["constats"]], sort_keys=True, ensure_ascii=False)
         if st.session_state.get("derniere_sig") != signature:
@@ -1717,6 +2277,13 @@ with t_res:
         affiche["Niveau"] = affiche["Niveau"].map(NIVEAUX)
         st.markdown("#### Constats et retraitements suggérés")
         st.dataframe(affiche, hide_index=True, use_container_width=True)
+        refs_liees = sorted({r for t in tous["Norme"].astype(str) for r in re.findall(r"(?:IAS|IFRS) \d+", t) if r in FICHES},
+                            key=lambda x: (x[:3] != "IAS", int(x.split()[1])))
+        if refs_liees:
+            st.markdown("#### Normes et interprétations liées à ces constats")
+            for rf in refs_liees:
+                with st.expander(f"{rf} — {FICHES[rf]['titre']}"):
+                    afficher_fiche(rf)
         st.markdown("#### État de situation financière (IAS 1)")
         st.dataframe(etat.style.format({"Montant": "{:,.0f}"}), hide_index=True, use_container_width=True)
         st.write(f"Total actif : **{m(actif)}** | Total passif : **{m(passif)}**")
@@ -1792,7 +2359,7 @@ with t_dash:
             d1.markdown(f'<div class="panel"><h3>Statut des comptes</h3>{donut_html(e["statuts"])}</div>', unsafe_allow_html=True)
             d2.markdown(f'<div class="panel"><h3>Conformité IFRS</h3><div class="score">{e["conformite"]:.0f}<span>%</span></div>'
                         f'<div class="def">en valeur : {e["valeur"]:.0f} %</div>'
-                        f'<div class="def">{len(e["constats"])} constats enregistrés</div></div>', unsafe_allow_html=True)
+                        f'<div class="def">{len(e["constats"])} constats enregistrés</div>{cgnc_html(e)}</div>', unsafe_allow_html=True)
             detail = pd.DataFrame(e["constats"], columns=["Norme", "Niveau", "Constat", "Retraitement suggéré"])
             detail["Niveau"] = detail["Niveau"].map(NIVEAUX).fillna(detail["Niveau"])
             st.dataframe(detail, hide_index=True, use_container_width=True)
