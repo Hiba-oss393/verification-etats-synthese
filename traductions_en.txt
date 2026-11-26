@@ -1,0 +1,1215 @@
+# MaroIFRS - dictionnaire français ::: anglais de l'interface (voir i18n.py). Une ligne par texte ; \n = saut de ligne.
+# Un texte absent reste affiché en français. Les chiffres, noms de comptes importés et données de l'utilisateur ne sont jamais traduits.
+# ---------- types de documents et états ----------
+Balance générale ::: General trial balance
+Bilan : actif ::: Balance sheet: assets
+Bilan : passif ::: Balance sheet: liabilities and equity
+Compte de produits et charges (CPC) ::: Income statement (CPC)
+État des soldes de gestion (ESG) ::: Statement of intermediate management balances (ESG)
+Tableau de financement (TF) ::: Financing statement (TF)
+ETIC (informations complémentaires) ::: ETIC (supplementary information)
+Factures ::: Invoices
+Grand livre ::: General ledger
+Journal ::: Journal
+Marge brute ::: Gross margin
+Valeur ajoutée ::: Value added
+Excédent brut d'exploitation (EBE) ::: Gross operating surplus (EBE)
+Résultat d'exploitation ::: Operating result
+Résultat financier ::: Financial result
+Résultat courant ::: Current result
+Résultat non courant ::: Non-current result
+Impôts sur les résultats ::: Income taxes
+Résultat net ::: Net result
+Capacité d'autofinancement (CAF) ::: Self-financing capacity (CAF)
+Autofinancement ::: Self-financing
+Financement permanent ::: Permanent financing
+Actif immobilisé ::: Fixed assets
+Fonds de roulement fonctionnel (FRNG) ::: Functional working capital (FRNG)
+Actif circulant ::: Current assets
+Passif circulant ::: Current liabilities
+Besoin de financement global (BFG) ::: Overall financing requirement (BFG)
+Trésorerie nette ::: Net cash
+Fichier ::: File
+N° facture ::: Invoice no.
+Date ::: Date
+Tiers ::: Third party
+Sens ::: Direction
+Compte ::: Account
+HT ::: Excl. VAT
+TVA ::: VAT
+TTC ::: Incl. VAT
+# ---------- statuts des comptes ----------
+éliminé ::: eliminated
+à revoir ::: to review
+inchangé ::: unchanged
+reclassé ::: reclassified
+ajusté ::: adjusted
+compte sans équivalent en IFRS : il disparaît des états ::: account with no IFRS equivalent: it disappears from the statements
+montant conservé, mais présenté ou classé autrement ::: amount kept, but presented or classified differently
+montant à recalculer par un retraitement (impôts différés, contrepartie variable) ::: amount to be recalculated through a restatement (deferred tax, variable consideration)
+jugement de l'utilisateur nécessaire avant de conclure ::: user judgement required before concluding
+aucune règle ne s'applique : le compte est repris tel quel ::: no rule applies: the account is carried over as is
+Aucune règle applicable : repris tel quel ::: No applicable rule: carried over as is
+Erreur ::: Error
+Retraitement ::: Restatement
+À vérifier ::: To check
+Info ::: Info
+Banque créditrice : à présenter en trésorerie passif (compte 554) ::: Bank overdraft: present as cash liabilities (account 554)
+Caisse créditrice : anomalie de saisie ou d'encaissement non enregistré ::: Cash account in credit: entry anomaly or unrecorded receipt
+Client créditeur : à reclasser en « Clients créditeurs » (compte 4421) ::: Customer in credit: reclassify to "Customers in credit" (account 4421)
+Fournisseur débiteur : à reclasser en « Fournisseurs débiteurs » (compte 3411) ::: Supplier in debit: reclassify to "Suppliers in debit" (account 3411)
+# ---------- contrôle fiscal ----------
+Amendes et pénalités ::: Fines and penalties
+Dons et cadeaux non déductibles ::: Non-deductible donations and gifts
+Amortissements excédentaires ::: Excess depreciation
+Provisions non déductibles ::: Non-deductible provisions
+Produits de participation (dividendes) ::: Investment income (dividends)
+Plus-values exonérées ::: Exempt capital gains
+Reprises de provisions non déductibles ::: Reversals of non-deductible provisions
+Amortissements déductibles non comptabilisés ::: Deductible depreciation not booked
+Société ordinaire : 20 % (35 % si bénéfice net ≥ 100 M MAD) ::: Ordinary company: 20% (35% if net profit ≥ MAD 100 m)
+Établissement de crédit, assurance, Bank Al-Maghrib, CDG : 40 % ::: Credit institution, insurance, Bank Al-Maghrib, CDG: 40%
+Autre taux (exercice avant 2026, régime particulier) ::: Other rate (financial year before 2026, special regime)
+🔴 Erreur ::: 🔴 Error
+🟠 Retraitement ::: 🟠 Restatement
+🟡 À vérifier ::: 🟡 To check
+⚪ Info ::: ⚪ Info
+débit ::: debit
+crédit ::: credit
+écart ::: difference
+impôt ::: tax
+MaroIFRS – Outil d'aide à la conversion CGNC → IAS/IFRS, à valider par un expert-comptable. ::: MaroIFRS – Decision-support tool for converting CGNC to IAS/IFRS, to be validated by a chartered accountant.
+Lecture du document (OCR si le PDF est scanné)... ::: Reading the document (OCR if the PDF is scanned)...
+Norme ::: Standard
+Niveau ::: Level
+Constat ::: Finding
+Retraitement suggéré ::: Suggested restatement
+MAD ::: MAD
+Classe 8 (comptes de résultats) : solde de clôture, à ne pas cumuler avec les classes 6 et 7 ::: Class 8 (result accounts): closing balance, not to be added to classes 6 and 7
+Numéro hors des classes 1 à 8 du CGNC : à classer ::: Number outside CGNC classes 1 to 8: to be classified
+Aucun compte. ::: No accounts.
+comptes ::: accounts
+des comptes sans retraitement ::: of accounts without restatement
+Côté ::: Side
+Valeur comptable IFRS ::: IFRS carrying amount
+Base fiscale ::: Tax base
+Différence temporaire ::: Temporary difference
+Impôt différé ::: Deferred tax
+Type ::: Type
+# ---------- catalogue des normes (titres et résumés) ----------
+Présentation des états financiers ::: Presentation of financial statements
+Structure et contenu minimal des états financiers. ::: Structure and minimum content of financial statements.
+Stocks ::: Inventories
+Évaluation au plus bas du coût et de la valeur nette de réalisation. ::: Measurement at the lower of cost and net realisable value.
+Tableau des flux de trésorerie ::: Statement of cash flows
+Flux d'exploitation, d'investissement et de financement. ::: Operating, investing and financing cash flows.
+Méthodes comptables, estimations et erreurs ::: Accounting policies, estimates and errors
+Changements de méthodes, d'estimations et corrections d'erreurs. ::: Changes in policies and estimates, and correction of errors.
+Événements avec ou sans ajustement des états financiers. ::: Events with or without adjustment of the financial statements.
+Impôts sur le résultat ::: Income taxes
+Impôts exigibles et différés. ::: Current and deferred taxes.
+Immobilisations corporelles ::: Property, plant and equipment
+Comptabilisation, amortissement par composants. ::: Recognition, component depreciation.
+Avantages du personnel ::: Employee benefits
+Avantages à court terme, postérieurs à l'emploi, indemnités de fin de contrat. ::: Short-term, post-employment and termination benefits.
+Subventions publiques ::: Government grants
+Comptabilisation et information sur les aides publiques. ::: Recognition and disclosure of government assistance.
+Effets des variations des cours des monnaies étrangères ::: Effects of changes in foreign exchange rates
+Conversion des transactions et des états financiers. ::: Translation of transactions and financial statements.
+Coûts d'emprunt ::: Borrowing costs
+Incorporation des intérêts au coût des actifs qualifiés. ::: Capitalisation of interest into the cost of qualifying assets.
+Information sur les parties liées ::: Related party disclosures
+Transactions et soldes avec les parties liées. ::: Transactions and balances with related parties.
+Régimes de retraite ::: Retirement benefit plans
+États financiers des régimes de retraite (hors champ des entreprises usuelles). ::: Financial statements of retirement plans (outside the scope of ordinary entities).
+États financiers individuels ::: Separate financial statements
+Comptabilisation des participations dans les comptes individuels. ::: Accounting for investments in separate accounts.
+Participations dans des entreprises associées et coentreprises ::: Investments in associates and joint ventures
+Mise en équivalence. ::: Equity method.
+Économies hyperinflationnistes ::: Hyperinflationary economies
+Retraitement des états financiers en cas d'hyperinflation. ::: Restatement of financial statements under hyperinflation.
+Instruments financiers : présentation ::: Financial instruments: presentation
+Distinction dette / capitaux propres, compensation. ::: Debt / equity distinction, offsetting.
+Résultat par action ::: Earnings per share
+Résultat de base et dilué par action. ::: Basic and diluted earnings per share.
+Information financière intermédiaire ::: Interim financial reporting
+Contenu des comptes semestriels et trimestriels. ::: Content of half-year and quarterly accounts.
+Dépréciation d'actifs ::: Impairment of assets
+Test de perte de valeur : valeur recouvrable. ::: Impairment test: recoverable amount.
+Provisions, passifs et actifs éventuels ::: Provisions, contingent liabilities and contingent assets
+Obligation actuelle, sortie probable, estimation fiable. ::: Present obligation, probable outflow, reliable estimate.
+Immobilisations incorporelles ::: Intangible assets
+Critères de comptabilisation, frais de développement. ::: Recognition criteria, development costs.
+Immeubles de placement ::: Investment property
+Modèle du coût ou de la juste valeur. ::: Cost model or fair value model.
+Agriculture ::: Agriculture
+Actifs biologiques évalués à la juste valeur. ::: Biological assets measured at fair value.
+Première adoption des IFRS ::: First-time adoption of IFRS
+Bilan d'ouverture IFRS, exemptions et exceptions. ::: IFRS opening balance sheet, exemptions and exceptions.
+Paiement fondé sur des actions ::: Share-based payment
+Charges liées aux options et actions attribuées. ::: Expenses related to options and shares granted.
+Regroupements d'entreprises ::: Business combinations
+Méthode de l'acquisition, goodwill. ::: Acquisition method, goodwill.
+Contrats d'assurance ::: Insurance contracts
+Comptabilisation des contrats d'assurance. ::: Accounting for insurance contracts.
+Actifs détenus en vue de la vente ::: Assets held for sale
+Présentation séparée, activités abandonnées. ::: Separate presentation, discontinued operations.
+Prospection et évaluation de ressources minérales ::: Exploration for and evaluation of mineral resources
+Dépenses d'exploration. ::: Exploration expenditure.
+Instruments financiers : informations à fournir ::: Financial instruments: disclosures
+Risques financiers et annexe. ::: Financial risks and notes.
+Secteurs opérationnels ::: Operating segments
+Information sectorielle. ::: Segment reporting.
+Instruments financiers ::: Financial instruments
+Classement, dépréciation (ECL) et couverture. ::: Classification, impairment (ECL) and hedging.
+États financiers consolidés ::: Consolidated financial statements
+Contrôle et périmètre de consolidation. ::: Control and scope of consolidation.
+Partenariats ::: Joint arrangements
+Activités conjointes et coentreprises. ::: Joint operations and joint ventures.
+Informations sur les intérêts détenus dans d'autres entités ::: Disclosure of interests in other entities
+Annexe de consolidation. ::: Consolidation notes.
+Évaluation de la juste valeur ::: Fair value measurement
+Hiérarchie des niveaux de juste valeur. ::: Fair value hierarchy levels.
+Comptes de report réglementaires ::: Regulatory deferral accounts
+Activités à tarifs réglementés. ::: Rate-regulated activities.
+Produits des contrats avec les clients ::: Revenue from contracts with customers
+Modèle en cinq étapes. ::: Five-step model.
+Contrats de location ::: Leases
+Droit d'utilisation et dette locative. ::: Right-of-use asset and lease liability.
+Présentation et informations dans les états financiers ::: Presentation and disclosure in financial statements
+Remplace IAS 1 : catégories du résultat et mesures de performance. ::: Replaces IAS 1: income categories and performance measures.
+Filiales sans obligation d'information publique ::: Subsidiaries without public accountability
+Informations réduites pour certaines filiales. ::: Reduced disclosures for certain subsidiaries.
+# ---------- chunk 2 : pages, états, constats ----------
+Principales méthodes d'évaluation ::: Main valuation methods
+État des dérogations ::: Statement of departures
+Changements de méthodes ::: Changes in methods
+Tableau des immobilisations ::: Fixed asset schedule
+Tableau des amortissements ::: Depreciation schedule
+Plus ou moins-values sur cessions ::: Gains or losses on disposals
+Titres de participation ::: Equity investments
+Tableau des provisions ::: Provisions schedule
+Tableau des créances ::: Receivables schedule
+Tableau des dettes ::: Payables schedule
+Sûretés réelles données ou reçues ::: Collateral given or received
+Engagements financiers ::: Financial commitments
+Biens en crédit-bail ::: Leased assets
+Événements postérieurs à la clôture ::: Post-closing events
+Répartition du capital ::: Share capital distribution
+Affectation des résultats ::: Appropriation of earnings
+Ventilation du chiffre d'affaires ::: Revenue breakdown
+Vente ::: Sale
+Montants en milliers de dirhams (MAD), après retraitements de consolidation. ::: Amounts in thousands of dirhams (MAD), after consolidation restatements.
+Seul l'exercice importé est restitué : les données de l'exercice précédent ne figurent pas dans le fichier. ::: Only the imported financial year is shown: prior-year data is not in the file.
+Montant ::: Amount
+balance importée ::: imported trial balance
+Statut des comptes ::: Account status
+Constats et retraitements suggérés ::: Findings and suggested restatements
+État de situation financière (IAS 1) ::: Statement of financial position (IAS 1)
+Synthèse ::: Summary
+Constats ::: Findings
+Statut de chaque compte ::: Status of each account
+Situation financière ::: Financial position
+Importez, identifiez le document, contrôlez-le au regard du CGNC puis convertissez-le en IAS/IFRS. ::: Import and identify the document, check it against the CGNC, then convert it to IAS/IFRS.
+Du résultat comptable au résultat fiscal, avec l'impôt sur les sociétés et la cotisation minimale. ::: From accounting result to taxable result, with corporate income tax and the minimum contribution.
+Calculateurs d'impôts différés (IAS 12) et de dépréciation (IAS 36). ::: Deferred tax (IAS 12) and impairment (IAS 36) calculators.
+Score de conformité, constats par norme et états IFRS. ::: Compliance status, findings by standard and IFRS statements.
+Des comptes de chaque société aux comptes du groupe, puis comparaison avec les comptes publiés. ::: From each company's accounts to the group accounts, then comparison with published accounts.
+L'évolution de la conformité d'un fichier à l'autre. ::: How compliance changes from one file to the next.
+Les résultats de chaque transformation enregistrée, sans les balances importées. ::: The results of each saved transformation, without the imported trial balances.
+Le projet, ses fonctionnalités et ses limites. ::: The project, its features and its limits.
+Une question sur la plateforme ? Écrivez-nous. ::: A question about the platform? Write to us.
+Rappel ::: Reminder
+Cette version de MaroIFRS demande Streamlit 1.40 ou plus récent. Double-cliquez sur lancer.bat (il met à jour les composants) ou exécutez : python -m pip install -U streamlit ::: This version of MaroIFRS requires Streamlit 1.40 or later. Double-click lancer.bat (it updates the components) or run: python -m pip install -U streamlit
+Indicateurs MaroIFRS tirés de l'application ; les éléments marqués DÉMO sont des valeurs fictives de présentation, sans lien avec un marché réel. ::: MaroIFRS indicators taken from the application; items marked DEMO are fictitious presentation values, unrelated to any real market.
+Méthode ::: Method
+Quatre étapes, de vos documents aux états IFRS et consolidés ::: Four steps, from your documents to IFRS and consolidated statements
+Fonctionnalités ::: Features
+De l'import au rapport, tout au même endroit ::: From import to report, all in one place
+Balance, états de synthèse (bilan, CPC, ESG, tableau de financement, ETIC) ou factures : Excel / CSV / PDF ::: Trial balance, financial statements (balance sheet, CPC, ESG, financing statement, ETIC) or invoices: Excel / CSV / PDF
+Télécharger un modèle de balance ::: Download a trial balance template
+Normes à appliquer ::: Standards to apply
+Les normes affichées sont celles que vous demandez d'analyser. L'état réel de chaque contrôle (exécuté, sans objet, informations manquantes…) est indiqué dans la page Résultats, rubrique « Traitement par norme ». ::: The standards shown are those you ask to analyse. The actual status of each check (run, not applicable, missing information…) is shown in the Results page, under "Treatment by standard".
+Un outil d'aide à la conversion CGNC → IAS/IFRS ::: A decision-support tool for converting CGNC to IAS/IFRS
+Projet réalisé dans le module ::: Project carried out in the module
+Consolidation et normes IFRS ::: Consolidation and IFRS standards
+Objectifs ::: Objectives
+Ce que MaroIFRS cherche à faire ::: What MaroIFRS aims to do
+Les fonctionnalités principales ::: Main features
+Limites ::: Limits
+À savoir avant d'utiliser les résultats ::: To know before using the results
+Contact ::: Contact
+Restons en contact ::: Let's stay in touch
+Document reconnu, mais sans comptes exploitables ::: Document recognised, but with no usable accounts
+Lue : comptes, débit, crédit ::: Read: accounts, debit, credit
+Conformité CGNC, puis normes IAS/IFRS ::: CGNC compliance, then IAS/IFRS standards
+Cohérence interne, rapprochement avec le CPC, IAS 1 / IFRS 18 ::: Internal consistency, reconciliation with the CPC, IAS 1 / IFRS 18
+Cohérence interne, rapprochement avec le bilan, IAS 7 ::: Internal consistency, reconciliation with the balance sheet, IAS 7
+Correspondance avec les notes IFRS ::: Mapping to IFRS notes
+Écritures CGNC (achats, ventes, TVA), puis normes IAS/IFRS ::: CGNC entries (purchases, sales, VAT), then IAS/IFRS standards
+Achat ::: Purchase
+Capital social ::: Share capital
+Emprunts auprès des établissements de crédit ::: Borrowings from credit institutions
+Frais préliminaires ::: Preliminary expenses
+Fonds commercial ::: Goodwill (business)
+Terrains ::: Land
+Constructions ::: Buildings
+Matériel de transport ::: Transport equipment
+Amortissements des immobilisations corporelles ::: Depreciation of tangible assets
+Marchandises ::: Goods for resale
+Clients ::: Customers
+Fournisseurs ::: Suppliers
+Banque ::: Bank
+Achats revendus de marchandises ::: Purchases of goods resold
+Rémunérations du personnel ::: Staff remuneration
+Charges non courantes ::: Non-current expenses
+Ventes de marchandises au Maroc ::: Sales of goods in Morocco
+Rabais, remises et ristournes accordés ::: Discounts, rebates and refunds granted
+Produits non courants ::: Non-current income
+Actif non courant ::: Non-current assets
+Actif courant ::: Current assets
+Capitaux propres (y compris résultat) ::: Equity (including result)
+Passif non courant ::: Non-current liabilities
+Passif courant ::: Current liabilities
+Rappel : présenter aussi l'état du résultat global, le tableau des variations des capitaux propres, les flux de trésorerie et les notes. ::: Reminder: also present the statement of comprehensive income, the statement of changes in equity, cash flows and the notes.
+Modèle en 5 étapes : contrat, obligations de prestation, prix, allocation du prix, reconnaissance à la satisfaction de l'obligation. ::: Five-step model: contract, performance obligations, price, price allocation, recognition when the obligation is satisfied.
+Le référentiel marocain ne constate pas systématiquement les impôts différés ::: The Moroccan framework does not systematically recognise deferred taxes
+Utiliser l'onglet IAS 12 : impôt différé sur chaque différence temporaire (y compris celles créées par les autres retraitements IFRS) ::: Use the IAS 12 tab: deferred tax on each temporary difference (including those created by the other IFRS restatements)
+Rechercher tout indice de perte de valeur sur les actifs corporels et incorporels. ::: Look for any indication of impairment on tangible and intangible assets.
+Non-valeur (ou son amortissement) : pas d'actif en IFRS (IAS 38) ::: Non-value item (or its amortisation): not an asset under IFRS (IAS 38)
+Charge non courante : à reclasser (IAS 1) ::: Non-current expense: to be reclassified (IAS 1)
+Produit non courant : à reclasser (IAS 1) ::: Non-current income: to be reclassified (IAS 1)
+Remises accordées : contrepartie variable (IFRS 15) ::: Discounts granted: variable consideration (IFRS 15)
+Produit constaté d'avance : passif sur contrat ? (IFRS 15) ::: Deferred income: contract liability? (IFRS 15)
+Subvention d'exploitation : à traiter selon IAS 20 ::: Operating grant: to be treated under IAS 20
+Constructions : approche par composants (IAS 16) ::: Buildings: component approach (IAS 16)
+Amortissements élevés : durées d'utilité à réviser (IAS 16) ::: High depreciation: useful lives to be reviewed (IAS 16)
+Crédit-bail : droit d'utilisation et dette (IFRS 16) ::: Finance lease: right-of-use asset and liability (IFRS 16)
+Impôt : ajouter les impôts différés (IAS 12) ::: Tax: add deferred taxes (IAS 12)
+Fonds commercial : test de dépréciation annuel (IAS 36) ::: Goodwill: annual impairment test (IAS 36)
+Loyers : droit d'utilisation et dette locative (IFRS 16) ::: Rents: right-of-use asset and lease liability (IFRS 16)
+Provision pour risques et charges : critères IAS 37 ::: Provision for risks and charges: IAS 37 criteria
+Écart de conversion : inexistant en IFRS (IAS 21) ::: Translation difference: does not exist under IFRS (IAS 21)
+Dépréciation clients : modèle de pertes attendues (IFRS 9) ::: Customer impairment: expected loss model (IFRS 9)
+Dépréciation de stocks : valeur nette de réalisation (IAS 2) ::: Inventory write-down: net realisable value (IAS 2)
+Titres de participation : contrôle à qualifier (IFRS 10 / IAS 28 / IFRS 9) ::: Equity investments: control to be qualified (IFRS 10 / IAS 28 / IFRS 9)
+Comptes sans retraitement (%) ::: Accounts without restatement (%)
+Statut ::: Status
+Comptes ::: Accounts
+Équilibre ::: Balance
+Principe de la partie double ::: Double-entry principle
+Plan comptable ::: Chart of accounts
+Référentiel CGNC non chargé (fichier referentiel_cgnc.json absent) : existence des comptes non vérifiée ::: CGNC reference not loaded (file referentiel_cgnc.json missing): account existence not checked
+Saisie ::: Data entry
+Compte présent plusieurs fois dans la balance ::: Account appears several times in the trial balance
+Libellé manquant ::: Missing label
+Cohérence ::: Consistency
+Résultat présent à la fois dans les classes 6-7 et dans 119 ou la classe 8 : risque de double comptage ::: Result present in both classes 6-7 and in 119 or class 8: risk of double counting
+Comptes de résultats (classe 8) et résultat net (119) ::: Result accounts (class 8) and net result (119)
+Capital social ou personnel nul ou absent ::: Share capital or personal capital zero or missing
+Comptes sans anomalie CGNC (étape 1) : ::: Accounts without CGNC anomaly (step 1):
+**Points clés** ::: **Key points**
+**Écart avec le CGNC** ::: **Difference from the CGNC**
+Texte officiel sur ifrs.org ::: Official text on ifrs.org
+Immobilisations corporelles (nettes) ::: Property, plant and equipment (net)
+Actif ::: Assets
+Immobilisations incorporelles (nettes) ::: Intangible assets (net)
+Stocks (nets de dépréciation) ::: Inventories (net of impairment)
+Clients et comptes rattachés (nets) ::: Trade receivables and related accounts (net)
+Provisions pour risques et charges ::: Provisions for risks and charges
+Passif ::: Liabilities
+Libellé ::: Label
+Nature ::: Nature
+Changements de méthodes et corrections d'erreurs ::: Changes in methods and corrections of errors
+Appliquer rétrospectivement : retraiter les périodes comparatives et les capitaux propres d'ouverture ::: Apply retrospectively: restate comparative periods and opening equity
+Distinguer événements donnant lieu à ajustement et événements sans ajustement (information en annexe) ::: Distinguish adjusting from non-adjusting events (disclosure in the notes)
+Résultat par action (entités cotées ou en cours de cotation) ::: Earnings per share (listed entities or entities in the process of listing)
+Résultat net part du groupe / nombre moyen pondéré d'actions ordinaires ; calculer aussi le dilué ::: Net result attributable to the group / weighted average number of ordinary shares; also calculate diluted
+Vérifier les actifs dont la vente est décidée à la clôture : présentation séparée au plus bas de la valeur comptable et de la juste valeur nette, arrêt de l'amortissement ::: Check assets whose sale is decided at closing: separate presentation at the lower of carrying amount and net fair value, depreciation stops
+Informations sur les instruments financiers ::: Information on financial instruments
+Risques de crédit, de liquidité et de marché : informations qualitatives et quantitatives en annexe ::: Credit, liquidity and market risks: qualitative and quantitative disclosures in the notes
+Information sectorielle ::: Segment information
+Entités cotées : résultat par secteur opérationnel ::: Listed entities: result by operating segment
+Dotations d'exploitation (619) ::: Operating allowances (619)
+Dotations financières (639) ::: Financial allowances (639)
+Dotations non courantes (659) ::: Non-current allowances (659)
+Autres charges non courantes (658) ::: Other non-current expenses (658)
+Reprises d'exploitation (719) ::: Operating reversals (719)
+Reprises financières (739) ::: Financial reversals (739)
+Reprises non courantes (759) ::: Non-current reversals (759)
+Produits des titres de participation (732) ::: Income from equity investments (732)
+excédentaire ::: excess
+Contrôle fiscal ::: Tax control
+Chiffre d'affaires ::: Revenue
+Autres produits d'exploitation ::: Other operating income
+Achats consommés ::: Purchases consumed
+Charges de personnel ::: Personnel expenses
+Autres charges d'exploitation ::: Other operating expenses
+Impôts et taxes ::: Taxes and duties
+Dotations d'exploitation ::: Operating allowances
+Charges et produits financiers ::: Financial expenses and income
+Charges et produits non-courants ::: Non-current expenses and income
+Résultat net des entreprises intégrées ::: Net result of consolidated companies
+Quote-part dans les résultats des entreprises mises en équivalence ::: Share in results of equity-accounted companies
+Dotations aux amortissements des écarts d'acquisition ::: Goodwill amortisation
+Résultat net de l'ensemble consolidé ::: Net result of the consolidated group
+Résultat minoritaire ::: Non-controlling interests' result
+Résultat net part Groupe ::: Net result, Group share
+Rapport synthétique MaroIFRS ::: MaroIFRS summary report
+Comptes analysés ::: Accounts analysed
+Signification ::: Meaning
+Niveau des constats ::: Findings level
+Nombre ::: Number
+Solde (MAD) ::: Balance (MAD)
+# ---------- chunk 3 ----------
+Motif ::: Reason
+Poste ::: Item
+Montant (MAD) ::: Amount (MAD)
+Du résultat comptable au résultat fiscal ::: From accounting result to taxable result
+Impôts différés ::: Deferred taxes
+Test de dépréciation ::: Impairment test
+normes IAS/IFRS, interprétations IFRIC/SIC et plan comptable CGNC, à consulter librement. ::: IAS/IFRS standards, IFRIC/SIC interpretations and the CGNC chart of accounts, free to browse.
+Contrôle auto ::: Auto check
+Référence ::: Reference
+Notes et limites ::: Notes and limits
+Normes IAS/IFRS au référentiel ::: IAS/IFRS standards in the reference
+Normes contrôlées automatiquement ::: Automatically checked standards
+Rappels d'annexe ::: Notes reminders
+Fermer le menu ::: Close menu
+normes IAS / IFRS au référentiel ::: IAS / IFRS standards in the reference
+normes contrôlées (+ ::: standards checked (+
+formats : Excel, CSV, PDF texte ::: formats: Excel, CSV, text PDF
+rapport complet téléchargeable ::: full downloadable report
+Transformation ::: Transformation
+Importez une balance, des états de synthèse ou des factures : reconnaissance du document, contrôle CGNC et conversion IAS/IFRS. ::: Import a trial balance, financial statements or invoices: document recognition, CGNC check and IAS/IFRS conversion.
+Résultats ::: Results
+Constats par norme, états IFRS retraités, score de conformité, rapport de conformité en PDF et Excel. ::: Findings by standard, restated IFRS statements, compliance status, compliance report in PDF and Excel.
+Normes IAS/IFRS ::: IAS/IFRS standards
+Consolidation ::: Consolidation
+Périmètre, éliminations intragroupe, intérêts ne donnant pas le contrôle, comparaison avec les comptes publiés. ::: Scope, intragroup eliminations, non-controlling interests, comparison with published accounts.
+Calculateurs ::: Calculators
+Impôts différés (IAS 12) et dépréciation d'actifs (IAS 36). ::: Deferred taxes (IAS 12) and asset impairment (IAS 36).
+Voir la liste complète des fonctionnalités ::: See the full list of features
+Référentiel ::: Reference
+Normes IAS / IFRS, interprétations et plan comptable CGNC ::: IAS / IFRS standards, interpretations and the CGNC chart of accounts
+Normes IAS / IFRS ::: IAS / IFRS standards
+Interprétations IFRIC / SIC ::: IFRIC / SIC interpretations
+Plan comptable CGNC ::: CGNC chart of accounts
+Rechercher une norme (numéro ou mot-clé) ::: Search for a standard (number or keyword)
+Importez vos documents ::: Import your documents
+Importez n'importe quel document comptable ou financier : il est reconnu automatiquement. Vous pouvez sélectionner plusieurs fichiers à la fois (par exemple bilan, CPC et ESG séparés). ::: Import any accounting or financial document: it is recognised automatically. You can select several files at once (for example separate balance sheet, CPC and ESG).
+Classeur Excel prêt à remplir (feuilles « Balance comptable » et « Instructions »), compatible avec l'importation ci-dessus. ::: Excel workbook ready to fill in ("Balance comptable" and "Instructions" sheets), compatible with the import above.
+Importez une balance, des états de synthèse (bilan, CPC, ESG, tableau de financement, ETIC) ou des factures (PDF, Excel, CSV) : le type de chaque document est reconnu, puis le contrôle CGNC, la conversion IFRS, le contrôle fiscal et les résultats se font automatiquement. ::: Import a trial balance, financial statements (balance sheet, CPC, ESG, financing statement, ETIC) or invoices (PDF, Excel, CSV): each document type is recognised, then the CGNC check, IFRS conversion, tax control and results are produced automatically.
+Étape 1 sur 2 ::: Step 1 of 2
+Contrôle de conformité au CGNC ::: CGNC compliance check
+Avant toute conversion, la balance est auditée au regard du plan comptable CGNC : équilibre, existence des comptes, sens des soldes et cohérences entre comptes. ::: Before any conversion, the trial balance is audited against the CGNC chart of accounts: balance, account existence, direction of balances and consistency between accounts.
+Étape 2 sur 2 ::: Step 2 of 2
+Conversion vers les normes IAS / IFRS ::: Conversion to IAS / IFRS standards
+Sélectionnez au moins une norme à appliquer. ::: Select at least one standard to apply.
+Fiscalité ::: Taxation
+Contrôle fiscal : résultat comptable → résultat fiscal ::: Tax control: accounting result → taxable result
+Importez d'abord une balance dans la page « Transformation » : le résultat comptable en est déduit. ::: First import a trial balance in the "Transformation" page: the accounting result is derived from it.
+Les règles appliquées (taux, cotisation minimale, report des déficits) sont listées ci-dessous avec leur référence, leur date d'application et leur niveau de vérification. ::: The rules applied (rates, minimum contribution, loss carry-forward) are listed below with their reference, effective date and verification level.
+Aucun taux n'est supposé : ::: No rate is assumed:
+l'exercice doit être indiqué, et pour un exercice antérieur à 2026 le taux est à saisir. ::: the financial year must be given, and for a year before 2026 the rate must be entered.
+Exercice fiscal ::: Tax year
+Catégorie de société (art. 19-I) ::: Company category (art. 19-I)
+Ventes au taux de 0,15 % (MAD) ::: Sales at the 0.15% rate (MAD)
+Taux d'IS (%) ::: Corporate tax rate (%)
+Exclue du taux de 35 % (CFC, zone d'accélération industrielle, convention d'investissement ≥ 1,5 Md MAD) ::: Excluded from the 35% rate (CFC, industrial acceleration zone, investment agreement ≥ MAD 1.5 bn)
+Société dans ses 36 premiers mois d'exploitation (exonérée de cotisation minimale) ::: Company in its first 36 months of operation (exempt from minimum contribution)
+**Déficits fiscaux antérieurs** (CGI art. 12 : fraction ordinaire reportable sur 4 exercices ; fraction « amortissements » sans limite) ::: **Prior tax losses** (CGI art. 12: ordinary portion carried forward over 4 years; "depreciation" portion without limit)
+**Ce que contient le fichier importé** ::: **What the imported file contains**
+**Réintégrations fiscales** ::: **Tax add-backs**
+**Déductions fiscales** ::: **Tax deductions**
+Tableau de passage ::: Reconciliation table
+Outils ::: Tools
+Calculateurs IAS 12 et IAS 36 ::: IAS 12 and IAS 36 calculators
+Valeur comptable de l'UGT ::: Carrying amount of the CGU
+Juste valeur - coûts de cession ::: Fair value less costs of disposal
+IAS 36.50 : les flux doivent exclure les flux de financement et d'impôt. Le flux pré-rempli (résultat net + dotations) n'est qu'un ordre de grandeur issu de la balance : remplacez-le par vos prévisions avant toute conclusion. ::: IAS 36.50: cash flows must exclude financing and tax flows. The pre-filled flow (net result + allowances) is only an order of magnitude from the trial balance: replace it with your forecasts before concluding.
+Total actif consolidé (k MAD) ::: Total consolidated assets (k MAD)
+Chiffre d'affaires (k MAD) ::: Revenue (k MAD)
+Résultat net part du groupe (k MAD) ::: Net result, Group share (k MAD)
+Intérêts ne donnant pas le contrôle (k MAD) ::: Non-controlling interests (k MAD)
+**Données manquantes ou non saisies** (le résultat en dépend) : ::: **Missing or unentered data** (the result depends on it):
+Bilan actif ::: Balance sheet assets
+Bilan passif ::: Balance sheet liabilities
+Compte de résultat ::: Income statement
+Périmètre ::: Scope
+Éliminations ::: Eliminations
+Hypothèses et limites ::: Assumptions and limits
+Groupe ::: Group
+Consolidation et comparaison avec les comptes publiés ::: Consolidation and comparison with published accounts
+Consolidation du groupe ::: Group consolidation
+Comparaison avec les comptes officiels ::: Comparison with official accounts
+Les comptes consolidés exigent les comptes ::: Consolidated accounts require the accounts
+de la société mère et de chaque filiale ::: of the parent company and of each subsidiary
+Balances de la société mère et de chaque filiale (une par société : Excel, CSV ou PDF) ::: Trial balances of the parent company and each subsidiary (one per company: Excel, CSV or PDF)
+Constats et états IFRS ::: Findings and IFRS statements
+Importez d'abord une balance dans la page « Transformation ». ::: First import a trial balance in the "Transformation" page.
+Seuls les retraitements chiffrés par l'application figurent ici (non-valeurs, provisions réglementées, impôts différés associés). Les autres sujets signalés dans le tableau par norme exigent des informations complémentaires et ne sont donc pas chiffrés. ::: Only the restatements quantified by the application appear here (non-value items, regulated provisions, related deferred taxes). The other matters flagged in the table by standard require additional information and are therefore not quantified.
+Résultats de l'analyse – Excel ::: Analysis results – Excel
+Tableau de bord ::: Dashboard
+Aucune transformation enregistrée : importez une balance dans la page « Transformation ». ::: No transformation saved: import a trial balance in the "Transformation" page.
+Répartition des statuts par transformation ::: Status breakdown by transformation
+Répartition des constats par niveau ::: Findings breakdown by level
+Structure de l'état de situation ::: Structure of the statement of financial position
+Suivi ::: Tracking
+Historique des transformations ::: Transformation history
+🗑 Effacer ::: 🗑 Clear
+L'historique est enregistré dans le fichier historique.json de l'application ; il ne contient que les résultats, pas la balance. Sur le site en ligne, il peut être remis à zéro lorsque l'application redémarre. ::: The history is saved in the application's historique.json file; it contains only the results, not the trial balance. On the online site it may be reset when the application restarts.
+Projet ::: Project
+À propos de MaroIFRS ::: About MaroIFRS
+Colonnes manquantes : ::: Missing columns:
+ESG / CGNC ::: ESG / CGNC
+État des soldes de gestion détecté, mais moins de trois soldes lisibles ::: Statement of management balances detected, but fewer than three readable balances
+Vérifier la mise en page du document (ou importer un PDF texte / Excel) ::: Check the document layout (or import a text PDF / Excel)
+le CPC ::: the CPC
+ESG / IAS 1 ::: ESG / IAS 1
+Les soldes de gestion (marge brute, valeur ajoutée, EBE) n'existent pas en IFRS ::: Management balances (gross margin, value added, EBE) do not exist under IFRS
+IAS 1 impose un état du résultat global par nature ou par fonction ; IFRS 18 (applicable dès 2027) crée les catégories exploitation / investissement / financement et les mesures de performance définies par la direction ::: IAS 1 requires a statement of comprehensive income by nature or by function; IFRS 18 (applicable from 2027) creates operating / investing / financing categories and management-defined performance measures
+TF / CGNC ::: TF / CGNC
+Tableau de financement détecté, mais moins de trois masses lisibles ::: Financing statement detected, but fewer than three readable aggregates
+le bilan reconstitué ::: the reconstituted balance sheet
+TF / IAS 7 ::: TF / IAS 7
+Le tableau de financement analyse des masses du bilan, il ne remplace pas le tableau des flux de trésorerie ::: The financing statement analyses balance sheet aggregates; it does not replace the statement of cash flows
+Établir le tableau des flux IAS 7 (exploitation, investissement, financement) ; rapprocher la trésorerie nette du TF de la trésorerie et équivalents IAS 7 (découverts remboursables à vue inclus) ::: Prepare the IAS 7 cash flow statement (operating, investing, financing); reconcile the TF net cash with IAS 7 cash and cash equivalents (on-demand overdrafts included)
+ETIC / IFRS ::: ETIC / IFRS
+Document ::: Document
+Lecture ::: Reading
+Contrôles appliqués ::: Checks applied
+Détecté, montants non lus ::: Detected, amounts not read
+Détecté, annexes non identifiées ::: Detected, annexes not identified
+État ::: Status
+TF ::: TF
+compte(s) présent(s) dans plusieurs fichiers : la première lecture est conservée ( ::: account(s) present in several files: the first reading is kept (
+État - TVA facturée ::: Statement - VAT invoiced
+État - TVA récupérable sur les charges ::: Statement - recoverable VAT on expenses
+Corriger la balance avant tout retraitement ::: Correct the trial balance before any restatement
+Pas d'actif en IFRS : passer en charges (contrepartie capitaux propres d'ouverture) ::: No asset under IFRS: expense it (counterpart: opening equity)
+IAS 1 interdit les éléments « extraordinaires » : reclasser dans les charges/produits ordinaires ou les détailler en annexe ::: IAS 1 prohibits "extraordinary" items: reclassify within ordinary expenses/income or detail them in the notes
+Chiffre d'affaires comptable : ::: Accounting revenue:
+Contrepartie variable (IFRS 15.50) : estimer et déduire du CA ::: Variable consideration (IFRS 15.50): estimate and deduct from revenue
+Vérifier le transfert de contrôle : passif sur contrat si obligation de prestation non satisfaite ::: Check the transfer of control: contract liability if the performance obligation is not satisfied
+Hors champ IFRS 15 : traiter selon IAS 20 ::: Outside IFRS 15 scope: treat under IAS 20
+Immobilisations corporelles sans aucun amortissement ::: Tangible assets with no depreciation at all
+Calculer l'amortissement selon la durée d'utilité (IAS 16.50) ::: Calculate depreciation over the useful life (IAS 16.50)
+Constructions inscrites en bloc ::: Buildings recorded as a single block
+Approche par composants (IAS 16.43) : gros-œuvre, étanchéité, installations... ::: Component approach (IAS 16.43): structure, waterproofing, installations...
+Activer le droit d'utilisation et la dette de loyer (IFRS 16) ::: Recognise the right-of-use asset and the lease liability (IFRS 16)
+Test de dépréciation annuel obligatoire (IAS 36.10) : utiliser l'onglet IAS 36 ::: Mandatory annual impairment test (IAS 36.10): use the IAS 36 tab
+Indicateur ::: Indicator
+Conformité ::: Compliance
+En nombre de comptes ::: By number of accounts
+En valeur (MAD) ::: By value (MAD)
+Seuil de conformité 80 % ::: 80% compliance threshold
+Passif et capitaux propres ::: Liabilities and equity
+Contrôle ::: Check
+Référence CGNC ::: CGNC reference
+Total débit ≠ total crédit (écart ::: Total debit ≠ total credit (difference
+Sens des soldes ::: Direction of balances
+Capitaux propres négatifs ( ::: Negative equity (
+Pas de fiche détaillée pour ::: No detailed sheet for
+**Comptes CGNC concernés** ::: **CGNC accounts concerned**
+**Interprétations applicables (IFRIC / SIC)** ::: **Applicable interpretations (IFRIC / SIC)**
+Passif d'impôt différé ::: Deferred tax liability
+Évaluer au plus bas du coût et de la valeur nette de réalisation (IAS 2.9) ::: Measure at the lower of cost and net realisable value (IAS 2.9)
+Établir le tableau des flux (exploitation, investissement, financement) ; rapprocher la trésorerie nette du TFT avec le bilan ::: Prepare the cash flow statement (operating, investing, financing); reconcile the net cash of the TFT with the balance sheet
+Vérifier la provision pour congés payés, primes et avantages postérieurs à l'emploi (indemnités de départ) ::: Check the provision for paid leave, bonuses and post-employment benefits (severance)
+Aucun engagement de retraite / indemnités de fin de carrière provisionné ::: No pension / end-of-career benefit obligation provided for
+Évaluer l'obligation par la méthode des unités de crédit projetées ::: Measure the obligation using the projected unit credit method
+Comptabiliser en résultat sur les périodes où les coûts correspondants sont constatés ::: Recognise in profit or loss over the periods in which the related costs are incurred
+Pas d'écart de conversion en IFRS : constater les gains/pertes de change en résultat (éléments monétaires) ::: No translation difference under IFRS: recognise exchange gains/losses in profit or loss (monetary items)
+Incorporer au coût de l'actif qualifié les intérêts liés à sa construction (IAS 23.8) ::: Capitalise into the cost of the qualifying asset the interest related to its construction (IAS 23.8)
+Identifier les parties liées, leurs transactions et soldes ; informations en annexe ::: Identify related parties, their transactions and balances; disclosures in the notes
+Modèle de pertes de crédit attendues (ECL) : matrice de provisionnement dès la comptabilisation ::: Expected credit loss (ECL) model: provisioning matrix from initial recognition
+Évaluation au coût amorti (taux d'intérêt effectif), frais d'émission inclus ::: Measurement at amortised cost (effective interest rate), issue costs included
+Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14) ::: Keep only if there is a present obligation, a probable outflow and a reliable estimate (IAS 37.14)
+Critères de comptabilisation (identifiable, contrôlé, avantages futurs) ; frais de recherche en charges ::: Recognition criteria (identifiable, controlled, future benefits); research costs expensed
+Détenus pour valoriser le capital ? Alors immeubles de placement : choisir entre le coût et la juste valeur ::: Held to grow capital? Then investment property: choose between cost and fair value
+Immeubles loués à des tiers : immeubles de placement (coût ou juste valeur) ::: Property leased to third parties: investment property (cost or fair value)
+Dividendes de filiales : à éliminer du résultat consolidé (IFRS 10.B86) ::: Dividends from subsidiaries: to be eliminated from consolidated result (IFRS 10.B86)
+Distinguer le goodwill d'acquisition (non amorti, test IAS 36) du fonds commercial acheté (actif incorporel) ::: Distinguish acquisition goodwill (not amortised, IAS 36 test) from purchased business goodwill (intangible asset)
+Cessions d'immobilisations constatées (comptes 6513 / 7513, solde ::: Asset disposals recorded (accounts 6513 / 7513, balance
+Comptabiliser un droit d'utilisation et une dette de loyer (valeur actualisée des loyers) ; remplacer la charge de loyer par amortissement + intérêts ::: Recognise a right-of-use asset and a lease liability (present value of rents); replace the rent expense with depreciation + interest
+Compte à examiner ::: Account to review
+Résultat net comptable ::: Accounting net result
++ Impôt sur les résultats comptabilisé (compte 67) ::: + Income tax recorded (account 67)
+= Résultat comptable avant impôt ::: = Accounting result before tax
++ Réintégrations fiscales ::: + Tax add-backs
+- Déductions fiscales ::: - Tax deductions
+= Résultat fiscal brut ::: = Gross taxable result
+- Déficits antérieurs imputés ::: - Prior losses applied
+= Résultat fiscal net (base imposable) ::: = Net taxable result (tax base)
+Base de la cotisation minimale (art. 144-I-B) ::: Minimum contribution base (art. 144-I-B)
+IS dû (le plus élevé des deux) ::: Corporate tax due (the higher of the two)
+Écart avec l'IS comptabilisé ::: Difference from the corporate tax recorded
+Ligne ::: Line
+Renseigner l'exercice et, pour un exercice antérieur à 2026, le taux applicable (paramètres dans le tableau « Règles appliquées ») ::: Enter the year and, for a year before 2026, the applicable rate (parameters in the "Rules applied" table)
+Ajuster la charge d'impôt exigible ou justifier l'écart (réintégrations, déficits, cotisation minimale) ::: Adjust the current tax charge or justify the difference (add-backs, losses, minimum contribution)
+IS comptabilisé cohérent avec l'IS calculé ::: Corporate tax recorded consistent with the corporate tax calculated
+Taux d'IS appliqué : ::: Corporate tax rate applied:
+Bénéfice net ≥ 100 M MAD : taux de 35 % ::: Net profit ≥ MAD 100 m: 35% rate
+Vérifier les exclusions de l'art. 19-I-B (CFC, zones d'accélération industrielle, convention d'investissement) ::: Check the exclusions of art. 19-I-B (CFC, industrial acceleration zones, investment agreement)
+Cotisation minimale écartée (36 premiers mois d'exploitation) ::: Minimum contribution waived (first 36 months of operation)
+L'exonération cesse au plus tard 60 mois après la constitution (art. 144-I-C-1°) ::: The exemption ends at the latest 60 months after incorporation (art. 144-I-C-1°)
+Déficit reportable (règles de la loi de finances) : à suivre dans le tableau des déficits ::: Loss carry-forward (finance law rules): to be tracked in the losses table
+Base (MAD) ::: Base (MAD)
+Effet sur les réserves (MAD) ::: Effect on reserves (MAD)
+Impôt différé (MAD) ::: Deferred tax (MAD)
+Actifs en non-valeur (comptes 21 / 281) : éliminés ::: Non-value assets (accounts 21 / 281): eliminated
+Provisions réglementées (compte 135) : éliminées et reclassées en réserves ::: Regulated provisions (account 135): eliminated and reclassified to reserves
+# ---------- chunk 4 : textes affichés (relevé d'exécution) ----------
+Normes et interprétations liées à ces constats ::: Standards and interpretations related to these findings
+Rapport détaillé de conformité ::: Detailed compliance report
+Rapport synthétique et résultats de l'analyse ::: Summary report and analysis results
+Traitement par norme : état réel de chaque contrôle ::: Treatment by standard: actual status of each check
+En vigueur ::: In force
+Événements postérieurs à la date de clôture ::: Events after the reporting period
+Information relative aux parties liées ::: Related party disclosures
+Provisions, passifs éventuels et actifs éventuels ::: Provisions, contingent liabilities and contingent assets
+Méthodes comptables, changements d'estimations et erreurs ::: Accounting policies, changes in estimates and errors
+Produits des activités ordinaires tirés de contrats avec des clients ::: Revenue from contracts with customers
+Qualité des données importées ::: Quality of imported data
+Bonne ::: Good
+Moyenne ::: Fair
+Faible ::: Poor
+Cet indicateur mesure la qualité des données importées ; il ne garantit pas l'exactitude des montants. ::: This indicator measures the quality of the imported data; it does not guarantee the accuracy of the amounts.
+Information manquante ::: Missing information
+Date de mise en service, durées d'utilité, valeurs résiduelles, composants des constructions ::: In-service date, useful lives, residual values, components of buildings
+Évaluation actuarielle des engagements (hypothèses de mortalité, de salaires, d'actualisation), effectif ::: Actuarial valuation of obligations (mortality, salary and discount assumptions), headcount
+Coût de revient et valeur nette de réalisation par catégorie, ancienneté et rotation des stocks ::: Cost price and net realisable value by category, age and turnover of inventories
+Critères de capitalisation des frais de développement, durée de vie utile ::: Criteria for capitalising development costs, useful life
+Ventilation des créances par ancienneté, historique de pertes, taux de pertes attendues ::: Receivables ageing, loss history, expected loss rates
+L'objectif est de faciliter le travail des comptables, auditeurs et financiers en automatisant une partie de la conversion du référentiel marocain (CGNC) vers les normes IAS/IFRS. ::: The aim is to make the work of accountants, auditors and finance professionals easier by automating part of the conversion from the Moroccan framework (CGNC) to IAS/IFRS.
+0 = pas de valeur terminale croissante. IAS 36.33 : ne pas dépasser la croissance moyenne à long terme du secteur. ::: 0 = no growing terminal value. IAS 36.33: do not exceed the sector's long-term average growth.
+transformation(s) enregistrée(s) ::: transformation(s) saved
+norme(s) consultable(s) au catalogue mais non automatisée(s) : aucun contrôle n'est exécuté pour elles ::: standard(s) available in the catalogue but not automated: no check is run for them
+point(s) CGNC à vérifier ::: CGNC point(s) to check
+retraitement(s) IFRS à passer ::: IFRS restatement(s) to post
+point(s) IFRS à vérifier ::: IFRS point(s) to check
+norme(s) dont le chiffrage exige des informations complémentaires ::: standard(s) whose quantification requires additional information
+contrôle(s) non exécuté(s) ou ::: check(s) not run or
+interprétation(s). ::: interpretation(s).
+Les IFRIC et SIC complètent les normes ; certaines ont été remplacées par IFRS 15 ou IFRS 16. ::: IFRIC and SIC complete the standards; some have been replaced by IFRS 15 or IFRS 16.
+Liste officielle : ::: Official list:
+normes contrôlées ::: standards checked
+normes contrôlées et ::: standards checked and
+rappels d'annexe ::: note reminders
+normes consultables au référentiel. ::: standards available in the reference.
+au référentiel ::: in the reference
+normes au référentiel, interprétations IFRIC / SIC et plan comptable CGNC, à consulter librement. ::: standards in the reference, IFRIC / SIC interpretations and the CGNC chart of accounts, free to browse.
+compte(s) trouvé(s) sur ::: account(s) found out of
+au plan comptable général des entreprises (CGNC). ::: in the general chart of accounts (CGNC).
+norme(s) réellement exécutée(s) sur ce document, dont ::: standard(s) actually run on this document, of which
+dont ::: of which
+sans objet ou non applicable ; ::: not applicable;
+non sélectionnée(s). ::: not selected.
+; les résultats calculés ne sont jamais modifiés pour se rapprocher des chiffres officiels. ::: ; the calculated results are never altered to get closer to the official figures.
+Accessible hors ligne ::: Available offline
+Gratuit et illimité ::: Free and unlimited
+Rapport PDF + Excel ::: PDF + Excel report
+Accueil ::: Home
+Actions ::: Shares
+Adresse ::: Address
+Afficher seulement les interprétations en vigueur ::: Show only interpretations in force
+Aider à décider ::: Help decide
+Ajustement proposé ::: Proposed adjustment
+Année ::: Year
+Année d'ouverture de l'exercice : détermine les taux applicables. ::: Year the financial year opens: determines the applicable rates.
+Appliquer ::: Apply
+Aucun résultat calculé à comparer : importez d'abord une balance (page « Transformation ») ou consolidez un groupe. ::: No calculated result to compare: first import a trial balance ("Transformation" page) or consolidate a group.
+Aucune dépréciation de stocks (compte 391) ::: No inventory write-down (account 391)
+Aucune provision pour risques et charges ::: No provision for risks and charges
+Aucune dépréciation sur ::: No impairment on
+de créances clients ::: of trade receivables
+Balance, bilan, CPC, ESG, tableau de financement, ETIC, factures, grands livres et journaux : Excel, CSV ou PDF. ::: Trial balance, balance sheet, CPC, ESG, financing statement, ETIC, invoices, general ledgers and journals: Excel, CSV or PDF.
+Base (MAD) ::: Base (MAD)
+Bureau : contrôle fiscal et dossiers d'audit ::: Desk: tax control and audit files
+CGI art. 98 et 99 (taux) ::: CGI art. 98 and 99 (rates)
+CGNC (MAD) ::: CGNC (MAD)
+IFRS (MAD) ::: IFRS (MAD)
+Calcule le résultat de base et dilué par action pour les entités cotées. ::: Calculates basic and diluted earnings per share for listed entities.
+Calculer les pertes attendues à 12 mois ou à maturité selon les stades ::: Calculate expected losses over 12 months or to maturity depending on the stage
+Ces paramètres ont été recoupés avec des sources secondaires et non avec le texte officiel du CGI : validez-les auprès de la DGI avant usage dans un dossier. ::: These parameters were cross-checked with secondary sources and not with the official text of the CGI: validate them with the DGI before using them in a file.
+Chaque norme est une fonction que l'on peut ajouter facilement. ::: Each standard is a function that can easily be added.
+Chiffre d'affaires comptable : ::: Accounting revenue:
+Choisir une norme ::: Choose a standard
+Classement, évaluation, dépréciation et couverture des instruments financiers. ::: Classification, measurement, impairment and hedging of financial instruments.
+Comment ce score est calculé ::: How this score is calculated
+Comment sont calculés ces indicateurs ? ::: How are these indicators calculated?
+Comparer le coût à la valeur nette de réalisation, article par article ::: Compare cost with net realisable value, item by item
+Composante ::: Component
+Comptabilisation par le concessionnaire des infrastructures publiques exploitées : actif financier ou actif incorporel. ::: Accounting by the operator for the public infrastructure it operates: financial asset or intangible asset.
+Comptabilisation, évaluation et amortissement des immobilisations corporelles. ::: Recognition, measurement and depreciation of property, plant and equipment.
+Comptabilise les avantages à court terme, postérieurs à l'emploi, à long terme et les indemnités de fin de contrat. ::: Accounts for short-term, post-employment, long-term and termination benefits.
+Consolidation de groupe (mère, filiales, périmètre, éliminations intragroupe, intérêts ne donnant pas le contrôle) ::: Group consolidation (parent, subsidiaries, scope, intragroup eliminations, non-controlling interests)
+Contrôles IAS/IFRS ::: IAS/IFRS checks
+Contrôles IAS/IFRS et passage du résultat comptable au résultat fiscal. ::: IAS/IFRS checks and the move from accounting result to taxable result.
+Conversion CGNC · IAS · IFRS ::: CGNC · IAS · IFRS conversion
+Critères de comptabilisation des immobilisations incorporelles. ::: Recognition criteria for intangible assets.
+Croissance à l'infini (%) ::: Perpetual growth (%)
+Date d'application ::: Effective date
+Devise des montants publiés ::: Currency of published amounts
+Diminution des créances circulantes ::: Decrease in current receivables
+Diminution des créances immobilisées ::: Decrease in fixed receivables
+Diminution des dettes de financement ::: Decrease in financing debts
+Augmentation des créances ::: Increase in receivables
+Augmentation des dettes circulantes ::: Increase in current payables
+Distingue les événements qui confirment des conditions existantes à la clôture (ajustement) de ceux qui surviennent après (information en annexe). ::: Distinguishes events that confirm conditions existing at closing (adjusting) from those that occur afterwards (disclosure in the notes).
+Documents reconnus ::: Recognised documents
+DÉMO ::: DEMO
+Indice démo A ::: Demo index A
+Indice démo B ::: Demo index B
+Taux démo C ::: Demo rate C
+Cours démo D ::: Demo price D
+Valeur fictive de démonstration ::: Fictitious demonstration value
+MaroIFRS et exemples fictifs ::: MaroIFRS and fictitious examples
+Indicateurs ::: Indicators
+Déficit total (MAD) ::: Total loss (MAD)
+Déposez vos documents, n'importe lesquels (états de synthèse, factures…) : Excel, CSV ou PDF, un ou plusieurs à la fois. ::: Drop your documents, any of them (financial statements, invoices…): Excel, CSV or PDF, one or several at a time.
+Détection automatique ::: Automatic detection
+Détermine le montant d'excédent de régime comptabilisable en actif. ::: Determines the amount of plan surplus that can be recognised as an asset.
+Détermine si les parts des membres sont des capitaux propres ou des dettes. ::: Determines whether members' shares are equity or liabilities.
+Encadre le choix des méthodes, leur changement, les changements d'estimations et la correction des erreurs. ::: Governs the choice of methods, their change, changes in estimates and the correction of errors.
+Envoyer un e-mail ::: Send an e-mail
+Erreurs ::: Errors
+Exemple chiffré : importez une balance dans « Transformation » pour pré-remplir ces valeurs. ::: Worked example: import a trial balance in "Transformation" to pre-fill these values.
+Exemple chiffré : importez une balance dans « Transformation » pour pré-remplir les valeurs comptables. ::: Worked example: import a trial balance in "Transformation" to pre-fill the accounting values.
+Exercice du déficit ::: Year of the loss
+Exercice publié ::: Published financial year
+Explication ::: Explanation
+Explorer les normes ::: Explore the standards
+Export Excel et rapport PDF, rapport de conformité complet (PDF et Excel) ::: Excel export and PDF report, full compliance report (PDF and Excel)
+Fiche détaillée d'une norme ::: Detailed sheet for a standard
+Filtrer par statut ::: Filter by status
+Fixe la structure et le contenu minimal des états financiers : situation financière, résultat global, variations des capitaux propres, flux de trésorerie, notes. ::: Sets the structure and minimum content of financial statements: financial position, comprehensive income, changes in equity, cash flows, notes.
+Fixe les critères de comptabilisation des provisions. ::: Sets the recognition criteria for provisions.
+Flux de trésorerie ::: Cash flows
+Garantit qu'aucun actif n'est comptabilisé au-delà de sa valeur recouvrable. ::: Ensures that no asset is carried above its recoverable amount.
+IAS 36 – Dépréciation ::: IAS 36 – Impairment
+IS dû non calculé : ::: Corporate tax due not calculated:
+IS non calculé : ::: Corporate tax not calculated:
+Exercice non indiqué : le taux d'IS dépend de l'exercice, indiquez-le. ::: Year not given: the corporate tax rate depends on the year, please provide it.
+Exercice non indiqué : cotisation minimale non calculée. ::: Year not given: minimum contribution not calculated.
+Identifier ::: Identify
+Importer ::: Import
+Importer mes documents ::: Import my documents
+Impose de décrire les relations, transactions et soldes avec les parties liées. ::: Requires describing relationships, transactions and balances with related parties.
+Informations manquantes ::: Missing information
+et contrôles non exécutés ou non applicables ::: and checks not run or not applicable
+Informations nécessaires ::: Information needed
+Informations sur les parties liées à fournir en annexe ::: Related party information to be disclosed in the notes
+Intitulé ::: Title
+Justification du retraitement ::: Restatement justification
+L'indicateur de qualité des données ne mesure pas l'exactitude des montants. ::: The data quality indicator does not measure the accuracy of the amounts.
+La page concernée de l'application ::: The relevant page of the application
+Langue ::: Language
+Le message affiché, le cas échéant ::: The message displayed, if any
+Le type de document importé (balance, bilan, factures…) ::: The type of document imported (trial balance, balance sheet, invoices…)
+Les balances ne sont pas conservées : seuls les résultats figurent dans l'historique. ::: Trial balances are not kept: only the results appear in the history.
+Les paramètres fiscaux (taux, cotisation minimale, déficits) sont à valider auprès de la DGI. ::: The tax parameters (rates, minimum contribution, losses) must be validated with the DGI.
+Les résultats sont déclarés partiels pour des factures seules ou pour un document sans bilan ou sans compte de résultat : aucun statut « conforme » n'est alors donné. ::: Results are declared partial for invoices alone or for a document without a balance sheet or income statement: no "compliant" status is then given.
+Les résultats sont une aide : ils doivent être validés par un expert-comptable. ::: The results are an aid: they must be validated by a chartered accountant.
+Les stocks sont évalués au plus bas du coût et de la valeur nette de réalisation. ::: Inventories are measured at the lower of cost and net realisable value.
+Menu ::: Menu
+Milliers de MAD ::: Thousands of MAD
+Modèle en cinq étapes : contrat, obligations de prestation, prix de transaction, allocation, comptabilisation à la satisfaction de l'obligation. ::: Five-step model: contract, performance obligations, transaction price, allocation, recognition when the obligation is satisfied.
+Même statut que celui du rapport PDF et de la page Transformation. ::: Same status as in the PDF report and the Transformation page.
+Normes concentrant le plus de constats ::: Standards with the most findings
+Normes liées ::: Related standards
+Note (/100) ::: Score (/100)
+Nouvelle norme pour les entités soumises à une régulation tarifaire : comptabilisation d'actifs et passifs réglementaires. ::: New standard for entities subject to rate regulation: recognition of regulatory assets and liabilities.
+Objet ::: Subject
+Obligatoire pour « Autre taux » (0 = non renseigné : l'IS n'est pas calculé). ::: Required for "Other rate" (0 = not entered: corporate tax is not calculated).
+Ouvrir ::: Open
+Paramètre ::: Parameter
+Partie ::: Part
+Perte de valeur ::: Impairment loss
+Poids (%) ::: Weight (%)
+Pour faciliter l'échange ::: To ease exchange
+Protéger les données ::: Protect the data
+Précise quels risques de change peuvent être couverts et où se situe l'instrument de couverture. ::: Specifies which foreign exchange risks can be hedged and where the hedging instrument may be held.
+Présente les flux de trésorerie de l'exercice par nature : exploitation, investissement, financement. ::: Presents the year's cash flows by nature: operating, investing, financing.
+Qualité des données ::: Data quality
+Rapport de conformité complet en PDF et en Excel, états retraités et historique des transformations. ::: Full compliance report in PDF and Excel, restated statements and transformation history.
+Rapport détaillé de conformité – Excel ::: Detailed compliance report – Excel
+Rapport détaillé de conformité – PDF ::: Detailed compliance report – PDF
+Rapport synthétique – PDF ::: Summary report – PDF
+Rapports ::: Reports
+Rechercher litiges, garanties, restructurations ; passifs éventuels en annexe ::: Look for disputes, guarantees, restructurings; contingent liabilities in the notes
+Rechercher un compte (numéro ou libellé) ::: Search for an account (number or label)
+Rechercher une interprétation ::: Search for an interpretation
+Reconnaissance automatique du type de document : balance, bilan, CPC, ESG, tableau de financement, ETIC, factures (plusieurs fichiers à la fois) ::: Automatic recognition of the document type: trial balance, balance sheet, CPC, ESG, financing statement, ETIC, invoices (several files at once)
+Reconnaissance des documents ::: Document recognition
+Reconnaissance du type de document (état de synthèse, facture…), puis contrôle au regard du CGNC. ::: Recognition of the document type (financial statement, invoice…), then check against the CGNC.
+Restituer ::: Report
+Retraitements ::: Restatements
+Règle appliquée ::: Rule applied
+Règles et paramètres fiscaux appliqués (références, dates, vérification) ::: Tax rules and parameters applied (references, dates, verification)
+Réserve légale ::: Legal reserve
+Résultat fiscal net ::: Net taxable result
+Résumés pédagogiques rédigés pour cette application ; ils ne remplacent pas le texte officiel publié par l'IFRS Foundation (droits d'auteur). Vérifiez toujours la version en vigueur sur ifrs.org. ::: Educational summaries written for this application; they do not replace the official text published by the IFRS Foundation (copyright). Always check the current version on ifrs.org.
+Réunion d'analyse : consolidation de groupe ::: Analysis meeting: group consolidation
+S'étendre facilement ::: Easy to extend
+Saisissez au moins un montant officiel pour lancer la comparaison. ::: Enter at least one official amount to start the comparison.
+Saisissez le taux d'actualisation : sans lui, ni la valeur d'utilité ni la perte de valeur ne sont calculées. ::: Enter the discount rate: without it, neither the value in use nor the impairment loss is calculated.
+Sans retraitement ::: Without restatement
+Société cotée ::: Listed company
+Source des chiffres officiels ::: Source of the official figures
+Taux d'actualisation (%) ::: Discount rate (%)
+Total actif ::: Total assets
+Total passif ::: Total liabilities
+Un outil d'aide à la décision, qui ne remplace pas l'expert-comptable. ::: A decision-support tool that does not replace the chartered accountant.
+Une question sur MaroIFRS, un document mal reconnu ou une suggestion d'amélioration : écrivez-nous par e-mail. ::: A question about MaroIFRS, a document not recognised properly or a suggestion for improvement: write to us by e-mail.
+Une question, une remarque ? ::: A question, a remark?
+Unité des montants publiés ::: Unit of published amounts
+Valeur ::: Value
+Valeur comptable initiale (MAD) ::: Initial carrying amount (MAD)
+Valeur d'utilité ::: Value in use
+Valeur recouvrable ::: Recoverable amount
+Valeur sans retraitement ::: Value without restatement
+Comptes sans retraitement ::: Accounts without restatement
+Voir ::: View
+Vos états de synthèse marocains, aux normes internationales. ::: Your Moroccan financial statements, to international standards.
+dont amortissements régulièrement comptabilisés (MAD) ::: of which depreciation regularly booked (MAD)
+ex. IAS 16, location, impôts… ::: e.g. IAS 16, leases, taxes…
+nom de la société ::: company name
+À indiquer : l'application ne le suppose pas. ::: To be stated: the application does not assume it.
+Écart (MAD) ::: Difference (MAD)
+Écran affichant un tableau de bord financier ::: Screen showing a financial dashboard
+États présentés d'après les documents importés : bilan actif, bilan passif, compte de résultat, retraitements. ::: Statements presented from the imported documents: balance sheet assets, balance sheet liabilities, income statement, restatements.
+Évaluation des positions fiscales incertaines : montant le plus probable ou valeur attendue. ::: Measurement of uncertain tax positions: most likely amount or expected value.
+Évolution de la conformité par transformation ::: Change in compliance by transformation
+✓ Contrôler (CGNC) ::: ✓ Check (CGNC)
+Photographie ::: Photograph
+Photographie précédente ::: Previous photograph
+Photographie suivante ::: Next photograph
+Présentation de MaroIFRS ::: Presentation of MaroIFRS
+Du plan comptable marocain aux normes internationales ::: From the Moroccan chart of accounts to international standards
+Importez votre balance ou vos états de synthèse : MaroIFRS les contrôle au regard du CGNC, puis applique les règles IAS/IFRS. ::: Import your trial balance or financial statements: MaroIFRS checks them against the CGNC, then applies the IAS/IFRS rules.
+Les normes IAS/IFRS et le CGNC à portée de main ::: IAS/IFRS standards and the CGNC at your fingertips
+Consultez les normes, les interprétations IFRIC / SIC et le plan comptable CGNC, avec leurs règles de contrôle. ::: Browse the standards, IFRIC / SIC interpretations and the CGNC chart of accounts, with their check rules.
+De la société mère à la consolidation du groupe ::: From the parent company to group consolidation
+Périmètre, éliminations intragroupe, intérêts ne donnant pas le contrôle et comparaison avec les comptes publiés. ::: Scope, intragroup eliminations, non-controlling interests and comparison with published accounts.
+Ouvrir la consolidation ::: Open the consolidation
+Quartier d'affaires au coucher du soleil ::: Business district at sunset
+Salle de marché avec écrans boursiers ::: Trading room with stock market screens
+Réunion financière en salle vitrée ::: Financial meeting in a glass-walled room
+Poste de travail : transformation des états financiers ::: Workstation: transformation of financial statements
+Poste de travail : résultats et rapport d'audit ::: Workstation: results and audit report
+Écran affichant un tableau de bord financier ::: Screen showing a financial dashboard
+Réunion d'analyse : consolidation de groupe ::: Analysis meeting: group consolidation
+# ---------- chunk 5 : référentiel IFRS (titres, statuts, objets) ----------
+Remplacée par IFRS 18 pour les exercices ouverts à compter du 1er janvier 2027 ::: Replaced by IFRS 18 for financial years beginning on or after 1 January 2027
+Comptabilité et rapports financiers des régimes de retraite ::: Accounting and reporting by retirement benefit plans
+Participations dans des entreprises associées et des coentreprises ::: Investments in associates and joint ventures
+Information financière dans les économies hyperinflationnistes ::: Financial reporting in hyperinflationary economies
+Actifs non courants détenus en vue de la vente et activités abandonnées ::: Non-current assets held for sale and discontinued operations
+Remplacée par IFRS 20 pour les exercices ouverts à compter du 1er janvier 2029 ::: Replaced by IFRS 20 for financial years beginning on or after 1 January 2029
+En vigueur depuis le 1er janvier 2023 (remplace IFRS 4) ::: In force since 1 January 2023 (replaces IFRS 4)
+Présentation et informations à fournir dans les états financiers ::: Presentation and disclosure in financial statements
+Applicable aux exercices ouverts à compter du 1er janvier 2027 (publiée en 2024) ::: Applicable to financial years beginning on or after 1 January 2027 (issued in 2024)
+Filiales sans obligation d'information publique : informations à fournir ::: Subsidiaries without public accountability: disclosures
+Applicable aux exercices ouverts à compter du 1er janvier 2027 ::: Applicable to financial years beginning on or after 1 January 2027
+Actifs réglementaires et passifs réglementaires ::: Regulatory assets and regulatory liabilities
+Applicable aux exercices ouverts à compter du 1er janvier 2029 (application anticipée permise) ::: Applicable to financial years beginning on or after 1 January 2029 (early application permitted)
+Variations des passifs existants relatifs au démantèlement, à la remise en état et similaires ::: Changes in existing decommissioning, restoration and similar liabilities
+Traite l'effet des variations d'estimations, de taux d'actualisation et d'échéancier sur ces passifs. ::: Deals with the effect of changes in estimates, discount rates and timing on these liabilities.
+Parts de membres dans des entités coopératives et instruments similaires ::: Members' shares in co-operative entities and similar instruments
+Droits à participation dans des fonds de démantèlement, de remise en état et de réhabilitation de l'environnement ::: Rights to interests arising from decommissioning, restoration and environmental rehabilitation funds
+Comptabilisation par le contributeur de ses droits dans ces fonds. ::: Accounting by the contributor for its rights in these funds.
+Passifs découlant de la participation à un marché spécifique : déchets d'équipements électriques et électroniques ::: Liabilities arising from participating in a specific market: waste electrical and electronic equipment
+Fait générateur du passif de gestion des déchets. ::: Obligating event for the waste management liability.
+Application de l'approche du retraitement selon IAS 29 ::: Applying the restatement approach under IAS 29
+Retraitement des chiffres comparatifs en économie hyperinflationniste. ::: Restatement of comparative figures in a hyperinflationary economy.
+Information financière intermédiaire et dépréciation ::: Interim financial reporting and impairment
+Interdit de reprendre en comptes annuels une dépréciation du goodwill constatée en intermédiaire. ::: Prohibits reversing in annual accounts a goodwill impairment recognised at interim.
+Accords de concession de services ::: Service concession arrangements
+IAS 19 : plafonnement de l'actif au titre de prestations définies, obligations de financement minimum ::: IAS 19: the asset ceiling for defined benefit assets, minimum funding requirements
+Couvertures d'un investissement net dans un établissement à l'étranger ::: Hedges of a net investment in a foreign operation
+Distributions d'actifs non monétaires aux propriétaires ::: Distributions of non-cash assets to owners
+Dividende en nature : passif évalué à la juste valeur et écart en résultat. ::: Dividend in kind: liability measured at fair value and difference in profit or loss.
+Extinction de passifs financiers au moyen d'instruments de capitaux propres ::: Extinguishing financial liabilities with equity instruments
+Les instruments émis sont évalués à la juste valeur, la différence avec la dette éteinte va en résultat. ::: The instruments issued are measured at fair value; the difference with the extinguished debt goes to profit or loss.
+Frais de découverture engagés pendant la phase de production d'une mine à ciel ouvert ::: Stripping costs in the production phase of a surface mine
+Activation des coûts de découverture lorsqu'ils génèrent un avantage futur. ::: Capitalisation of stripping costs when they generate a future benefit.
+Droits ou taxes ::: Levies
+Le passif est comptabilisé au fait générateur d'obligation défini par la loi. ::: The liability is recognised at the obligating event defined by law.
+Transactions en monnaie étrangère et contrepartie anticipée ::: Foreign currency transactions and advance consideration
+Date de la transaction pour fixer le cours lorsqu'une avance est versée ou reçue. ::: Transaction date used to set the rate when an advance is paid or received.
+Incertitude relative aux traitements fiscaux ::: Uncertainty over income tax treatments
+Introduction de l'euro ::: Introduction of the euro
+Conversion des opérations et écarts de change lors du passage à l'euro. ::: Translation of transactions and exchange differences on the changeover to the euro.
+Aide publique : absence de relation spécifique avec les activités opérationnelles ::: Government assistance: no specific relation to operating activities
+Une aide générale aux entreprises entre dans le champ d'IAS 20. ::: General assistance to businesses falls within the scope of IAS 20.
+Impôts sur le résultat : modifications de la situation fiscale d'une entité ou de ses actionnaires ::: Income taxes: changes in the tax status of an entity or its shareholders
+Effet d'impôt courant et différé d'un changement de statut fiscal. ::: Current and deferred tax effect of a change in tax status.
+Accords de concession de services : informations à fournir ::: Service concession arrangements: disclosures
+Informations à fournir par le concédant et le concessionnaire. ::: Disclosures by the grantor and the operator.
+Immobilisations incorporelles : coûts de sites web ::: Intangible assets: web site costs
+Conditions d'activation des coûts de développement d'un site web. ::: Conditions for capitalising web site development costs.
+Déterminer si un accord contient un contrat de location ::: Determining whether an arrangement contains a lease
+Identification des contrats de location implicites. ::: Identification of implicit leases.
+Remplacée par IFRS 16 (2019) ::: Replaced by IFRS 16 (2019)
+Réexamen des dérivés incorporés ::: Reassessment of embedded derivatives
+Évaluation des dérivés incorporés. ::: Assessment of embedded derivatives.
+Intégrée dans IFRS 9 ::: Incorporated into IFRS 9
+Programmes de fidélisation de la clientèle ::: Customer loyalty programmes
+Points de fidélité traités comme un élément séparé du prix. ::: Loyalty points treated as a separately identifiable component of the price.
+Remplacée par IFRS 15 (2018) ::: Replaced by IFRS 15 (2018)
+Accords pour la construction de biens immobiliers ::: Agreements for the construction of real estate
+Détermine si IAS 11 ou IAS 18 s'applique à la promotion immobilière. ::: Determines whether IAS 11 or IAS 18 applies to real estate development.
+Transferts d'actifs provenant de clients ::: Transfers of assets from customers
+Comptabilisation des actifs reçus de clients pour fournir un service. ::: Accounting for assets received from customers to provide a service.
+Avantages dans les contrats de location simple ::: Incentives in operating leases
+Incitations du bailleur étalées sur la durée du contrat. ::: Lessor incentives spread over the lease term.
+Évaluation de la substance des transactions impliquant la forme juridique d'un contrat de location ::: Evaluating the substance of transactions involving the legal form of a lease
+Substance des montages de cession-bail. ::: Substance of sale-and-leaseback arrangements.
+, le périmètre (pourcentages de contrôle et d'intérêt, méthode), le coût des titres, les capitaux propres à la date d'acquisition et les opérations intragroupe. Sans ces données, aucun compte consolidé n'est produit. ::: , the scope (control and interest percentages, method), the cost of securities, equity at the acquisition date and intragroup transactions. Without this data, no consolidated account is produced.
+Les chiffres officiels sont à saisir (ou à importer) d'après la publication de l'émetteur : rapport financier, site de la société, Bourse de Casablanca, AMMC. L'application n'en contient aucun. La comparaison n'est valable que pour le ::: The official figures must be entered (or imported) from the issuer's publication: financial report, company website, Casablanca Stock Exchange, AMMC. The application contains none. The comparison is valid only for the
+même exercice, le même référentiel, la même devise et le même périmètre ::: same financial year, the same framework, the same currency and the same scope
+Les retraitements IFRS chiffrés se limitent aux non-valeurs, aux provisions réglementées et aux impôts différés associés. Pour les autres normes, MaroIFRS repère le sujet ou rappelle une information d'annexe, sans calculer de retraitement. ::: The quantified IFRS restatements are limited to non-value items, regulated provisions and related deferred taxes. For the other standards, MaroIFRS flags the subject or reminds of a disclosure, without calculating a restatement.
+Ventes de produits pétroliers, gaz, beurre, huile, sucre, farine, eau, électricité et médicaments par des entreprises commerciales (art. 144-I-D, à confirmer sur le texte officiel). ::: Sales of petroleum products, gas, butter, oil, sugar, flour, water, electricity and medicines by trading companies (art. 144-I-D, to be confirmed against the official text).
+Solde débiteur inhabituel pour un compte de passif ou de produit ::: Unusual debit balance for a liability or income account
+Obligations ::: Bonds
+# ---------- chunk 6 : conformité, consolidation, comparaison, fiscalité, TVA ----------
+Part des comptes au statut « inchangé » (aucune règle des normes sélectionnées ne s'applique). Ce n'est pas un taux de conformité : le verdict de conformité est le statut final. ::: Share of accounts with "unchanged" status (no rule of the selected standards applies). This is not a compliance rate: the compliance verdict is the final status.
+Somme des soldes (valeur absolue) des comptes « inchangés » ÷ somme des soldes de tous les comptes. ::: Sum of balances (absolute value) of "unchanged" accounts ÷ sum of balances of all accounts.
+CONFORME AVEC RÉSERVES ::: COMPLIANT WITH RESERVATIONS
+CONFORME ::: COMPLIANT
+ANALYSE PARTIELLE ::: PARTIAL ANALYSIS
+NON CONFORME ::: NON-COMPLIANT
+NON DÉTERMINÉ ::: UNDETERMINED
+Statut de conformité : ::: Compliance status:
+Nombre de comptes lus dans le document importé. ::: Number of accounts read in the imported document.
+Créance / dette ::: Receivable / payable
+Compte courant ::: Current account
+Prêt / emprunt ::: Loan / borrowing
+Vente / achat ::: Sale / purchase
+Marge en stock ::: Margin in inventory
+Marge en immobilisation ::: Margin in fixed assets
+Intégration globale ::: Full consolidation
+Intégration proportionnelle (CGNC) ::: Proportionate consolidation (CGNC)
+Mise en équivalence ::: Equity method
+Montants en milliers de dirhams (MAD). ::: Amounts in thousands of dirhams (MAD).
+Intérêts ne donnant pas le contrôle évalués à la quote-part de l'actif net identifiable (goodwill partiel, IFRS 3.19) ; pas de goodwill complet. ::: Non-controlling interests measured at the share of identifiable net assets (partial goodwill, IFRS 3.19); no full goodwill.
+Écart d'évaluation porté en immobilisations corporelles, sans amortissement ni impôt différé ; aucune conversion de devises (IAS 21 non appliquée). ::: Valuation difference recorded in tangible assets, without depreciation or deferred tax; no currency translation (IAS 21 not applied).
+Les comptes de chaque société sont repris tels que saisis : aucun retraitement IFRS propre à une filiale (IFRS 16, IAS 19, IFRS 9...) n'est appliqué, seuls les frais préliminaires sont traités ::: The accounts of each company are taken as entered: no subsidiary-specific IFRS restatement (IFRS 16, IAS 19, IFRS 9...) is applied, only preliminary expenses are treated
+Homogénéité des méthodes comptables, dates de clôture et exercice des balances non vérifiés : à contrôler par l'utilisateur. ::: Consistency of accounting methods, closing dates and financial year of the trial balances not verified: to be checked by the user.
+Le goodwill n'est pas testé en dépréciation (IAS 36) et ne subit aucune dépréciation ni amortissement. ::: Goodwill is not tested for impairment (IAS 36) and is subject to no impairment or amortisation.
+Pas de participations indirectes ni de variations de pourcentage en cours d'exercice : chaque pourcentage est supposé constant sur l'exercice. ::: No indirect holdings or percentage changes during the year: each percentage is assumed constant over the year.
+Les éliminations se limitent à celles déclarées ; les ventes/achats supposent que les achats figurent en comptes 611 à 615 et les ventes en 711 à 712. ::: Eliminations are limited to those declared; sales/purchases assume purchases are in accounts 611 to 615 and sales in 711 to 712.
+Dividendes supposés enregistrés en produits financiers (compte 732) chez la mère. ::: Dividends assumed to be recorded as financial income (account 732) at the parent.
+Au moins deux sociétés sont nécessaires (une société mère et une filiale) : un document isolé ne permet pas de consolider. ::: At least two companies are required (a parent and a subsidiary): a single document does not allow consolidation.
+Il faut désigner exactement une société mère. ::: Exactly one parent company must be designated.
+Aucune filiale ou entreprise associée n'est comprise dans le périmètre. ::: No subsidiary or associate is included in the scope.
+Autres créances ::: Other receivables
+Autres dettes ::: Other payables
+Aucune opération intragroupe déclarée : créances, dettes, ventes, achats, marges et prêts entre sociétés du groupe restent dans les comptes consolidés. ::: No intragroup transaction declared: receivables, payables, sales, purchases, margins and loans between group companies remain in the consolidated accounts.
+Aucun écart d'évaluation saisi : les actifs et passifs des filiales sont repris à leur valeur comptable, sans juste valeur à la date d'acquisition (IFRS 3). ::: No valuation difference entered: the subsidiaries' assets and liabilities are carried at book value, without fair value at the acquisition date (IFRS 3).
+Aucune marge interne en stock ou en immobilisation déclarée : les profits internes non réalisés ne sont pas éliminés. ::: No internal margin in inventory or fixed assets declared: unrealised internal profits are not eliminated.
+Taux d'impôt différé retenu : ::: Deferred tax rate used:
+Consolidation impossible : ::: Consolidation impossible:
+Immobilisations corporelles (y c. écarts d'évaluation) ::: Property, plant and equipment (incl. valuation differences)
+Réserves consolidées ::: Consolidated reserves
+Intérêts ne donnant pas le contrôle ::: Non-controlling interests
+Élimination de la marge interne (nette d'impôt) ::: Elimination of internal margin (net of tax)
+Coût des titres déclaré ( ::: Cost of securities declared (
+MAD) différent du compte 251 de la mère ( ::: MAD) different from the parent's account 251 (
+MAD) : participations indirectes, titres non consolidés ou erreur de saisie ? ::: MAD): indirect holdings, unconsolidated securities or entry error?
+Dividendes intragroupe déclarés ( ::: Intragroup dividends declared (
+MAD) supérieurs aux produits de participation de la mère (compte 732 : ::: MAD) higher than the parent's investment income (account 732:
+La mère comptabilise ::: The parent records
+MAD de produits de participation (compte 732) mais aucun dividende intragroupe n'est déclaré : le résultat consolidé peut contenir des dividendes internes non éliminés. ::: MAD of investment income (account 732) but no intragroup dividend is declared: the consolidated result may contain internal dividends not eliminated.
+: aucune balance importée. ::: : no trial balance imported.
+: aucun compte de charges ou de produits (classes 6 et 7) : le résultat ne peut pas être consolidé. ::: : no expense or income accounts (classes 6 and 7): the result cannot be consolidated.
+: pourcentages de contrôle et d'intérêt à renseigner (entre 0 et 100). ::: : control and interest percentages to be entered (between 0 and 100).
+: intégration globale avec un contrôle de ::: : full consolidation with control of
+% ≤ 50 % : IFRS 10 exige de démontrer le pouvoir, l'exposition aux rendements et le lien entre les deux (cochez « contrôle de fait » si c'est justifié). ::: % ≤ 50%: IFRS 10 requires demonstrating power, exposure to returns and the link between the two (tick "de facto control" if justified).
+: mise en équivalence avec ::: : equity method with
+% de droits de vote : l'influence notable est présumée entre 20 % et 50 % (IAS 28.5). ::: % voting rights: significant influence is presumed between 20% and 50% (IAS 28.5).
+: l'intégration proportionnelle n'est pas admise par IFRS 11 pour une co-entreprise : elle est traitée en mise en équivalence dans le référentiel IFRS. ::: : proportionate consolidation is not permitted by IFRS 11 for a joint venture: it is treated under the equity method in the IFRS framework.
+: coût d'acquisition des titres à renseigner. ::: : acquisition cost of the securities to be entered.
+: capitaux propres à la date d'acquisition à renseigner (calcul du goodwill et des réserves consolidées). ::: : equity at the acquisition date to be entered (calculation of goodwill and consolidated reserves).
+Coût des titres ::: Cost of securities
+Quote-part de l'actif net acquis ::: Share of net assets acquired
+Résultat NCI ::: NCI result
+Élimination intragroupe : les deux sociétés doivent être différentes. ::: Intragroup elimination: the two companies must be different.
+clients de A ::: customers of A
+fournisseurs de B ::: suppliers of B
+autres créances de A ::: other receivables of A
+autres dettes de B ::: other payables of B
+immobilisations financières de A ::: financial fixed assets of A
+emprunts de B ::: borrowings of B
+chiffre d'affaires de A ::: revenue of A
+achats de B ::: purchases of B
+stocks de B ::: inventories of B
+immobilisations corporelles de B ::: tangible assets of B
+négatif après éliminations ( ::: negative after eliminations (
+MAD) : éliminations excessives ou mal affectées. ::: MAD): excessive or misallocated eliminations.
+Dividendes intragroupe éliminés du résultat : ::: Intragroup dividends eliminated from the result:
+MAD (reclassés en réserves consolidées). ::: MAD (reclassified to consolidated reserves).
+Élimination intragroupe : société inconnue ( ::: Intragroup elimination: unknown company (
+). Utilisez les noms du périmètre. ::: ). Use the names in the scope.
+Frais préliminaires / charges à répartir éliminés : ::: Preliminary expenses / deferred charges eliminated:
+MAD (impôt différé actif ::: MAD (deferred tax asset
+Élimination « ::: Elimination "
+MAD supérieure au poste correspondant ( ::: MAD higher than the corresponding item (
+MAD) : vérifier le montant ou le sens A / B. ::: MAD): check the amount or the A / B direction.
+MAD : vérifier les capitaux propres à l'acquisition, les titres et les éliminations. ::: MAD: check equity at acquisition, the securities and the eliminations.
+Le résultat consolidé ( ::: The consolidated result (
+MAD) diffère du cumul attendu ( ::: MAD) differs from the expected total (
+MAD) : vérifier les comptes de résultat. ::: MAD): check the income statements.
+: balance déséquilibrée (écart ::: : unbalanced trial balance (difference
+MAD) : corriger avant de consolider. ::: MAD): correct before consolidating.
+Type d'élimination inconnu : ::: Unknown elimination type:
+Millions de MAD ::: Millions of MAD
+CGNC (normes marocaines) ::: CGNC (Moroccan standards)
+Autre devise ::: Other currency
+Source (document, page) ::: Source (document, page)
+le référentiel ::: the framework
+le périmètre ::: the scope
+Comparaison non valable ::: Comparison not valid
+Colonnes manquantes : utilisez le modèle fourni (Société, Exercice, Référentiel, Périmètre, Unité, Total actif, Total passif, Chiffre d'affaires, Résultat net part du groupe). ::: Missing columns: use the template provided (Company, Year, Framework, Scope, Unit, Total assets, Total liabilities, Revenue, Net result Group share).
+Aucune ligne exploitable dans le fichier. ::: No usable row in the file.
+Périmètre : filiales ou entreprises associées absentes de l'import, ou intégrées selon une autre méthode ::: Scope: subsidiaries or associates missing from the import, or consolidated using another method
+Retraitements IFRS non couverts par l'application (IFRS 16, IAS 19, IFRS 9 / pertes de crédit attendues, instruments dérivés...) ::: IFRS restatements not covered by the application (IFRS 16, IAS 19, IFRS 9 / expected credit losses, derivatives...)
+Écarts d'évaluation et goodwill calculés par le groupe à la date d'acquisition (non disponibles ici) ::: Valuation differences and goodwill calculated by the group at the acquisition date (not available here)
+Reclassements de présentation (courant / non courant, compensation d'actifs et de passifs d'impôt) ::: Presentation reclassifications (current / non-current, offsetting of tax assets and liabilities)
+Ventes intragroupe non éliminées ou éliminées partiellement ::: Intragroup sales not eliminated or partly eliminated
+Présentation du chiffre d'affaires selon IFRS 15 (agent / principal, remises, produits des activités ordinaires) ::: Presentation of revenue under IFRS 15 (agent / principal, discounts, ordinary income)
+Changement de périmètre en cours d'exercice (entrées et sorties de filiales) ::: Change of scope during the year (subsidiaries entering and leaving)
+Résultat de l'ensemble consolidé comparé au résultat part du groupe (intérêts ne donnant pas le contrôle) ::: Result of the consolidated group compared with the Group share (non-controlling interests)
+Impôts différés et retraitements IFRS propres au groupe ::: Deferred taxes and group-specific IFRS restatements
+Quote-part de résultat des sociétés mises en équivalence non intégrée ::: Share of result of equity-accounted companies not included
+Éléments non courants ou activités abandonnées (IFRS 5) présentés séparément ::: Non-current items or discontinued operations (IFRS 5) presented separately
+Écart compatible avec les arrondis de publication ::: Difference consistent with publication rounding
+Informations à compléter ::: Information to complete
+Non comparable ::: Not comparable
+Comparaison impossible ::: Comparison impossible
+(nom de la société cotée) ::: (name of the listed company)
+L'écart correspond au montant des intérêts ne donnant pas le contrôle : résultat de l'ensemble et part du groupe confondus ? ::: The difference matches the amount of non-controlling interests: whole-group result and Group share mixed up?
+des comptes calculés ::: of the calculated accounts
+Unité inconnue : choisissez MAD, milliers ou millions de MAD. ::: Unknown unit: choose MAD, thousands or millions of MAD.
+Concordance avec les comptes officiels ::: Agreement with official accounts
+Donnée manquante ::: Missing data
+Montant non renseigné d'un côté ou de l'autre ::: Amount not entered on one side or the other
+Écart à expliquer ::: Difference to explain
+Écart significatif ::: Significant difference
+Écarts significatifs ::: Significant differences
+Écarts à expliquer ::: Differences to explain
+différent (calculé : ::: different (calculated:
+; officiel : ::: ; official:
+(aucune conversion de devises n'est appliquée). ::: (no currency translation is applied).
+Rapport de ≈ ::: Ratio of ≈
+entre les deux montants : unité mal saisie ( ::: between the two amounts: unit entered incorrectly (
+Recoupé le ::: Cross-checked on
+avec plusieurs sources secondaires ; texte officiel du CGI non consulté : à valider auprès de la DGI ::: with several secondary sources; official CGI text not consulted: to be validated with the DGI
+Taux normal de l'IS (bénéfice net fiscal inférieur à 100 M MAD) ::: Standard corporate tax rate (net taxable profit below MAD 100 m)
+CGI art. 19-I-A ; loi de finances 2023 (n° 50-22), convergence sur quatre exercices ::: CGI art. 19-I-A; finance law 2023 (no. 50-22), convergence over four years
+Exercices ouverts à compter du 01/01/2026 ::: Financial years beginning on or after 01/01/2026
+Taux de l'IS pour un bénéfice net fiscal d'au moins 100 M MAD ::: Corporate tax rate for net taxable profit of at least MAD 100 m
+CGI art. 19-I-B (exclusions : zones d'accélération industrielle, Casablanca Finance City, entre autres, à vérifier sur le texte) ::: CGI art. 19-I-B (exclusions: industrial acceleration zones, Casablanca Finance City, among others, to be checked in the text)
+Taux de l'IS des établissements de crédit, assurances, Bank Al-Maghrib, CDG ::: Corporate tax rate for credit institutions, insurers, Bank Al-Maghrib, CDG
+CGI art. 19-I-C ::: CGI art. 19-I-C
+Seuil du bénéfice net fiscal déclenchant le taux de 35 % ::: Net taxable profit threshold triggering the 35% rate
+100 000 000 MAD ::: MAD 100,000,000
+CGI art. 19-I-B ::: CGI art. 19-I-B
+Taux de la cotisation minimale ::: Minimum contribution rate
+CGI art. 144 (taux unifié depuis la loi de finances 2023) ::: CGI art. 144 (unified rate since finance law 2023)
+Exercices à compter de 2023 ::: Financial years from 2023
+Montant minimum de la cotisation minimale ::: Minimum amount of the minimum contribution
+3 000 MAD ::: MAD 3,000
+CGI art. 144 ::: CGI art. 144
+Taux réduit de la cotisation minimale (certains produits de base) ::: Reduced minimum contribution rate (certain basic products)
+CGI art. 144 (liste des produits à consulter dans le texte) ::: CGI art. 144 (list of products to be checked in the text)
+Une seule source secondaire consultée : à confirmer sur le texte officiel avant toute utilisation ::: Only one secondary source consulted: to be confirmed against the official text before any use
+Durée d'exonération de la cotisation minimale pour une société nouvelle ::: Exemption period from the minimum contribution for a new company
+CGI art. 144 (cessation au plus tard 60 mois après la constitution) ::: CGI art. 144 (ends at the latest 60 months after incorporation)
+Durée de report des déficits fiscaux (hors amortissements) ::: Carry-forward period for tax losses (excluding depreciation)
+CGI art. 12 : déduction des bénéfices des exercices suivants jusqu'au quatrième exercice ::: CGI art. 12: deduction from profits of the following years up to the fourth year
+Règle en vigueur (texte de l'article 12 reproduit par fiscamaroc.com) ::: Rule in force (text of article 12 reproduced by fiscamaroc.com)
+Report des déficits correspondant à des amortissements régulièrement comptabilisés ::: Carry-forward of losses corresponding to depreciation regularly booked
+Sans limitation de durée ::: Without time limit
+CGI art. 12 (ne vise pas les amortissements des non-valeurs) ::: CGI art. 12 (does not cover amortisation of non-value items)
+Règle en vigueur ::: Rule in force
+Taux normal de 20 % (CGI art. 19-I-A) ::: Standard rate of 20% (CGI art. 19-I-A)
+Cotisation minimale : 0,25 % (minimum 3 000 MAD), CGI art. 144 ::: Minimum contribution: 0.25% (minimum MAD 3,000), CGI art. 144
+Taux de 40 % (CGI art. 19-I-C) ::: Rate of 40% (CGI art. 19-I-C)
+Taux de 35 % (CGI art. 19-I-B, bénéfice net fiscal d'au moins 100 M MAD) ::: Rate of 35% (CGI art. 19-I-B, net taxable profit of at least MAD 100 m)
+Niveau de vérification ::: Verification level
+Taux d'IS à saisir (catégorie « autre taux ») : aucun taux n'est supposé. ::: Corporate tax rate to enter ("other rate" category): no rate is assumed.
+Taux saisi par l'utilisateur : ::: Rate entered by the user:
+: les taux transitoires de la loi de finances 2023 ne sont pas intégrés à l'application ; choisissez « Autre taux » et saisissez le taux applicable. ::: : the transitional rates of finance law 2023 are not built into the application; choose "Other rate" and enter the applicable rate.
+: les paramètres de cotisation minimale antérieurs à 2023 ne sont pas intégrés. ::: : minimum contribution parameters before 2023 are not built in.
+Exercice non indiqué : les déficits reportables ne peuvent pas être vérifiés. ::: Year not given: carry-forward losses cannot be verified.
+Ligne de déficit incomplète (exercice ou montant manquant) : ignorée. ::: Incomplete loss line (year or amount missing): ignored.
+Fraction ordinaire expirée (plus de ::: Ordinary portion expired (more than
+exercices) ; amortissements reportables ::: years); depreciation carried forward
+Reportable (exercice ::: Carry-forward (year
+: exercice non antérieur à ::: : year not earlier than
+: ignoré. ::: : ignored.
+) dépasse le déficit total ( ::: ) exceeds the total loss (
+) : plafonnée. ::: ): capped.
+Solde d'origine CGNC (MAD) ::: Original CGNC balance (MAD)
+Traitement appliqué ::: Treatment applied
+Solde après traitement IFRS (MAD) ::: Balance after IFRS treatment (MAD)
+Chiffré dans le comparatif ::: Quantified in the comparison
+Éliminé : le compte n'existe pas en IFRS (montant ramené à 0) ::: Eliminated: the account does not exist under IFRS (amount reduced to 0)
+Reclassé : changement de présentation, montant inchangé ::: Reclassified: change of presentation, amount unchanged
+Ajustement à calculer : informations complémentaires requises, montant non modifié ::: Adjustment to calculate: additional information required, amount not changed
+À revoir : jugement requis, montant non modifié ::: To review: judgement required, amount not changed
+Repris tel quel ::: Carried over as is
+Non : écart non repris au comparatif ::: No: difference not carried into the comparison
+Non chiffré ::: Not quantified
+Sans écart ::: No difference
+# ---------- grand livre / TVA ----------
+Colonnes compte / débit / crédit introuvables dans la liste d'écritures. ::: Account / debit / credit columns not found in the entries list.
+Aucune écriture exploitable ::: No usable entry
+Équilibre général ::: Overall balance
+Équilibre des pièces ::: Balance of documents
+Aucun numéro de pièce : l'équilibre n'est contrôlé qu'au total ::: No document number: balance is only checked in total
+Contrôle impossible : les taux de TVA ne se vérifient pas à partir d'une balance (les soldes de clôture cumulent plusieurs taux, périodes et régularisations). Importez le journal ou le grand livre, ou les factures, pour contrôler ::: Check impossible: VAT rates cannot be verified from a trial balance (closing balances combine several rates, periods and adjustments). Import the journal or general ledger, or the invoices, to check
+TVA récupérable (3455) à solde créditeur : erreur de sens ou compensation à reclasser ::: Recoverable VAT (3455) with a credit balance: direction error or offsetting to reclassify
+TVA due (4456) et crédit de TVA (3456) présents simultanément : une seule des deux positions peut exister à la clôture ::: VAT due (4456) and VAT credit (3456) present simultaneously: only one of the two positions can exist at closing
+CGNC 3456 / 4456 ::: CGNC 3456 / 4456
+Aucune écriture de TVA (4455 / 3455) dans la liste : contrôle de taux sans objet ::: No VAT entry (4455 / 3455) in the list: rate check not applicable
+Contrôle impossible : les écritures n'ont pas de numéro de pièce, la TVA ne peut pas être rapprochée de sa base HT ::: Check impossible: entries have no document number, VAT cannot be matched to its excl.-VAT base
+Contrôle impossible : aucune pièce ne regroupe à la fois la TVA et sa base HT ::: Check impossible: no document groups both the VAT and its excl.-VAT base
+Compte à renseigner : imputation non déterminée ::: Account to be entered: allocation not determined
+écriture(s) avec un montant négatif (extourne ou erreur de saisie) ::: entry(ies) with a negative amount (reversal or entry error)
+ligne(s) avec débit et crédit renseignés sur la même ligne ::: line(s) with debit and credit both filled on the same line
+compte(s) non numérique(s) : ::: non-numeric account(s):
+compte(s) hors des classes 1 à 8 : ::: account(s) outside classes 1 to 8:
+TVA (taux par pièce) ::: VAT (rate per document)
+pièce(s) dont le taux de TVA correspond à un taux légal (20 %, 14 %, 10 % ou 7 %) ::: document(s) whose VAT rate matches a legal rate (20%, 14%, 10% or 7%)
+pièce(s) portent de la TVA sans base HT dans la même pièce : contrôle impossible pour ces pièces ::: document(s) carry VAT without an excl.-VAT base in the same document: check impossible for these documents
+TVA (factures) ::: VAT (invoices)
+facture(s) dont le taux de TVA correspond à un taux légal (20 %, 14 %, 10 %, 7 % ou exonération) ::: invoice(s) whose VAT rate matches a legal rate (20%, 14%, 10%, 7% or exemption)
+TVA non lue sur le document : montant reconstitué, à vérifier ::: VAT not read on the document: amount reconstituted, to be checked
+État – TVA facturée ::: Statement – VAT invoiced
+pièce(s) déséquilibrée(s) (partie double non respectée) : ::: unbalanced document(s) (double entry not respected):
+pièce(s) équilibrée(s) ::: balanced document(s)
+Rubrique(s) inexistante(s) au CGNC : ::: Heading(s) not existing in the CGNC:
+Écritures datées de plusieurs années ( ::: Entries dated over several years (
+) : vérifier que l'exercice est unique ::: ): check that the financial year is unique
+écriture(s) sans date lisible ::: entry(ies) without a readable date
+(taux observé ::: (observed rate
+facture(s) dont le TTC diffère de HT + TVA : ::: invoice(s) whose incl.-VAT total differs from excl. VAT + VAT:
+État – TVA récupérable sur ::: Statement – recoverable VAT on
+Compte 4455 à solde débiteur ( ::: Account 4455 with a debit balance (
+MAD) : TVA facturée négative (avoirs excédentaires, erreur de sens ?) ::: MAD): negative VAT invoiced (excess credit notes, direction error?)
+, taux observé ::: , observed rate
+pièce(s) avec un taux de TVA ne correspondant à aucun taux légal unique (taux mixtes, base partielle ou erreur) : ::: document(s) with a VAT rate matching no single legal rate (mixed rates, partial base or error):
+pièce(s) de vente sans TVA facturée (exonération, exportation ou oubli) : ::: sales document(s) without VAT invoiced (exemption, export or omission):
+facture(s) avec un taux ne correspondant à aucun taux légal unique : ::: invoice(s) with a rate matching no single legal rate:
+Contrôle impossible pour ::: Check impossible for
+facture(s) : TVA absente du document ou déduite par l'application (taux supposé), donc non vérifiable : ::: invoice(s): VAT absent from the document or deduced by the application (assumed rate), therefore not verifiable:
+Fournisseur / Client ::: Supplier / Customer
+Amortissements / base amortissable ::: Depreciation / depreciable base
+Dépréciation clients / créances ::: Customer impairment / receivables
+Emprunts obligataires et bancaires ::: Bonds and bank borrowings
+Immobilisations en non-valeurs ::: Non-value fixed assets
+# ---------- chunk 7 : couverture des normes ----------
+Retraitement chiffré ::: Quantified restatement
+Détection sur les comptes ::: Detection on accounts
+Rappel d'information (aucun calcul) ::: Information reminder (no calculation)
+Non-valeurs éliminées, éléments non courants reclassés ; équilibre de la balance ::: Non-value items eliminated, non-current items reclassified; trial balance balance
+Rabais accordés, produits constatés d'avance et subventions repérés dans le chiffre d'affaires ::: Discounts granted, deferred income and grants identified in revenue
+Immobilisations sans amortissement, taux d'amortissement élevé, constructions en bloc, crédit-bail ::: Assets without depreciation, high depreciation rate, buildings as a block, finance leases
+Impôts différés sur les non-valeurs et provisions réglementées ; taux d'impôt effectif ::: Deferred taxes on non-value items and regulated provisions; effective tax rate
+Fonds commercial présent : test de dépréciation annuel exigé ::: Goodwill present: annual impairment test required
+Dépréciation de stocks : comparaison au plus bas du coût et de la valeur nette de réalisation ::: Inventory write-down: comparison with the lower of cost and net realisable value
+Comptes de trésorerie repérés ; le tableau des flux est exigé ::: Cash accounts identified; the cash flow statement is required
+Changements de méthodes, d'estimations et corrections d'erreurs : rappel ::: Changes in methods, estimates and corrections of errors: reminder
+Événements postérieurs à la clôture : rappel ::: Post-closing events: reminder
+Charges de personnel et provisions de retraite repérées ::: Personnel expenses and retirement provisions identified
+Subventions d'investissement et d'exploitation repérées ::: Investment and operating grants identified
+Écarts de conversion (inexistants en IFRS) repérés ::: Translation differences (non-existent under IFRS) identified
+Intérêts d'emprunt repérés : capitalisation possible ::: Borrowing interest identified: capitalisation possible
+Comptes d'associés et de parties liées repérés ::: Partner and related-party accounts identified
+Créances clients, prêts et dépréciations repérés : modèle de pertes attendues ::: Trade receivables, loans and impairments identified: expected loss model
+Résultat par action (sociétés cotées) : rappel ::: Earnings per share (listed companies): reminder
+Provisions pour risques et charges repérées : critères de constatation ::: Provisions for risks and charges identified: recognition criteria
+Immobilisations incorporelles et fonds commercial repérés ::: Intangible assets and goodwill identified
+Immeubles de placement repérés ::: Investment property identified
+Fonds commercial repéré : regroupement d'entreprises à documenter ::: Goodwill identified: business combination to be documented
+Titres de participation et dividendes repérés : contrôle à qualifier ::: Equity investments and dividends identified: control to be qualified
+Cessions d'immobilisations repérées ::: Asset disposals identified
+Informations sur les instruments financiers : rappel ::: Information on financial instruments: reminder
+Information sectorielle (sociétés cotées) : rappel ::: Segment information (listed companies): reminder
+Loyers et crédit-bail repérés : droit d'utilisation et dette locative à constater ::: Rents and finance leases identified: right-of-use asset and lease liability to be recognised
+Contrats clients, obligations de prestation, prix de transaction et calendrier de transfert du contrôle ::: Customer contracts, performance obligations, transaction price and timing of transfer of control
+Base fiscale et valeur comptable de chaque actif et passif, déficits reportables, taux d'impôt ::: Tax base and carrying amount of each asset and liability, loss carry-forwards, tax rate
+Valeur recouvrable : flux de trésorerie prévisionnels et taux d'actualisation (onglet Calculateurs IAS 36) ::: Recoverable amount: forecast cash flows and discount rate (IAS 36 Calculators tab)
+Bilans d'ouverture et de clôture, tableau de financement ou flux de l'exercice ::: Opening and closing balance sheets, financing statement or cash flows for the year
+Informations d'annexe (ETIC) et historique des méthodes ::: Notes information (ETIC) and history of methods
+Événements survenus entre la clôture et l'arrêté des comptes ::: Events occurring between closing and approval of the accounts
+Conditions d'octroi des subventions, date de réception, actif financé ::: Conditions for granting the grants, date received, asset financed
+Monnaie de chaque transaction, cours de clôture, éléments monétaires concernés ::: Currency of each transaction, closing rate, monetary items concerned
+Actifs qualifiés, durée de construction, taux des emprunts affectés ::: Qualifying assets, construction period, rates of the dedicated borrowings
+Liste des parties liées, nature et montant des transactions ::: List of related parties, nature and amount of transactions
+Nombre moyen pondéré d'actions ::: Weighted average number of shares
+Existence d'une obligation, probabilité de sortie de ressources, estimation fiable, échéancier ::: Existence of an obligation, probability of outflow of resources, reliable estimate, timing
+Modèle retenu (coût ou juste valeur) et juste valeur des immeubles ::: Model chosen (cost or fair value) and fair value of the properties
+Prix d'acquisition, juste valeur des actifs et passifs identifiables ::: Acquisition price, fair value of identifiable assets and liabilities
+Pourcentages de contrôle et d'intérêt, droits de vote, accords entre actionnaires ::: Control and interest percentages, voting rights, shareholder agreements
+Décision de cession, juste valeur nette des coûts de la vente ::: Decision to sell, fair value net of costs to sell
+Informations d'annexe sur les risques de crédit, de liquidité et de marché ::: Note disclosures on credit, liquidity and market risks
+Résultat par secteur opérationnel ::: Result by operating segment
+Contrats de location : durée, loyers, taux d'actualisation, options de renouvellement ::: Leases: term, rents, discount rate, renewal options
+Non-valeurs éliminées : − ::: Non-value items eliminated: −
+MAD à l'actif ; réserves − ::: MAD in assets; reserves −
+MAD ; impôt différé actif + ::: MAD; deferred tax asset +
+MAD (taux ::: MAD (rate
+Non sélectionnée : aucun contrôle exécuté ::: Not selected: no check run
+Non calculé : informations complémentaires requises ::: Not calculated: additional information required
+Les données proviennent de factures seules : la balance est reconstituée artificiellement (ni bilan d'ouverture, ni paiements, ni paie, ni amortissements). Elle n'est ni une balance générale complète ni la base d'états financiers fiables. ::: The data comes from invoices only: the trial balance is artificially reconstituted (no opening balance sheet, payments, payroll or depreciation). It is neither a complete general trial balance nor the basis for reliable financial statements.
+Aucun compte de bilan (classes 1 à 5) : bilan, état de situation et contrôles de structure impossibles. ::: No balance sheet account (classes 1 to 5): balance sheet, statement of financial position and structure checks impossible.
+Aucun compte de résultat (classes 6 et 7) : compte de résultat, résultat fiscal et cohérence bilan / CPC impossibles. ::: No income statement account (classes 6 and 7): income statement, taxable result and balance sheet / CPC consistency impossible.
+Équilibre débit / crédit ::: Debit / credit balance
+Libellés renseignés ::: Labels filled in
+Complétude du document ::: Document completeness
+Contrôle des taux de TVA : impossible sans journal, grand livre ou factures (le solde de clôture ne permet pas de calculer un taux). ::: VAT rate check: impossible without a journal, general ledger or invoices (the closing balance does not allow a rate to be calculated).
+Immobilisations en non-valeur ::: Non-value fixed assets
+IAS 38.69 ; IAS 1 : pas d'actif en IFRS ::: IAS 38.69; IAS 1: not an asset under IFRS
+Provisions réglementées (capitaux propres assimilés) ::: Regulated provisions (equity-like)
+Pas de provisions purement fiscales en IFRS (reclassées en réserves après impôt différé) ::: No purely tax provisions under IFRS (reclassified to reserves after deferred tax)
+Capitaux propres hors provisions réglementées ::: Equity excluding regulated provisions
+IAS 1 ; IAS 12 (effet net d'impôt différé) ::: IAS 1; IAS 12 (net deferred tax effect)
+Impôt différé passif ::: Deferred tax liability
+Inchangé : l'effet sur l'exercice des retraitements ne peut être isolé sans la balance de l'exercice précédent ::: Unchanged: the effect of the restatements on the year cannot be isolated without the prior-year trial balance
+Norme / justification ::: Standard / justification
+Impôt différé net sur non-valeurs et provisions réglementées : ::: Net deferred tax on non-value items and regulated provisions:
+) ; autres différences temporaires à saisir ::: ); other temporary differences to be entered
+Niveau d'automatisation ::: Automation level
+Poste ou compte concerné ::: Item or account concerned
+Référence de la norme ::: Standard reference
+Total débit égal au total crédit ::: Total debit equal to total credit
+Comptes reconnus dans le plan CGNC ::: Accounts recognised in the CGNC chart
+% des comptes ont un libellé ::: % of accounts have a label
+Bilan et résultat présents ::: Balance sheet and result present
+Anomalies CGNC ::: CGNC anomalies
+Résultat net de l'exercice ::: Net result for the year
+Rappel d'information : aucun calcul réalisé ::: Information reminder: no calculation performed
+Non applicable : états incomplets ::: Not applicable: incomplete statements
+Sans objet : aucun compte concerné dans le document ::: Not applicable: no account concerned in the document
+Écart de ::: Difference of
+% des comptes ont une rubrique existante au CGNC ::: % of accounts have a heading existing in the CGNC
+Document partiel : ::: Partial document:
+point(s) à vérifier ::: point(s) to check
+(compte 119, CPC absent) ::: (account 119, CPC absent)
+Exécuté : aucun point à traiter ::: Run: nothing to address
+Aucun compte (rappel) ::: No account (reminder)
+: sans objet (aucun compte concerné) ::: : not applicable (no account concerned)
+Exécuté : ::: Run:
+point(s) à traiter ::: point(s) to address
+— informations complémentaires requises ::: — additional information required
+: non applicable (états incomplets) ::: : not applicable (incomplete statements)
+: non sélectionnée, aucun contrôle exécuté ::: : not selected, no check run
+Télécharger le modèle de fichier (comptes officiels) ::: Download the file template (official accounts)
+Fichier des comptes officiels (modèle Excel ou CSV) ::: Official accounts file (Excel or CSV template)
+comptes officiels ::: official accounts
+Télécharger les écritures proposées (Excel) ::: Download the proposed entries (Excel)

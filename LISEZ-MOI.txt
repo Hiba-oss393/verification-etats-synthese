@@ -1,0 +1,27 @@
+MaroIFRS - dossier complet (Windows) - voir RECAPITULATIF_MODIFICATIONS.txt pour les changements de cette version
+
+LANCER L'APPLICATION
+1. Extrayez tout le dossier (clic droit sur le ZIP > Extraire tout), par exemple dans C:\MaroIFRS.
+   Si vous mettez a jour une ancienne installation, extrayez dans un NOUVEAU dossier puis copiez votre ancien fichier historique.json dedans
+   (il n'est volontairement pas fourni dans ce ZIP, pour ne jamais ecraser votre historique).
+2. Installez Python (python.org) en cochant "Add Python to PATH". Versions conseillees : 3.10 a 3.12.
+3. Double-cliquez sur lancer.bat. Au premier lancement, il verifie TOUS les composants (streamlit, pandas, altair, openpyxl, xlrd, pdfplumber, reportlab,
+   rapidocr-onnxruntime) et les fichiers du projet, installe ce qui manque (Internet necessaire une fois), puis ouvre le navigateur.
+4. Ne fermez pas la fenetre noire tant que vous utilisez l'application.
+Si l'installation de la reconnaissance de texte (OCR) echoue, l'application demarre quand meme, sans la lecture des documents scannes.
+
+LANCER LES TESTS
+Double-cliquez sur lancer_tests.bat (apres avoir lance lancer.bat une fois). Chaque test est affiche REUSSI, ECHEC ou IGNORE. Un test IGNORE n'a pas ete execute.
+Sur votre PC, le test avec le vrai moteur Streamlit s'execute (il est ignore dans l'environnement ou cette version a ete preparee).
+Les tests n'ecrivent JAMAIS dans votre historique.
+
+CE QU'IL FAUT SAVOIR AVANT D'UTILISER LES RESULTATS
+- Lisez CHANGELOG.txt : il liste les corrections, les nouveautes, les tests executes ET les limites restantes.
+- Les resultats sont declares "partiels" pour des factures seules ou un document sans bilan ou sans compte de resultat : aucun statut "conforme" n'est alors donne.
+- Les parametres fiscaux (taux, cotisation minimale, deficits) sont a valider aupres de la DGI : ils ont ete recoupes avec des sources secondaires.
+- L'application est un outil d'aide : ses resultats doivent etre valides par un expert-comptable.
+
+FICHIERS
+app.py ; interface_maroifrs.py ; synthese_conformite.py ; transformation_comptes.py ; charte_pdf.py ; modeles_excel.py ; consolidation_groupe.py ; comparaison_officielle.py ; grand_livre.py ; rapport_conformite.py ; couverture_normes.py ; parametres_fiscaux.py ;
+verifier_dependances.py ; referentiel_cgnc.json ; referentiel_ifrs.json ; config.toml ; requirements.txt ; lancer.bat ; lancer_tests.bat ; tests\ ; CHANGELOG.txt ; RECAPITULATIF_MODIFICATIONS.txt
+Pour une version hebergee en ligne, copiez TOUS les fichiers .py a cote de app.py.

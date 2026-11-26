@@ -1,0 +1,45 @@
+MAROIFRS - MISSION PHOTOGRAPHIES / LANGUE / MENU (24 novembre 2026)
+====================================================================
+Base : MaroIFRS_VERSION_FINALE.zip. Rien n'a été reconstruit ; aucune fonction supprimée ; aucun fichier supprimé.
+
+1. FONCTIONNEMENT METIER : INCHANGE (prouvé par test)
+- grand_livre, consolidation_groupe, comparaison_officielle, parametres_fiscaux, couverture_normes, rapport_conformite, synthese_conformite,
+  transformation_comptes, charte_pdf, modeles_excel : OCTET POUR OCTET identiques (test des empreintes SHA-256).
+- Même analyse en français et en anglais : mêmes données, constats, traitements, comparatif, statut final, mêmes exports PDF/Excel (test).
+- Rapports PDF et Excel : conservés tels quels (en français), conformément à la consigne.
+
+2. FICHIERS AJOUTES
+- assets/images/ : 8 photographies fournies (JPEG 1400 px, proportions conservées, 130-180 Ko) + 5 vignettes pour les bandeaux de pages. Les PNG d'origine (2 Mo chacun) ne sont pas dans le ZIP (ils restent dans votre RAR).
+- i18n.py : traduction centralisée (aucun traitement métier). traductions_en.txt : dictionnaire français -> anglais (~1 200 entrées).
+- tests/test_i18n_photos.py : 12 nouveaux tests.
+
+3. FICHIERS MODIFIES (et pourquoi)
+- interface_maroifrs.py (couche visuelle) : CSS (photos, carrousel, bandeau, sélecteur de langue, correctif menu) + fonctions carrousel_html, ticker_html, photo_bandeau, indicateurs_demo.
+- app.py (changements minimes, aucun calcul touché) : import et installation de i18n ; sélecteur de langue dans la barre ; carrousel + bandeau en tête de l'accueil ;
+  photo dans bandeau() ; fonction indicateurs_bandeau() ; 9 champs de saisie sans clé reçoivent une clé stable (key=...) pour ne pas perdre leur valeur ; le téléverseur principal prend key="main".
+- verifier_dependances.py : ajout de i18n.py et traductions_en.txt. tests/test_modele_et_rapports.py : le bandeau défilant (boucle continue lente volontaire) est exclu du contrôle des durées d'animation.
+
+4. PHOTOGRAPHIES
+01 accueil, 02 marché, 03 réunion -> carrousel ; 04 Transformation, 05 Résultats, 06 Tableau de bord, 07 Consolidation, 08 Contrôle fiscal -> bandeau de chaque page (à droite du titre ; aucun outil masqué). Si un fichier manque, le motif d'origine s'affiche.
+Carrousel : composant HTML isolé (aucun rechargement de l'application) ; changement automatique toutes les 6,5 s, fondu 1,1 s, flèches, points, clavier, pause au survol, texte placé à gauche / en bas / à droite selon la photo ; le bouton d'action de chaque diapositive déclenche le bouton existant (Importer, Explorer les normes, Ouvrir la consolidation).
+
+5. BANDEAU DEFILANT
+CSS pur, défilement continu, pause au survol, flèches ▲▼, courbes. Indicateurs RÉELS : normes au référentiel / contrôlées / rappels, et (si l'historique existe) comptes et valeur sans retraitement avec variation en points. Quatre exemples FICTIFS, chacun marqué DÉMO, avec une note explicite ; aucun nom d'indice ou de cours réel.
+
+6. LANGUE
+Sélecteur 🇫🇷 Français / 🇬🇧 English dans l'en-tête. Traduction à l'affichage seulement (titres, boutons, étiquettes, messages, tableaux, graphiques, HTML, carrousel). Valeurs renvoyées par les listes déroulantes jamais traduites. Langue conservée pendant la navigation (session) et à l'actualisation / partage par l'adresse (?lang=en). Un texte absent du dictionnaire reste en français.
+
+7. MENU
+Correctif CSS : marge haute du tiroir, espace sous chaque titre de groupe, titre au-dessus des boutons ; l'animation d'agrandissement et les actions sont conservées. Mesure dans Chromium sur une maquette du menu avec agrandissement forcé : chevauchement de -2,8 px avant, dégagement de +13,6 px après (1280 px et 390 px de large).
+
+8. TESTS
+Avant : 70 réussis, 0 échec, 3 ignorés. Après : 82 réussis, 0 échec, 3 ignorés (les 3 ignorés exigent Streamlit réel, non installable ici).
+Vérifiés dans Chromium : carrousel (défilement auto, points, clic sur le bouton d'action), bandeau défilant, photo de bandeau, menu (maquette).
+
+9. LIMITES - A CONFIRMER SUR VOTRE PC
+- L'application n'a PAS été lancée sous Streamlit réel. Faites un essai complet : accueil (carrousel : le bouton d'action suppose que le composant HTML peut atteindre la page parente), les 5 pages à photo, changement de langue, menu ☰, import, téléchargements.
+- Le défaut du menu n'a pas pu être reproduit sous Streamlit : le correctif a été validé sur une maquette ; s'il persiste, indiquez quel bouton et à quel moment.
+- Traduction : ~1 200 textes de l'interface, des constats, des messages de consolidation / fiscalité / TVA. Restent en français : libellés du plan CGNC et données importées, résumés détaillés des fiches de normes, rapports PDF/Excel. Quelques phrases dynamiques rares peuvent rester partiellement en français.
+- Changer de langue peut réinitialiser des champs non enregistrés (Streamlit identifie un champ par son libellé) : choisissez la langue avant d'importer.
+- Sur Windows, les drapeaux emoji s'affichent parfois en « FR » / « GB ».
+- Photos et carrousel sont intégrés en base64 : l'accueil est plus lourd (~0,9 Mo) ; Streamlit met ces éléments en cache entre exécutions.

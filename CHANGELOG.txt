@@ -1,0 +1,175 @@
+MAROIFRS - COHERENCE ECRAN / RAPPORTS, CHARTE VERT #4CAF50 / ORANGE #E65100 (22 novembre 2026)
+=============================================================================================
+Voir RECAPITULATIF_MODIFICATIONS.txt (détail complet : comparaison des deux versions, fonctionnalités récupérées / conservées / corrigées, tests, limites).
+Résumé : statut de conformité unique (écran = PDF = Excel), pourcentages renommés « Comptes sans retraitement », nouveau tableau compte par compte (avant / après / écart / norme /
+justification) dans les rapports, charte de couleurs demandée, animations légères rétablies, 70 tests. Aucun calcul comptable modifié.
+
+----- Version précédente -----
+
+MAROIFRS - FINALISATION PROFESSIONNELLE (22 novembre 2026)
+=========================================================
+Aucun traitement comptable n'a été modifié : grand_livre.py, consolidation_groupe.py, comparaison_officielle.py, parametres_fiscaux.py, couverture_normes.py
+et verifier_dependances.py sont strictement identiques à la version précédente. Aucune fonction métier d'app.py n'a été supprimée (seules deux fonctions internes
+de mise en page de l'ancien PDF, « deco » et « net », sont remplacées par charte_pdf.py). Aucune clé de widget n'a été retirée.
+
+1. PERFORMANCES ET FLUIDITÉ
+Causes identifiées dans le code :
+ a) Chaque changement de page déclenchait deux exécutions : le fragment de navigation, puis un st.rerun() complet qui recalculait TOUTES les pages (les pages inactives
+    étaient calculées puis masquées en CSS). -> Corrigé : la feuille de style qui masque les pages inactives est maintenant DANS le fragment de navigation ; changer de page
+    ou ouvrir le menu ne relance plus que ce fragment. Les pages restent présentes (masquées), donc fichiers importés, résultats, sélections et historique sont intacts.
+    Repli : interface_maroifrs.NAV_FRAGMENT_SEUL = False rétablit l'ancien comportement (exécution complète) si un problème apparaissait chez vous.
+ b) Le rapport détaillé (PDF + Excel) était reconstruit à chaque exécution (sans cache) et le tableau « traitement par norme » aussi. -> Mis en cache (st.cache_data) ;
+    si un contenu ne peut pas être mémorisé, le fichier est construit directement (résultat identique).
+ c) Animations : entrée de chaque carte, ligne de tableau, alerte et illustration rejouée à chaque affichage, effets de survol de 200 à 250 ms, flou d'arrière-plan sur la barre
+    et le menu. -> Supprimés ; seul un fondu de 180 ms accompagne l'affichage d'une page ; survols en 120 ms (couleur, bordure, ombre) ; coupées si le système demande de réduire les animations.
+Les calculs eux-mêmes sont rapides (moins de 0,2 s au total pour 620 comptes, mesuré) : ils n'ont pas été touchés.
+
+2. CHARTE GRAPHIQUE : #91BD70 (identité), #6F9E50 (accent), #E8892B (actions et accents), #B94A48 (erreurs uniquement), fond #F2F4EF, cartes #FFFFFF.
+   Appliquée à l'interface, aux graphiques, au thème Streamlit (.streamlit/config.toml), aux PDF et aux Excel. Aucun dégradé vert-orange.
+3. TITRES ET COMPOSANTS : titres de page plus grands avec sous-titre, intertitres à filet orange, tableaux (en-têtes pistache, lignes alternées, montants alignés à droite),
+   boutons (actif, survol, désactivé distincts), alertes, onglets.
+4. LOGO : symbole et nom dans un seul SVG (interface_maroifrs.logo_complet_svg) : axe horizontal commun, ligne de base calculée, espacement fixe. Mesuré sur un rendu : écart
+   de centre symbole / texte inférieur à 0,5 pixel à l'échelle 1. Version compacte automatique sur petit écran. Symbole inchangé (couleur de la charte).
+5. MODÈLE EXCEL DE BALANCE (modeles_excel.py) : feuille « Balance comptable » (titre, entreprise, exercice, totaux et écart en formules AU-DESSUS du tableau, en-têtes Code compte /
+   Intitulé du compte / Débit / Crédit, filtres, volets figés, format monétaire, contrôle de saisie, 19 exemples CGNC équilibrés, 200 lignes prêtes à remplir) et feuille « Instructions ».
+   IMPORTATEUR ADAPTÉ ET TESTÉ : les en-têtes « Code compte », « Intitulé du compte », « Débit », « Crédit » (accents et majuscules libres) sont reconnus, et un tableau qui ne
+   commence pas en première ligne est trouvé (la feuille « Instructions » est ignorée). Les anciens fichiers (compte, libelle, debit, credit) fonctionnent toujours.
+6. RAPPORTS : boutons renommés « Rapport synthétique – PDF », « Rapport détaillé de conformité – PDF », « Résultats de l'analyse – Excel », « Rapport détaillé de conformité – Excel »,
+   avec une explication de l'usage de chacun. PDF : page de garde avec logo, en-têtes et pieds de page, « Page X sur Y », titres hiérarchisés, tableaux lisibles ; sommaire dans le
+   rapport détaillé (qui garde toutes ses sections et ses limites de lignes d'origine). Excel : mêmes données, nouvelle présentation (filtres, volets figés, mise en page d'impression).
+7. NAVIGATION : hybride conservée (4 pages visibles + bouton Menu pour 7 pages) ; état actif en pistache plein avec soulignement orange, survol immédiat.
+
+8. TESTS : voir le compte rendu de livraison (tests/run_tests.py). Nouveaux tests : tests/test_modele_et_rapports.py.
+9. LIMITES CONNUES
+ - Streamlit n'étant pas installable dans l'environnement de développement (pas d'accès réseau), l'interface n'a PAS été lancée dans un navigateur : la navigation par fragment, la feuille
+   de style et les effets de survol ne sont vérifiés que par lecture du code, par le simulateur et par des tests de texte. Les 3 tests avec le vrai moteur Streamlit sont « ignorés »
+   (python tests\run_tests.py chez vous les exécutera). Faites un essai visuel avant votre présentation.
+ - Les rendus PDF et Excel ont été vérifiés visuellement (LibreOffice / pdfium), pas dans Microsoft Excel ni Adobe Reader.
+ - Les polices standard des PDF n'ont pas certains symboles (→ devient « vers »).
+ - Un montant saisi en texte dans l'Excel d'import est lu comme 0 (comportement existant de l'importateur, documenté dans la feuille Instructions).
+
+----- Version précédente -----
+
+MAROIFRS - MODERNISATION VISUELLE (21 novembre 2026)
+====================================================
+Cette version ne change QUE l'apparence et la navigation. Aucune formule, aucune règle CGNC / IAS / IFRS, aucun contrôle fiscal, aucune consolidation, aucun import,
+aucun export PDF / Excel et aucun résultat n'a été modifié : les fichiers grand_livre.py, consolidation_groupe.py, comparaison_officielle.py, rapport_conformite.py,
+parametres_fiscaux.py et couverture_normes.py sont strictement identiques à la version précédente. Dans app.py, la seule modification hors interface est la couleur
+de quelques graphiques et pastilles (statuts, niveaux, jauge).
+
+1. NAVIGATION HYBRIDE (vrais widgets Streamlit, aucun faux bouton HTML)
+- Rangée horizontale toujours visible : Accueil, Transformation, Résultats, Tableau de bord (page active en surbrillance).
+- Bouton Menu (trois lignes) : tiroir latéral avec Normes IAS/IFRS, Contrôle fiscal, Calculateurs, Consolidation, Historique, À propos, Contact. Il s'ouvre et se ferme
+  par le bouton, par « Fermer » ou en cliquant à côté ; il se referme après le choix d'une page. L'ouverture ne recalcule pas le reste de l'application.
+- Les pages sont calculées à chaque exécution comme les anciens onglets : le fichier importé, les résultats et l'historique ne sont jamais perdus en changeant de page.
+- « Historique » est maintenant une page à part entière (elle était en bas du Tableau de bord ; contenu, boutons Voir / Effacer et fichier historique.json inchangés).
+
+2. IDENTITÉ GRAPHIQUE
+- Palette : vert pistache, orange (celui du rapport PDF), blanc, gris très clair et vert pâle ; plus de vert foncé ni de dégradé vert-orange.
+- Nouveau symbole (barres croissantes dans un anneau, point orange), police Plus Jakarta Sans (police système de secours hors ligne).
+- Fichier interface_maroifrs.py : toute la feuille de style, le logo, l'illustration et la liste des pages (aucune logique comptable).
+- Thème Streamlit réellement appliqué : .streamlit/config.toml (l'ancien config.toml à la racine n'était pas lu par Streamlit ; il est conservé).
+
+3. PAGES
+- Accueil : barre et logo en haut, présentation principale avec deux boutons d'action (Importer mes documents, Explorer les normes), illustration financière,
+  4 étapes (Importer, Identifier, Appliquer, Restituer), 6 cartes de fonctionnalités avec bouton « Ouvrir », liste complète dans un volet repliable.
+- Transformation : les normes choisies s'affichent en petites cartes claires (fond vert très pâle, texte foncé, accent orange, survol discret) au lieu de cases rouges.
+  Ce sont les normes demandées ; une légende renvoie à la page Résultats, rubrique « Traitement par norme », pour leur statut réel (rien n'est présenté comme appliqué).
+- Contact : « Restons en contact », adresse contact@maroifrs.ma, bouton « Envoyer un e-mail » (lien mailto).
+- À propos : objectifs, fonctionnalités principales, limites (textes tirés des documents du projet ; aucune certification ni statistique inventée).
+- Tableaux, cartes, indicateurs, alertes, onglets internes : même contenu, nouvel habillage. Animations légères (apparition des pages, survol, barres et courbe de
+  l'illustration), désactivées si le système demande de réduire les animations.
+
+4. TESTS ET VÉRIFICATIONS
+- 59 tests réussis, 0 échec, 0 ignoré (pandas 2.3, Streamlit 1.67, Python 3.12). Nouveaux : navigation par les 11 pages, boutons de l'accueil, feuille de style.
+- Le test avec le vrai moteur Streamlit était toujours « ignoré » : le simulateur remplaçait Streamlit sans le restituer. Corrigé (tests/harness_streamlit.py).
+- Application lancée dans Chromium : accueil, menu, Transformation avec import d'une balance, Résultats, Tableau de bord, Historique, Normes, À propos, Contact.
+  Calculateurs, Contrôle fiscal et Consolidation ont été ouverts sans erreur mais seulement survolés visuellement.
+- Streamlit 1.40 ou plus récent est maintenant exigé (requirements.txt et verifier_dependances.py).
+
+5. À SAVOIR
+- Avec pandas 3.x, la lecture des journaux / grands livres échoue (grand_livre.py, expression régulière non acceptée par pyarrow) : 5 tests échouent. Ce défaut existait déjà,
+  je n'ai pas touché à la logique ; avec pandas 2.x (utilisé pour les tests) tout passe. Si pip installe pandas 3, utilisez : python -m pip install "pandas<3".
+- La police Plus Jakarta Sans se charge depuis Internet ; hors ligne, une police système la remplace.
+- Les captures n'ont été faites qu'en 1440 px de large ; l'affichage mobile n'a pas été examiné en détail.
+
+
+----- Version précédente -----
+
+MAROIFRS - VERSION AMELIOREE - CHANGELOG (20 novembre 2026)
+==========================================================
+
+PRINCIPE DE CETTE VERSION
+L'objectif de MaroIFRS est inchange : importer des documents comptables, les reconnaitre, controler leur conformite au CGNC puis les analyser et les convertir
+vers les normes IAS/IFRS. Cette version renforce la fiabilite : plus aucune valeur supposee, aucun statut "conforme" sans controles executes.
+Aucune fonctionnalite existante n'a ete supprimee (les 138 fonctions de app.py du ZIP precedent sont toutes conservees ; celles de l'application d'origine l'etaient deja).
+
+1. CORRECTIONS
+- DEFAUT DE LIVRAISON CORRIGE : le fichier historique.json du ZIP precedent contenait 24 enregistrements de test ajoutes par mes essais automatiques
+  (balance.xlsx, journal.xlsx, bilan.xlsx, factures.xlsx, dates du 20/11/2026). Les tests ecrivaient dans le vrai historique. Desormais : les tests utilisent un
+  fichier temporaire (variable MAROIFRS_HISTORIQUE) et historique.json n'est PLUS inclus dans le ZIP, pour ne jamais ecraser votre historique.
+  Si votre historique contient ces 24 lignes de test (fichiers balance.xlsx / journal.xlsx / bilan.xlsx / factures.xlsx datees du 20/11/2026), vous pouvez les supprimer.
+- Menu de navigation : une seule ligne (defilement horizontal sur petit ecran) au lieu du retour a la ligne de "Contact". NON VERIFIE visuellement (voir limites).
+- Etiquettes des listes a choix multiple : couleur de la charte (vert) au lieu du rouge. NON VERIFIE visuellement.
+- Calculateur IAS 36 : le taux d'actualisation (10 %) et la croissance (2 %) n'etaient pas des saisies mais des valeurs par defaut qui produisaient une perte de valeur
+  affichee. Ils valent maintenant 0 : sans taux, rien n'est calcule. Si la croissance >= taux, la valeur terminale etait ignoree en silence (valeur d'utilite sous-estimee,
+  perte surestimee) : un message d'erreur bloque desormais le calcul.
+- IFRS 5, IAS 8, IAS 10, IAS 33, IFRS 7, IFRS 8, IAS 24, IAS 7 : ne produisent plus de rappel sans lien avec le document (voir "Couverture des normes").
+- Tableau de bord : "Chiffre d'affaires 0 MAD" ou "Total actif 0 MAD" n'est plus affiche lorsque le compte de resultat ou le bilan est absent ("n/c : CPC absent").
+  Les indicateurs d'un document partiel sont etiquetes "partiel".
+- Erreur de coherence "Capitaux propres negatifs" sur une balance reconstituee a partir de factures : declassee en "A verifier" (document partiel).
+- Consolidation : les minoritaires supportent leur part de l'elimination des frais preliminaires de la filiale (IFRS) ; cette part etait auparavant imputee au groupe seul.
+- Comptes d'une seule societe : intitules "comptes sociaux retraites" et non "comptes consolides".
+- conso_disponible ne renvoyait rien pour les etats de synthese seuls (bilan ou CPC) : corrige.
+
+2. FONCTIONNALITES AMELIOREES
+- TVA : plus aucun taux n'est calcule a partir du solde du compte 4455. Les taux se controlent par piece (journal / grand livre) ou par facture. Sans detail :
+  "A verifier : Controle impossible". Taux legaux testes : 20 %, 14 %, 10 %, 7 % et exoneration ; un taux atypique est signale "A verifier", jamais "Erreur".
+- Factures : TVA reconstituee par l'application (absente du document) signalee comme non controlable ; ecritures comptables CGNC proposees (journal, comptes, TVA) a valider ;
+  resultats declares PARTIELS (une balance reconstituee a partir de factures n'est pas une balance generale).
+- Comparaison officielle : referentiel, perimetre, unite, devise et exercice doivent etre choisis ou saisis (liste "(a choisir)") ; aucune valeur par defaut a l'import.
+- Controle fiscal : exercice obligatoire ; aucun taux d'IS suppose (exercices anterieurs a 2026 : taux a saisir) ; IS "non calcule" plutot que 0 ; tableau des deficits reportables
+  (4 exercices pour la fraction ordinaire, sans limite pour les amortissements, CGI art. 12) ; liste des regles appliquees avec reference, date et niveau de verification.
+- Consolidation : hypotheses et donnees manquantes affichees et reprises dans le rapport ; controles de reciprocite des eliminations, du compte 251 de la mere, des dividendes.
+- Rapport PDF et Excel : sections ajoutees (nature des resultats et qualite des donnees, traitement par norme, comparatif CGNC / IFRS, informations manquantes et controles
+  non executes, parametres fiscaux). Statuts possibles : CONFORME, CONFORME AVEC RESERVES, ANALYSE PARTIELLE, NON CONFORME, NON DETERMINE.
+- lancer.bat : verifie tous les composants et les fichiers du projet (verifier_dependances.py), installe ce qui manque, s'arrete apres 10 redemarrages automatiques.
+
+3. NOUVEAUTES
+- Couverture des normes (onglet Resultats) : pour chacune des 25 normes a regle automatique, statut REEL (execute, sans objet, non applicable, rappel d'information, non selectionne),
+  comptes concernes, valeur comptable initiale, ajustement propose, regle, justification, reference de la norme, informations necessaires. Niveaux d'automatisation :
+  retraitement chiffre (IAS 1, IAS 12 : non-valeurs et provisions reglementees uniquement), detection sur les comptes (18 normes), rappel d'information sans calcul (5 normes).
+  Les normes du catalogue sans aucune regle sont listees comme "consultables, non automatisees".
+- Comparatif des comptes avant (CGNC) et apres (IFRS) retraitement, limite aux retraitements reellement chiffres.
+- Indicateur de qualite des donnees importees (5 composantes expliquees ; il ne mesure pas l'exactitude des montants).
+- Nature des resultats : complets ou partiels, avec les raisons.
+- Modules : parametres_fiscaux.py, couverture_normes.py. Fichiers : tests\ (voir ci-dessous), lancer_tests.bat, verifier_dependances.py.
+
+4. LIMITES RESTANTES (A LIRE)
+- AUCUN essai visuel n'a ete realise : Streamlit n'a pas pu etre installe dans l'environnement de travail (pas d'acces Internet). Les modifications de menu, de couleurs et de
+  mise en page n'ont pas ete vues. Vos captures d'ecran de la version precedente montrent que l'application demarre dans le navigateur ; la version actuelle n'a pas ete lancee.
+- lancer.bat et lancer_tests.bat n'ont pas ete executes (pas de Windows). Seul leur verificateur Python (verifier_dependances.py) a ete teste.
+- Test avec le vrai moteur Streamlit (AppTest) : ecrit, mais IGNORE ici ; il s'executera sur votre PC avec lancer_tests.bat.
+- La lecture des PDF, l'OCR et les fichiers .xls n'ont pas ete retestes (bibliotheques absentes dans l'environnement de travail).
+- Les retraitements IFRS chiffres se limitent aux non-valeurs, aux provisions reglementees et aux impots differes associes. Les autres normes reperent le sujet mais exigent des
+  informations absentes d'une balance (liste dans l'application). Le retraitement n'est donc PAS calcule pour IAS 2, 16, 19, 36, 37, IFRS 9, 15, 16, etc.
+- Parametres fiscaux : recoupes avec des sources secondaires (18/11/2026), pas avec le texte officiel du CGI : a valider aupres de la DGI. Le taux reduit de cotisation minimale
+  (0,15 %) repose sur une seule source. Les taux transitoires d'IS (exercices anterieurs a 2026) ne sont pas integres.
+- Controles CGNC : les controles d'origine sont conserves ; ils n'ont pas fait l'objet d'une revue approfondie dans cette version (hors TVA et coherence sur document partiel).
+- Reconnaissance documentaire : conservee telle quelle ; non renforcee dans cette version.
+- Consolidation : comptes de chaque societe repris tels que saisis (pas d'IFRS 16 ni d'IAS 19 propres aux filiales), pas de conversion de devises, pas de test de depreciation du goodwill,
+  pourcentages supposes constants sur l'exercice, minoritaires a la quote-part de l'actif net.
+- Calculateur IAS 12 : la recuperabilite des actifs d'impot differe (IAS 12.24 et 34) n'est pas testee ; la base fiscale pre-remplie egale la valeur comptable (a corriger).
+- Seules des donnees fictives ont ete utilisees pour les tests ; aucune balance reelle.
+
+5. RESULTATS DES TESTS EXECUTES (python tests\run_tests.py, lance 5 fois de suite sans variation)
+Resultat : 55 reussis, 0 echec, 1 ignore.
+- test_consolidation (9) : valeurs calculees a la main (goodwill, minoritaires, mise en equivalence, eliminations, marges, frais preliminaires, proportionnelle, refus)
+- test_grand_livre_tva (7) : lecture des ecritures, pieces desequilibrees, taux de TVA par piece et par facture, controle impossible sans detail
+- test_comparaison (4) ; test_rapport (3) ; test_imports_et_syntaxe (6, dont compatibilite Python 3.9 et lancer.bat)
+- test_fiscal (5) : parametres, taux sans supposition, deficits, IS calcule a la main, IS non calcule sans exercice ou taux
+- test_couverture_normes (5) : comparatif CGNC/IFRS equilibre, nature des resultats, qualite, traitement par norme dans l'application, document sans resultat
+- test_factures_partiel (3) ; test_historique (3, avec isolation du fichier) ; test_calculateurs_rapport_final (5, dont IAS 36 et IAS 12 recalcules independamment)
+- test_interface (5 reussis + 1 IGNORE) : simulateur de Streamlit (aucun navigateur) ; le test avec le vrai Streamlit est IGNORE.
+Controle des tests : 12 defauts introduits volontairement dans le code (calcul des minoritaires, goodwill, taux de TVA, exigences de la comparaison, statut, report des deficits,
+taux 2026 applique avant 2026, cellule vide lue comme TVA deduite, etc.) : tous detectes par au moins un test.

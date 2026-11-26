@@ -1,8 +1,9 @@
 [theme]
-primaryColor = "#0f6b4f"
-backgroundColor = "#faf6ee"
-secondaryBackgroundColor = "#f1ebdd"
-textColor = "#1c2b25"
+base = "light"
+primaryColor = "#E65100"
+backgroundColor = "#EDF6EE"
+secondaryBackgroundColor = "#D7EDD8"
+textColor = "#26322B"
 font = "sans serif"
 
 [browser]

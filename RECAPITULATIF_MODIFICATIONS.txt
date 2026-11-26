@@ -1,0 +1,92 @@
+MAROIFRS - RECAPITULATIF DES MODIFICATIONS (22 novembre 2026)
+==============================================================
+Base de travail : la dernière version (MaroIFRS_VERSION_FINALISEE.zip), comparée à la version de référence (MaroIFRS_VERSION_AMELIOREE.zip).
+Rien n'a été reconstruit de zéro : toutes les fonctions de app.py (174), toutes les clés de widgets et tous les modules comptables sont conservés.
+
+0. RESULTAT DE LA COMPARAISON DES DEUX VERSIONS
+- Modules comptables et financiers : grand_livre.py, consolidation_groupe.py, comparaison_officielle.py, parametres_fiscaux.py et couverture_normes.py sont
+  OCTET POUR OCTET identiques dans la version de référence, la dernière version et la version livrée ici (vérifié par comparaison de fichiers).
+  Aucun calcul IAS/IFRS, aucun retraitement, aucun contrôle fiscal et aucune consolidation n'a été modifié.
+- Fonctionnalités de la version de référence : aucune n'a été trouvée absente de la dernière version. Les seules fonctions de app.py qui n'existent plus
+  (css_onglets, _vars_theme, deco, net) sont des fonctions de MISE EN PAGE de l'ancienne interface par onglets, remplacées par interface_maroifrs.py
+  et charte_pdf.py. Le contenu de la dernière version est un sur-ensemble de celui de la référence (navigation, page Historique, Contact, À propos,
+  modèle Excel, pagination des PDF, mise en cache). Il n'y avait donc rien à « restaurer » côté calculs ; la dérive constatée vient de l'interface
+  et des rapports, traités ci-dessous.
+- Cause du défaut « 100 % conforme à l'écran / non conforme dans le PDF » : le pourcentage affiché sous l'intitulé « Conformité IFRS » mesurait seulement la part
+  des comptes pour lesquels aucune règle de norme ne se déclenche (statut « inchangé »). Une balance déséquilibrée dont aucun compte ne déclenche de règle
+  affichait donc 100 %, alors que le statut final du PDF (erreurs CGNC, TVA, écritures, contrôles non exécutés) disait NON CONFORME.
+
+1. FONCTIONNALITES RECUPEREES DEPUIS LA VERSION DE REFERENCE
+- Aucune fonctionnalité de calcul n'était à récupérer (voir section 0).
+- Récupéré au niveau de l'apparence : l'animation d'apparition des cartes, des indicateurs et des tableaux, l'animation des barres et de la courbe de l'illustration,
+  l'effet de survol des cartes (soulèvement) - supprimés dans la dernière version pour des raisons de lenteur - sont rétablis sous une forme plus légère (section 4).
+
+2. FONCTIONNALITES CONSERVEES DE LA DERNIERE VERSION
+- Tout le moteur : CGNC, IAS/IFRS (couverture des normes, traitement par norme), TVA par pièce, factures, contrôle fiscal, consolidation, comparaison officielle,
+  calculateurs IAS 12 / IAS 36, historique.
+- Navigation hybride (4 pages visibles + menu), mise à jour de la seule barre de navigation au changement de page, mise en cache des rapports détaillés.
+- Charte PDF (couverture, sommaire, en-têtes, « Page X sur Y »), modèle Excel de balance et importateur adapté, logo symbole + nom sur un même axe.
+- Aucune clé de widget ni aucune rubrique de navigation supprimée.
+
+3. FONCTIONNALITES CORRIGEES
+a) Cohérence interface / rapports (priorité)
+   - Le statut de conformité est calculé par UNE seule fonction (rapport_conformite.statut_final) et affiché à l'identique : page Transformation, page Résultats,
+     rapport synthétique PDF, rapport détaillé PDF, Excel. Nouveau module synthese_conformite.py (aucun second calcul).
+   - Les pourcentages ne s'appellent plus « conformité » : « Comptes sans retraitement » et « Valeur sans retraitement », avec leur définition à l'écran et dans les
+     PDF (« ce n'est pas un taux de conformité »). La jauge, l'historique et ses graphiques utilisent les mêmes intitulés. Le « 100 % » ne peut donc plus se lire
+     comme une conformité totale ; le verdict est le statut final (CONFORME, CONFORME AVEC RESERVES, ANALYSE PARTIELLE, NON CONFORME, NON DETERMINE).
+   - Le rapport détaillé est construit une seule fois ; le même objet alimente l'écran, le PDF et l'Excel.
+   - Les indicateurs de la page Transformation « Conformité CGNC (comptes) » deviennent « Comptes sans anomalie CGNC » (même calcul).
+b) Contenu des rapports (résultats réels et non commentaires généraux)
+   - NOUVEAU tableau « Comptes d'origine (CGNC) et comptes après traitement IAS/IFRS » : pour chaque compte, solde d'origine, statut, traitement appliqué, solde après
+     traitement, écart, norme, justification, et indication « chiffré dans le comparatif ». Dans le PDF (400 lignes) et l'Excel (toutes les lignes, feuille « Comptes avant-après »).
+     Seuls les comptes « éliminés » voient leur montant modifié ; les autres statuts signalent un traitement à passer sans inventer de montant.
+   - Le PDF reprend maintenant les colonnes « Règle appliquée » et « Justification du retraitement » du tableau par norme (elles n'étaient que dans l'Excel).
+   - Tableau des données extraites : 300 lignes dans le PDF au lieu de 80 (l'Excel est complet).
+   - Sections déjà présentes et conservées : documents identifiés, contrôles CGNC et TVA, écritures, normes et anomalies, qualité des données, comparatif avant/après,
+     informations manquantes et contrôles non exécutés, paramètres fiscaux, consolidation, comparaison officielle.
+c) verifier_dependances.py : la liste des fichiers du projet comprend désormais aussi charte_pdf.py, modeles_excel.py et les deux nouveaux modules
+   (charte_pdf.py et modeles_excel.py n'y figuraient pas : un ZIP incomplet n'aurait pas été détecté).
+
+4. NOUVELLES AMELIORATIONS
+- Charte : vert #4CAF50 et orange #E65100 appliqués à l'interface, au thème Streamlit (config.toml et .streamlit/config.toml), aux graphiques, aux PDF, aux Excel et au logo.
+  Teintes dérivées pour la lisibilité : vert foncé #2E7D32 / #388E3C (en-têtes de tableaux, textes), vert pâle #C8E6C9 / #E8F5E9, orange foncé #BF360C (texte), orange pâle #FFE3D1.
+  Rouge #B94A48 réservé aux erreurs. Fond général vert très pâle #EDF6EE (au lieu d'un gris), cartes blanches. Aucun dégradé vert-orange.
+- Mise en valeur des couleurs : page d'accueil à bandeau vert plein avec bouton orange, filet vert en haut de la barre de navigation et des titres de page, pastilles d'icônes
+  vertes (orange au survol), en-têtes de tableaux vert foncé avec filet orange, boutons principaux orange à texte blanc, bouton Menu à bordure verte.
+- Animations légères : fondu de page (0,22 s) ; cartes, indicateurs, tableaux en cascade (0,32 s, décalage maximal 0,2 s) ; barres et courbe de l'illustration ; survol des cartes
+  (soulèvement 0,18 s), des boutons (soulèvement), clic (compression) ; icônes qui pivotent légèrement au survol. Uniquement opacité / déplacement / échelle (pas de recalcul de mise
+  en page), sans flou, désactivées si le système demande de réduire les animations.
+- Le texte des boutons orange est blanc (lisibilité) ; celui de la page active dans la navigation reste foncé sur le vert.
+- Modèle Excel de balance : mêmes en-têtes et même structure que dans la dernière version (compatibilité totale avec l'importateur, testée), nouvelle charte de couleurs.
+- Tests : voir section 5.
+
+5. TESTS EXECUTES
+Commande : python tests\run_tests.py (ou lancer_tests.bat). Résultat dans l'environnement de préparation : 70 réussis, 0 échec, 3 ignorés (voir limites).
+Tests existants : 64, tous conservés ; ceux qui lisaient l'ancien affichage du statut (messages Streamlit) ou l'ancienne palette ont été adaptés, sans affaiblir leurs vérifications.
+Nouveaux tests (tests\test_restauration.py) :
+ - reproduction du défaut : balance déséquilibrée dont 100 % des comptes sont « inchangés » -> l'écran affiche NON CONFORME sur chaque page, comme le PDF ;
+ - même statut dans l'écran, le rapport synthétique PDF, le rapport détaillé PDF et l'Excel (texte du PDF extrait et comparé) ;
+ - exemple chiffré à la main : frais préliminaires 50 000 (débit) et amortissement 20 000 (crédit) -> non-valeur nette 30 000 éliminée ; l'écart par compte (-30 000)
+   est égal à celui du comparatif agrégé ;
+ - le rapport PDF contient les comptes d'origine, les montants avant/après, les normes, les règles et justifications ; l'Excel contient les feuilles correspondantes ;
+ - charte de couleurs présente partout, ancienne charte absente ; indicateurs partagés.
+Vérifications visuelles réalisées : pages du PDF détaillé et du PDF synthétique (rendus en images), modèle Excel (rendu LibreOffice), aperçu des composants de l'interface avec la
+nouvelle feuille de style dans Chrome (page statique, hors Streamlit).
+
+6. LIMITES RESTANTES
+- L'application n'a PAS été lancée dans un navigateur avec Streamlit : Streamlit n'est pas installable dans l'environnement de préparation (pas de réseau). Les 3 tests avec le
+  vrai moteur Streamlit sont « ignorés » ; ils s'exécuteront sur votre PC (lancer_tests.bat). Le placement du statut dans la page Transformation utilise st.empty(), rempli en fin
+  d'exécution : testé avec le simulateur, à confirmer visuellement. Faites un essai complet (import, Transformation, Résultats, téléchargement des PDF) avant toute présentation.
+- Animations : écrites et contrôlées par test (durées, propriétés) mais non vues à l'écran. Si l'application vous semble moins fluide, vous pouvez les retirer en supprimant le bloc
+  « Animations » de interface_maroifrs.py (aucune conséquence sur les calculs) ; le réglage NAV_FRAGMENT_SEUL conserve la navigation rapide.
+- Écarts de conversion (comptes 271, 272, 171, 172) : la règle les marque « éliminés » (montant ramené à 0 dans le tableau par compte), mais leur effet n'est pas repris dans le
+  comparatif agrégé (seules les non-valeurs 21 / 281 et les provisions réglementées le sont). Le tableau par compte l'indique (« Non : écart non repris au comparatif »). En IFRS (IAS 21), ces écarts
+  se reconnaissent en résultat : la règle d'origine n'a volontairement pas été modifiée dans cette mission, faute de validation comptable ; à trancher avec votre encadrant.
+- Les retraitements chiffrés restent limités aux non-valeurs, aux provisions réglementées et aux impôts différés associés ; IAS 2, 16, 19, 36, 37, IFRS 9, 15, 16, etc. sont repérées mais
+  non chiffrées (informations absentes d'une balance). C'est affiché dans les rapports.
+- Les anciennes entrées de l'historique (fichier historique.json) n'ont pas de statut final enregistré : elles affichent « Comptes sans retraitement ». Le champ interne « conformite » est conservé
+  pour rester compatible avec vos anciens historiques.
+- Paramètres fiscaux à valider auprès de la DGI (sources secondaires). PDF scannés, OCR et fichiers .xls non retestés ici. Rendus PDF / Excel vérifiés avec LibreOffice et pdftoppm, pas avec
+  Microsoft Excel ni Adobe Reader. Les polices standard des PDF n'ont pas certains symboles.
+- Résultats d'aide à la décision : à valider par un expert-comptable.
