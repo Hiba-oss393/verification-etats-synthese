@@ -489,6 +489,34 @@ span[data-baseweb="tag"] svg:hover, [data-testid="stMultiSelect"] [data-tag] but
 .tiroir-g {padding: 1rem .6rem .55rem .6rem !important; margin: 0 !important; position: relative; z-index: 3;}
 .st-key-tiroir [data-testid="stHorizontalBlock"] {margin-bottom: .35rem;}
 @media (max-height: 640px) {.st-key-tiroir {padding-top: .9rem !important;} .tiroir-g {padding-top: .7rem !important;}}
+/* ============ Sélecteur de langue : emplacement réservé, jamais rogné ============ */
+.st-key-barre [data-testid="stColumn"]:last-child {flex: 0 0 9.6rem !important; width: 9.6rem !important; min-width: 9.6rem !important; margin-left: 0;}
+.st-key-langue_ui, .st-key-langue_ui [data-testid="stSelectbox"] {min-width: 100%; width: 100%;}
+.st-key-langue_ui [data-baseweb="select"] > div {padding-left: .35rem; box-shadow: none !important;}
+@media (max-width: 1500px) {.chip {display: none;}}
+@media (max-width: 1280px) {.st-key-barre .stButton button {padding: 0 .65rem;} .st-key-barre .stButton button p {font-size: .86rem;} .brand .lg-full {display: none;} .brand .lg-compact {display: block;}}
+@media (max-width: 760px) {.st-key-barre [data-testid="stColumn"]:last-child {flex-basis: 8.4rem !important; width: 8.4rem !important; min-width: 8.4rem !important;}}
+
+/* ============ Bandeau défilant des services MaroIFRS (remplace les indices) ============ */
+.sv-i {display: flex; align-items: center; gap: .7rem; flex: none; padding: .62rem 1.5rem .62rem 1.1rem; border-right: 1px solid var(--line); white-space: nowrap;}
+.sv-ic {flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--pi-xl); color: var(--pi-t); transition: background-color .2s ease-out, color .2s ease-out;}
+.sv-i:hover .sv-ic {background: var(--or); color: #FFFFFF;}
+.sv-t {display: block; font-weight: 700; font-size: .86rem; color: var(--ink); line-height: 1.25;}
+.sv-d {display: block; font-size: .74rem; color: var(--muted); line-height: 1.3;}
+.tk-track.sv {animation-duration: 70s;}
+
+/* ============ Transitions entre pages et apparitions au défilement ============
+   Les éléments ne sont masqués que si le petit script (rv_html) a démarré : s'il échoue, tout reste visible. */
+@keyframes pageIn {from {opacity: 0; transform: translateY(12px);} to {opacity: 1; transform: none;}}
+[class*="st-key-page_"] {animation: pageIn .38s cubic-bezier(.22,.61,.36,1) both;}
+html.rv-on .rv-t {transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1); transition-delay: var(--rvd, 0ms); will-change: opacity, transform;}
+html.rv-on .rv-t:not(.rv-in) {opacity: 0; transform: translateY(22px);}
+html.rv-on .rv-t.rv-in {opacity: 1; transform: none;}
+html.rv-on .rv-t:is(.stat, .step, .nc, .panel, .kpi, .fc, .tw, .bd, .note) {animation: none;}
+html.rv-on .rv-t.rv-in:is(.stat, .step, .nc, .fc, .kpi):hover {transform: translateY(-3px);}
+.stApp .stButton button {transition: transform .15s ease-out, box-shadow .15s ease-out, background-color .15s ease-out, border-color .15s ease-out;}
+.stApp [data-testid="stMain"] .stButton button:hover {transform: translateY(-1px);}
+@media (prefers-reduced-motion: reduce) {html.rv-on .rv-t, html.rv-on .rv-t:not(.rv-in) {opacity: 1 !important; transform: none !important; transition: none !important;}}
 </style>"""
 
 
@@ -706,3 +734,58 @@ def indicateurs_demo(lang="fr"):
         ("Cours démo D", 184.70, 1.17, [176, 177.5, 176.9, 179, 180.4, 181, 182.9, 182.5, 184.7], 2),
     ]
     return [{"libelle": n, "valeur": _nombre(v, d, lang) + (" %" if n.startswith("Taux") else ""), "variation": var, "serie": ser, "demo": True} for n, v, var, ser, d in series]
+
+
+
+# ---- bandeau défilant des services MaroIFRS (remplace les indices démo à l'accueil ; ticker_html et indicateurs_demo restent disponibles) ----
+_SV_ICONES = {
+    "transf": '<path d="M7 7h11l-3-3M17 17H6l3 3"/><path d="M18 7v4M6 17v-4"/>',
+    "conf": '<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',
+    "cgnc": '<path d="M4 5h6a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4z"/><path d="M20 5h-4a3 3 0 0 0-3 3"/><path d="M20 5v12h-5"/>',
+    "analyse": '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    "fiscal": '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/>',
+    "conso": '<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',
+    "rapport": '<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/>',
+    "compar": '<path d="M7 4v16M17 4v16"/><path d="M3 8l4-4 4 4M13 16l4 4 4-4"/>',
+}
+SERVICES_BANDEAU = [   # uniquement des fonctions réellement présentes dans MaroIFRS
+    ("transf", "Transformation IAS/IFRS", "Adaptation des comptes aux normes internationales"),
+    ("conf", "Conformité comptable", "Vérification et analyse des écarts"),
+    ("cgnc", "Référentiel CGNC", "Contrôles et cohérence des comptes marocains"),
+    ("analyse", "Analyse financière", "Exploitation et interprétation des données comptables"),
+    ("fiscal", "Contrôle fiscal", "Vérifications et suivi des paramètres fiscaux"),
+    ("conso", "Consolidation", "Traitement et analyse des données de groupe"),
+    ("rapport", "Rapports professionnels", "Génération de rapports détaillés PDF et Excel"),
+    ("compar", "Comparaison des exercices", "Analyse des évolutions et des différences entre périodes"),
+]
+
+
+def services_html(tr=lambda s: s, lang="fr"):
+    """Bandeau horizontal défilant (CSS pur) des fonctions de MaroIFRS : icône, intitulé, courte description. Texte seulement, aucune donnée comptable."""
+    def un(cle, titre, desc):
+        return ('<div class="sv-i"><span class="sv-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" '
+                'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg></span><span><b class="sv-t">%s</b><span class="sv-d">%s</span></span></div>'
+                % (_SV_ICONES[cle], escape(tr(titre)), escape(tr(desc))))
+    corps = "".join(un(*e) for e in SERVICES_BANDEAU)
+    return ('<div class="tk" role="region" aria-label="%s"><div class="tk-tag">%s<small>%s</small></div><div class="tk-view"><div class="tk-track sv">%s%s</div></div></div>'
+            % (escape(tr("Fonctionnalités de MaroIFRS")), escape(tr("Solutions")), escape(tr("Du CGNC aux normes IAS/IFRS")), corps,
+               corps.replace('class="sv-i"', 'class="sv-i" aria-hidden="true"')))
+
+
+# ---- apparition progressive au défilement (script isolé : agit sur la page parente, ne touche aucune donnée) ----
+REVEAL_SELECTEURS = (".hero-t, .hero-p, .pill, .tags, .eyebrow, .h2, .bd, .stat, .step, .nc, .fc, .kpi, .panel, .tw, .note, .tk, "
+                     "[data-testid=\"stMarkdownContainer\"] h2, [data-testid=\"stMarkdownContainer\"] h3, [data-testid=\"stDataFrame\"], "
+                     "[data-testid=\"stPlotlyChart\"], [data-testid=\"stVegaLiteChart\"], [data-testid=\"stExpander\"], [data-testid=\"stMetric\"], [data-testid=\"stAlert\"]")
+_REVEAL_JS = """(function(){try{var P=window.parent,D=P.document;if(P.__rvOn){return;}
+var io=new P.IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('rv-in');io.unobserve(e.target);}});},{threshold:.06,rootMargin:'0px 0px -5%% 0px'});
+function scan(){D.querySelectorAll('%(sel)s').forEach(function(el){if(el.__rv||el.closest('.tk-view')||el.closest('.st-key-barre')||el.closest('.st-key-tiroir')){return;}el.__rv=1;
+var p=el.parentElement,k=p?Array.prototype.indexOf.call(p.children,el):0;el.style.setProperty('--rvd',(Math.min(k,5)*70)+'ms');el.classList.add('rv-t');io.observe(el);});}
+var t=null;new P.MutationObserver(function(){if(t){return;}t=P.setTimeout(function(){t=null;scan();},60);}).observe(D.body,{childList:true,subtree:true});
+scan();P.__rvOn=1;D.documentElement.classList.add('rv-on');
+P.setTimeout(function(){D.querySelectorAll('.rv-t:not(.rv-in)').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<P.innerHeight&&r.bottom>0){el.classList.add('rv-in');}});},2500);
+}catch(e){}})();"""
+
+
+def reveal_html():
+    """Composant HTML invisible (hauteur 0) qui active les apparitions au défilement. Si le script ne peut pas agir, la page s'affiche normalement."""
+    return '<!DOCTYPE html><html><body><script>%s</script></body></html>' % (_REVEAL_JS % {"sel": REVEAL_SELECTEURS.replace("\\", "\\\\").replace("'", "\\'")})

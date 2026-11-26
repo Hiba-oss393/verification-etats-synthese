@@ -1213,3 +1213,24 @@ Télécharger le modèle de fichier (comptes officiels) ::: Download the file te
 Fichier des comptes officiels (modèle Excel ou CSV) ::: Official accounts file (Excel or CSV template)
 comptes officiels ::: official accounts
 Télécharger les écritures proposées (Excel) ::: Download the proposed entries (Excel)
+
+# ---------- bandeau des services (accueil) ----------
+Solutions ::: Solutions
+Du CGNC aux normes IAS/IFRS ::: From CGNC to IAS/IFRS
+Fonctionnalités de MaroIFRS ::: MaroIFRS features
+Transformation IAS/IFRS ::: IAS/IFRS transformation
+Adaptation des comptes aux normes internationales ::: Adapting accounts to international standards
+Conformité comptable ::: Accounting compliance
+Vérification et analyse des écarts ::: Checking and analysis of differences
+Référentiel CGNC ::: CGNC framework
+Contrôles et cohérence des comptes marocains ::: Controls and consistency of Moroccan accounts
+Analyse financière ::: Financial analysis
+Exploitation et interprétation des données comptables ::: Use and interpretation of accounting data
+Contrôle fiscal ::: Tax control
+Vérifications et suivi des paramètres fiscaux ::: Checks and monitoring of tax parameters
+Consolidation ::: Consolidation
+Traitement et analyse des données de groupe ::: Processing and analysis of group data
+Rapports professionnels ::: Professional reports
+Génération de rapports détaillés PDF et Excel ::: Detailed PDF and Excel report generation
+Comparaison des exercices ::: Comparison of financial years
+Analyse des évolutions et des différences entre périodes ::: Analysis of changes and differences between periods

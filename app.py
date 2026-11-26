@@ -3118,6 +3118,11 @@ def barre_navigation():
 
 
 barre_navigation()          # contient aussi la feuille de style qui n'affiche que la page active
+try:
+    import streamlit.components.v1 as _cv_rv
+    _cv_rv.html(ui.reveal_html(), height=0)          # apparitions au défilement (visuel seulement)
+except Exception:
+    pass
 
 _ORDRE_PAGES = ["accueil", "normes", "transformation", "fiscal", "calc", "resultats", "conso", "dashboard", "historique", "apropos", "contact"]
 (t_acc, t_norm, t_trans, t_fisc, t_calc, t_res, t_conso, t_dash, t_hist, t_apropos, t_contact) = [st.container(key="page_" + p) for p in _ORDRE_PAGES]
@@ -3131,9 +3136,7 @@ with t_acc:
             _cv1.html(ui.carrousel_html(lambda t: i18n.tr(t, _lg), lang=_lg), height=ui.CARROUSEL_HAUTEUR)
         except Exception:
             pass        # sans composant HTML : l'accueil s'affiche sans carrousel (les boutons de l'accueil restent disponibles)
-    st.markdown(ui.ticker_html(indicateurs_bandeau(), lambda t: i18n.tr(t, _lg), _lg), unsafe_allow_html=True)
-    st.markdown('<div class="tk-note">Indicateurs MaroIFRS tirés de l\'application ; les éléments marqués DÉMO sont des valeurs fictives de présentation, sans lien avec un marché réel.</div>',
-                unsafe_allow_html=True)
+    st.markdown(ui.services_html(lambda t: i18n.tr(t, _lg), _lg), unsafe_allow_html=True)
     with st.container(key="hero"):
         hero_g, hero_d = st.columns([1.1, 1], gap="large", vertical_alignment="center")
         with hero_g:

@@ -89,7 +89,7 @@ def test_bandeau_defilant_donnees_reelles_et_demo_signalees():
         assert i["demo"] is True                                            # toute valeur d'exemple porte la pastille DÉMO
     assert "tkScroll" in ui.CSS and "animation-play-state: paused" in ui.CSS
     src = (RACINE / "app.py").read_text(encoding="utf-8")
-    assert "def indicateurs_bandeau" in src and "valeurs fictives" in src
+    assert "def indicateurs_bandeau" in src and "ui.services_html(" in src          # 6e mission : l'accueil affiche le bandeau des services (plus de note DÉMO à l'écran) ; les fonctions d'indicateurs restent disponibles
 
 
 def test_menu_correctif_espacement_premier_bouton():

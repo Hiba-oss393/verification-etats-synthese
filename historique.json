@@ -1,41 +1,41 @@
 [
  {
-  "cle": "etat_de_syntheses_2015.pdf|686538",
-  "fichier": "etat_de_syntheses_2015.pdf",
-  "date": "25/11/2026 22:04:57",
-  "comptes": 79,
-  "conformite": 79.7,
-  "valeur": 97.1,
+  "cle": "Etats_Financiers_2012.pdf|42541",
+  "fichier": "Etats_Financiers_2012.pdf",
+  "date": "26/11/2026 15:26:06",
+  "comptes": 55,
+  "conformite": 81.8,
+  "valeur": 97.6,
   "statuts": {
-   "éliminé": 4,
-   "à revoir": 5,
-   "inchangé": 63,
-   "reclassé": 7,
-   "ajusté": 0
+   "éliminé": 2,
+   "à revoir": 2,
+   "inchangé": 45,
+   "reclassé": 5,
+   "ajusté": 1
   },
   "constats": [
    {
     "Norme": "IAS 1",
     "Niveau": "Erreur",
-    "Constat": "Balance déséquilibrée (écart -24,376,141 MAD)",
+    "Constat": "Balance déséquilibrée (écart -14,972,616 MAD)",
     "Retraitement suggéré": "Corriger la balance avant tout retraitement"
    },
    {
     "Norme": "IAS 1 / IAS 38",
     "Niveau": "Retraitement",
-    "Constat": "Immobilisations en non-valeurs : 840,706 MAD",
+    "Constat": "Immobilisations en non-valeurs : 2,930,544 MAD",
     "Retraitement suggéré": "Pas d'actif en IFRS : passer en charges (contrepartie capitaux propres d'ouverture)"
    },
    {
     "Norme": "IAS 1",
     "Niveau": "Retraitement",
-    "Constat": "Éléments non courants : charges 9,662,688 MAD, produits 7,962,643 MAD",
+    "Constat": "Éléments non courants : charges 1,730,470 MAD, produits 6,741,939 MAD",
     "Retraitement suggéré": "IAS 1 interdit les éléments « extraordinaires » : reclasser dans les charges/produits ordinaires ou les détailler en annexe"
    },
    {
     "Norme": "IAS 1",
     "Niveau": "Info",
-    "Constat": "Total actif (573,250,704 MAD) ≠ total passif (597,626,846 MAD)",
+    "Constat": "Total actif (672,011,019 MAD) ≠ total passif (686,983,635 MAD)",
     "Retraitement suggéré": "Adapter le mapping des comptes dans etat_situation()"
    },
    {
@@ -45,15 +45,9 @@
     "Retraitement suggéré": ""
    },
    {
-    "Norme": "IAS 2",
-    "Niveau": "Info",
-    "Constat": "Stocks inscrits au bilan : 128,899,233 MAD",
-    "Retraitement suggéré": "Évaluer au plus bas du coût et de la valeur nette de réalisation (IAS 2.9)"
-   },
-   {
     "Norme": "IAS 7",
     "Niveau": "Info",
-    "Constat": "Trésorerie à l'actif (comptes 51) : 48,128,326 MAD ; trésorerie passif (comptes 55) : 19,316,818 MAD",
+    "Constat": "Trésorerie à l'actif (comptes 51) : 8,941 MAD ; trésorerie passif (comptes 55) : -0 MAD",
     "Retraitement suggéré": "Établir le tableau des flux (exploitation, investissement, financement) ; rapprocher la trésorerie nette du TFT avec le bilan"
    },
    {
@@ -71,7 +65,7 @@
    {
     "Norme": "IAS 12",
     "Niveau": "Info",
-    "Constat": "Taux d'impôt effectif : 0.0%",
+    "Constat": "Taux d'impôt effectif : 26.4%",
     "Retraitement suggéré": ""
    },
    {
@@ -83,13 +77,13 @@
    {
     "Norme": "IAS 16",
     "Niveau": "Info",
-    "Constat": "Amortissements / base amortissable = 47%",
+    "Constat": "Amortissements / base amortissable = 55%",
     "Retraitement suggéré": ""
    },
    {
     "Norme": "IAS 19",
     "Niveau": "À vérifier",
-    "Constat": "Charges de personnel : 55,681,106 MAD",
+    "Constat": "Charges de personnel : 34,214,809 MAD",
     "Retraitement suggéré": "Vérifier la provision pour congés payés, primes et avantages postérieurs à l'emploi (indemnités de départ)"
    },
    {
@@ -99,15 +93,9 @@
     "Retraitement suggéré": "Évaluer l'obligation par la méthode des unités de crédit projetées"
    },
    {
-    "Norme": "IAS 20",
-    "Niveau": "À vérifier",
-    "Constat": "Subventions publiques : 100,242 MAD",
-    "Retraitement suggéré": "Comptabiliser en résultat sur les périodes où les coûts correspondants sont constatés"
-   },
-   {
     "Norme": "IAS 21",
     "Niveau": "Info",
-    "Constat": "Gains/pertes de change : -258,337 MAD",
+    "Constat": "Gains/pertes de change : 29,406 MAD",
     "Retraitement suggéré": ""
    },
    {
@@ -131,13 +119,13 @@
    {
     "Norme": "IAS 37",
     "Niveau": "À vérifier",
-    "Constat": "Provisions pour risques et charges (comptes 15 et 45) : 6,225,282 MAD",
+    "Constat": "Provisions pour risques et charges (comptes 15 et 45) : 1,591,221 MAD",
     "Retraitement suggéré": "Conserver uniquement si obligation actuelle, sortie probable et estimation fiable (IAS 37.14)"
    },
    {
     "Norme": "IAS 38",
     "Niveau": "À vérifier",
-    "Constat": "Immobilisations incorporelles : 5,972,717 MAD",
+    "Constat": "Immobilisations incorporelles : 12,241,264 MAD",
     "Retraitement suggéré": "Critères de comptabilisation (identifiable, contrôlé, avantages futurs) ; frais de recherche en charges"
    },
    {
@@ -153,9 +141,15 @@
     "Retraitement suggéré": "Entités cotées : résultat par secteur opérationnel"
    },
    {
+    "Norme": "IFRS 10",
+    "Niveau": "À vérifier",
+    "Constat": "Titres de participation (compte 251) : 21,000,000 MAD",
+    "Retraitement suggéré": "Qualifier chaque participation : contrôle (pouvoir, rendements variables, lien entre les deux) -> consolider par intégration globale (onglet Consolidation) ; influence notable -> IAS 28 ; sinon IFRS 9"
+   },
+   {
     "Norme": "IFRS 15 / IAS 18",
     "Niveau": "Info",
-    "Constat": "Chiffre d'affaires comptable : 536,177,787 MAD",
+    "Constat": "Chiffre d'affaires comptable : 94,067,300 MAD",
     "Retraitement suggéré": ""
    },
    {
@@ -167,7 +161,7 @@
    {
     "Norme": "ESG / CGNC",
     "Niveau": "À vérifier",
-    "Constat": "Résultat net : 52,505,771 MAD dans le document, 77,386,625 MAD d'après le CPC",
+    "Constat": "Résultat non courant : 4,968,592 MAD dans le document, 5,011,469 MAD d'après le CPC",
     "Retraitement suggéré": "Rechercher le poste mal lu ou mal classé, ou la différence de périmètre entre les deux états"
    },
    {
@@ -175,48 +169,6 @@
     "Niveau": "Info",
     "Constat": "Les soldes de gestion (marge brute, valeur ajoutée, EBE) n'existent pas en IFRS",
     "Retraitement suggéré": "IAS 1 impose un état du résultat global par nature ou par fonction ; IFRS 18 (applicable dès 2027) crée les catégories exploitation / investissement / financement et les mesures de performance définies par la direction"
-   },
-   {
-    "Norme": "TF / CGNC",
-    "Niveau": "Erreur",
-    "Constat": "BFG (12,368,632 MAD) différent de actif circulant - passif circulant (191,979,074 MAD)",
-    "Retraitement suggéré": "Corriger le tableau de financement"
-   },
-   {
-    "Norme": "TF / CGNC",
-    "Niveau": "Erreur",
-    "Constat": "Trésorerie nette (0 MAD) différente de FRNG - BFG (208,421,950 MAD)",
-    "Retraitement suggéré": "Corriger le tableau de financement"
-   },
-   {
-    "Norme": "TF / CGNC",
-    "Niveau": "À vérifier",
-    "Constat": "Financement permanent : 371,665,179 MAD dans le document, 396,041,320 MAD d'après le bilan reconstitué",
-    "Retraitement suggéré": "Rechercher le poste mal lu ou mal classé, ou la différence de périmètre entre les deux états"
-   },
-   {
-    "Norme": "TF / CGNC",
-    "Niveau": "À vérifier",
-    "Constat": "Fonds de roulement fonctionnel (FRNG) : 220,790,582 MAD dans le document, 245,166,723 MAD d'après le bilan reconstitué",
-    "Retraitement suggéré": "Rechercher le poste mal lu ou mal classé, ou la différence de périmètre entre les deux états"
-   },
-   {
-    "Norme": "TF / CGNC",
-    "Niveau": "À vérifier",
-    "Constat": "Trésorerie nette : 0 MAD dans le document, 28,811,508 MAD d'après le bilan reconstitué",
-    "Retraitement suggéré": "Rechercher le poste mal lu ou mal classé, ou la différence de périmètre entre les deux états"
-   },
-   {
-    "Norme": "TF / CGNC",
-    "Niveau": "À vérifier",
-    "Constat": "Besoin de financement global (BFG) : 12,368,632 MAD dans le document, 191,979,074 MAD d'après le bilan reconstitué",
-    "Retraitement suggéré": "Rechercher le poste mal lu ou mal classé, ou la différence de périmètre entre les deux états"
-   },
-   {
-    "Norme": "TF / IAS 7",
-    "Niveau": "À vérifier",
-    "Constat": "Le tableau de financement analyse des masses du bilan, il ne remplace pas le tableau des flux de trésorerie",
-    "Retraitement suggéré": "Établir le tableau des flux IAS 7 (exploitation, investissement, financement) ; rapprocher la trésorerie nette du TF de la trésorerie et équivalents IAS 7 (découverts remboursables à vue inclus)"
    },
    {
     "Norme": "ETIC / IFRS",

@@ -1,0 +1,34 @@
+MAROIFRS - MISSION ANIMATIONS / TRANSITIONS / BANDEAU / SELECTEUR DE LANGUE (26 novembre 2026)
+=============================================================================================
+Base : MaroIFRS_PHOTOS_LANGUE_1.zip. Rien reconstruit, aucune fonction supprimée.
+
+1. SELECTEUR DE LANGUE (position uniquement)
+- Colonne réservée de 9,6 rem (8,4 rem sur petit écran) : le sélecteur n'est plus rogné ni comprimé.
+- La pastille « 20 normes contrôlées » se masque sous 1500 px et le logo passe en version compacte sous 1280 px pour libérer la place.
+- Fonctionnement inchangé : même widget (key="langue_ui"), même fonction changer_langue_ui.
+
+2. BANDEAU SOUS LE CARROUSEL
+- Remplacé par les 8 services demandés (icône + intitulé + description), défilement continu CSS, pause au survol, étiquette « Solutions ».
+- Plus aucun indice, taux ou cours, et plus de note « DÉMO » à l'écran. Chaque intitulé correspond à une fonction existante de l'application.
+- Traductions anglaises ajoutées dans traductions_en.txt. Les fonctions ticker_html, indicateurs_demo et indicateurs_bandeau restent dans le code (non utilisées à l'accueil).
+
+3. TRANSITIONS ET APPARITIONS AU DEFILEMENT
+- Changement de page : fondu + montée de 12 px (0,38 s).
+- Au défilement : titres, paragraphes, cartes, indicateurs, tableaux, graphiques, encadrés apparaissent en fondu avec une montée de 22 px (0,55 s), décalage de 70 ms entre voisins (5 max).
+- Un petit script isolé (composant HTML de hauteur 0, interface_maroifrs.reveal_html) observe la page ; les éléments ne sont masqués que si ce script a démarré : sinon la page s'affiche normalement.
+- Survol : cartes et boutons se soulèvent légèrement. Tout est désactivé si le système demande de réduire les animations.
+
+4. FICHIERS MODIFIES
+- interface_maroifrs.py : CSS + fonctions services_html et reveal_html (ajout).
+- app.py : 2 changements visuels (bandeau des services à l'accueil ; appel de reveal_html après la barre de navigation).
+- traductions_en.txt : 19 lignes ajoutées.
+- tests/test_animations_services.py (5 nouveaux tests) ; tests/test_i18n_photos.py : une assertion mise à jour (elle exigeait l'ancienne note DÉMO).
+- Modules comptables, rapports, imports/exports, modèles Excel, historique : identiques octet pour octet (SHA-256 comparés à la version reçue).
+
+5. TESTS
+Avant : 82 réussis, 0 échec, 3 ignorés. Après : 87 réussis, 0 échec, 3 ignorés (les 3 ignorés exigent Streamlit réel, non installable ici).
+Vérifié dans Chromium sur une maquette : bandeau des services (rendu), apparition au défilement (éléments masqués avant, visibles après), aucune erreur JavaScript.
+
+6. LIMITES - A VERIFIER SUR VOTRE APPLICATION
+- L'application n'a PAS été lancée sous Streamlit réel. A contrôler : position du sélecteur de langue à votre largeur d'écran, changement FR/EN, transitions entre onglets, apparitions au défilement (le script agit sur la page parente de Streamlit ; s'il ne peut pas, il n'y a simplement pas d'animation au défilement), bandeau des services.
+- Les durées sont plafonnées à 0,55 s (limite fixée par un test de la mission précédente).
